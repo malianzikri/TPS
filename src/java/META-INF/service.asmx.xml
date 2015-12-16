@@ -1,0 +1,1390 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://services.beacukai.go.id/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://services.beacukai.go.id/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://services.beacukai.go.id/">
+      <s:element name="GantiPassword">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PasswordBaru" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PasswordKonfirmasi" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GantiPasswordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GantiPasswordResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CoarriCodeco_Container">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fStream" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CoarriCodeco_ContainerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CoarriCodeco_ContainerResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CoarriCodeco_Kemasan">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fStream" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CoarriCodeco_KemasanResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CoarriCodeco_KemasanResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CoCoCont_Tes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fStream" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CoCoCont_TesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CoCoCont_TesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CoCoKms_Tes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fStream" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CoCoKms_TesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CoCoKms_TesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CoCoTangki">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fStream" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CoCoTangkiResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CoCoTangkiResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CoCoCarTer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fStream" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CoCoCarTerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CoCoCarTerResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPendukungPLP_BL">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="noBc11" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tglBc11" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="noCont" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPendukungPLP_BLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPendukungPLP_BLResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPendukungPLP">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="noBc11" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tglBc11" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="noCont" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPendukungPLPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPendukungPLPResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetImpor_Sppb">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="No_Sppb" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Tgl_Sppb" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NPWP_Imp" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetImpor_SppbResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetImpor_SppbResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetImporPermit">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Kd_Gudang" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetImporPermitResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetImporPermitResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetImporPermit200">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Kd_Gudang" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetImporPermit200Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetImporPermit200Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetImporPermit_FASP">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Kd_ASP" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetImporPermit_FASPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetImporPermit_FASPResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDataOB">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Kd_ASP" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDataOBResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDataOBResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetNPE">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NPWP_Eks" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="No_Npe" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Kd_Ktr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetNPEResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetNPEResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRejectData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Kd_Tps" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRejectDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRejectDataResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CekDataTerkirim">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Tgl_Awal" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Tgl_Akhir" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CekDataTerkirimResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CekDataTerkirimResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CekDataSPPB">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Tgl_SPPB" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CekDataSPPBResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CekDataSPPBResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CekDataGagalKirim">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Tgl_Awal" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Tgl_Akhir" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CekDataGagalKirimResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CekDataGagalKirimResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CekNPE">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NPWP_Eks" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="No_Npe" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Tgl_Npe" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CekNPEResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CekNPEResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSppb_Bc23">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="No_Sppb" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Tgl_Sppb" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NPWP_Imp" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSppb_Bc23Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSppb_Bc23Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBC23Permit">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Kd_Gudang" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBC23PermitResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBC23PermitResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBC23Permit_FASP">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Kd_ASP" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBC23Permit_FASPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBC23Permit_FASPResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSPPB12_TPSAsal">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Kd_asp" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSPPB12_TPSAsalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSPPB12_TPSAsalResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSPPB12_TPSTujuan">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Kd_asp" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSPPB12_TPSTujuanResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSPPB12_TPSTujuanResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PermohonanBC12">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fStream" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PermohonanBC12Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PermohonanBC12Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetResponPenolakanBC12">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Kd_asp" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetResponPenolakanBC12Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetResponPenolakanBC12Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PermohonanPLP">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fStream" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PermohonanPLPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PermohonanPLPResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetResponPLP">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Kd_asp" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetResponPLPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetResponPLPResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEksporPermit_FNPE">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="No_PE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="npwp" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="kdKantor" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEksporPermit_FNPEResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEksporPermit_FNPEResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GantiPasswordSoapIn">
+    <wsdl:part name="parameters" element="tns:GantiPassword" />
+  </wsdl:message>
+  <wsdl:message name="GantiPasswordSoapOut">
+    <wsdl:part name="parameters" element="tns:GantiPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="CoarriCodeco_ContainerSoapIn">
+    <wsdl:part name="parameters" element="tns:CoarriCodeco_Container" />
+  </wsdl:message>
+  <wsdl:message name="CoarriCodeco_ContainerSoapOut">
+    <wsdl:part name="parameters" element="tns:CoarriCodeco_ContainerResponse" />
+  </wsdl:message>
+  <wsdl:message name="CoarriCodeco_KemasanSoapIn">
+    <wsdl:part name="parameters" element="tns:CoarriCodeco_Kemasan" />
+  </wsdl:message>
+  <wsdl:message name="CoarriCodeco_KemasanSoapOut">
+    <wsdl:part name="parameters" element="tns:CoarriCodeco_KemasanResponse" />
+  </wsdl:message>
+  <wsdl:message name="CoCoCont_TesSoapIn">
+    <wsdl:part name="parameters" element="tns:CoCoCont_Tes" />
+  </wsdl:message>
+  <wsdl:message name="CoCoCont_TesSoapOut">
+    <wsdl:part name="parameters" element="tns:CoCoCont_TesResponse" />
+  </wsdl:message>
+  <wsdl:message name="CoCoKms_TesSoapIn">
+    <wsdl:part name="parameters" element="tns:CoCoKms_Tes" />
+  </wsdl:message>
+  <wsdl:message name="CoCoKms_TesSoapOut">
+    <wsdl:part name="parameters" element="tns:CoCoKms_TesResponse" />
+  </wsdl:message>
+  <wsdl:message name="CoCoTangkiSoapIn">
+    <wsdl:part name="parameters" element="tns:CoCoTangki" />
+  </wsdl:message>
+  <wsdl:message name="CoCoTangkiSoapOut">
+    <wsdl:part name="parameters" element="tns:CoCoTangkiResponse" />
+  </wsdl:message>
+  <wsdl:message name="CoCoCarTerSoapIn">
+    <wsdl:part name="parameters" element="tns:CoCoCarTer" />
+  </wsdl:message>
+  <wsdl:message name="CoCoCarTerSoapOut">
+    <wsdl:part name="parameters" element="tns:CoCoCarTerResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPendukungPLP_BLSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPendukungPLP_BL" />
+  </wsdl:message>
+  <wsdl:message name="GetPendukungPLP_BLSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPendukungPLP_BLResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPendukungPLPSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPendukungPLP" />
+  </wsdl:message>
+  <wsdl:message name="GetPendukungPLPSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPendukungPLPResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetImpor_SppbSoapIn">
+    <wsdl:part name="parameters" element="tns:GetImpor_Sppb" />
+  </wsdl:message>
+  <wsdl:message name="GetImpor_SppbSoapOut">
+    <wsdl:part name="parameters" element="tns:GetImpor_SppbResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetImporPermitSoapIn">
+    <wsdl:part name="parameters" element="tns:GetImporPermit" />
+  </wsdl:message>
+  <wsdl:message name="GetImporPermitSoapOut">
+    <wsdl:part name="parameters" element="tns:GetImporPermitResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetImporPermit200SoapIn">
+    <wsdl:part name="parameters" element="tns:GetImporPermit200" />
+  </wsdl:message>
+  <wsdl:message name="GetImporPermit200SoapOut">
+    <wsdl:part name="parameters" element="tns:GetImporPermit200Response" />
+  </wsdl:message>
+  <wsdl:message name="GetImporPermit_FASPSoapIn">
+    <wsdl:part name="parameters" element="tns:GetImporPermit_FASP" />
+  </wsdl:message>
+  <wsdl:message name="GetImporPermit_FASPSoapOut">
+    <wsdl:part name="parameters" element="tns:GetImporPermit_FASPResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDataOBSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDataOB" />
+  </wsdl:message>
+  <wsdl:message name="GetDataOBSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDataOBResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetNPESoapIn">
+    <wsdl:part name="parameters" element="tns:GetNPE" />
+  </wsdl:message>
+  <wsdl:message name="GetNPESoapOut">
+    <wsdl:part name="parameters" element="tns:GetNPEResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRejectDataSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRejectData" />
+  </wsdl:message>
+  <wsdl:message name="GetRejectDataSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRejectDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="CekDataTerkirimSoapIn">
+    <wsdl:part name="parameters" element="tns:CekDataTerkirim" />
+  </wsdl:message>
+  <wsdl:message name="CekDataTerkirimSoapOut">
+    <wsdl:part name="parameters" element="tns:CekDataTerkirimResponse" />
+  </wsdl:message>
+  <wsdl:message name="CekDataSPPBSoapIn">
+    <wsdl:part name="parameters" element="tns:CekDataSPPB" />
+  </wsdl:message>
+  <wsdl:message name="CekDataSPPBSoapOut">
+    <wsdl:part name="parameters" element="tns:CekDataSPPBResponse" />
+  </wsdl:message>
+  <wsdl:message name="CekDataGagalKirimSoapIn">
+    <wsdl:part name="parameters" element="tns:CekDataGagalKirim" />
+  </wsdl:message>
+  <wsdl:message name="CekDataGagalKirimSoapOut">
+    <wsdl:part name="parameters" element="tns:CekDataGagalKirimResponse" />
+  </wsdl:message>
+  <wsdl:message name="CekNPESoapIn">
+    <wsdl:part name="parameters" element="tns:CekNPE" />
+  </wsdl:message>
+  <wsdl:message name="CekNPESoapOut">
+    <wsdl:part name="parameters" element="tns:CekNPEResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSppb_Bc23SoapIn">
+    <wsdl:part name="parameters" element="tns:GetSppb_Bc23" />
+  </wsdl:message>
+  <wsdl:message name="GetSppb_Bc23SoapOut">
+    <wsdl:part name="parameters" element="tns:GetSppb_Bc23Response" />
+  </wsdl:message>
+  <wsdl:message name="GetBC23PermitSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBC23Permit" />
+  </wsdl:message>
+  <wsdl:message name="GetBC23PermitSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBC23PermitResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBC23Permit_FASPSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBC23Permit_FASP" />
+  </wsdl:message>
+  <wsdl:message name="GetBC23Permit_FASPSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBC23Permit_FASPResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSPPB12_TPSAsalSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSPPB12_TPSAsal" />
+  </wsdl:message>
+  <wsdl:message name="GetSPPB12_TPSAsalSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSPPB12_TPSAsalResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSPPB12_TPSTujuanSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSPPB12_TPSTujuan" />
+  </wsdl:message>
+  <wsdl:message name="GetSPPB12_TPSTujuanSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSPPB12_TPSTujuanResponse" />
+  </wsdl:message>
+  <wsdl:message name="PermohonanBC12SoapIn">
+    <wsdl:part name="parameters" element="tns:PermohonanBC12" />
+  </wsdl:message>
+  <wsdl:message name="PermohonanBC12SoapOut">
+    <wsdl:part name="parameters" element="tns:PermohonanBC12Response" />
+  </wsdl:message>
+  <wsdl:message name="GetResponPenolakanBC12SoapIn">
+    <wsdl:part name="parameters" element="tns:GetResponPenolakanBC12" />
+  </wsdl:message>
+  <wsdl:message name="GetResponPenolakanBC12SoapOut">
+    <wsdl:part name="parameters" element="tns:GetResponPenolakanBC12Response" />
+  </wsdl:message>
+  <wsdl:message name="PermohonanPLPSoapIn">
+    <wsdl:part name="parameters" element="tns:PermohonanPLP" />
+  </wsdl:message>
+  <wsdl:message name="PermohonanPLPSoapOut">
+    <wsdl:part name="parameters" element="tns:PermohonanPLPResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetResponPLPSoapIn">
+    <wsdl:part name="parameters" element="tns:GetResponPLP" />
+  </wsdl:message>
+  <wsdl:message name="GetResponPLPSoapOut">
+    <wsdl:part name="parameters" element="tns:GetResponPLPResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEksporPermit_FNPESoapIn">
+    <wsdl:part name="parameters" element="tns:GetEksporPermit_FNPE" />
+  </wsdl:message>
+  <wsdl:message name="GetEksporPermit_FNPESoapOut">
+    <wsdl:part name="parameters" element="tns:GetEksporPermit_FNPEResponse" />
+  </wsdl:message>
+  <wsdl:portType name="TPSServicesSoap">
+    <wsdl:operation name="GantiPassword">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Fungsi untuk konfirmasi ganti user password</wsdl:documentation>
+      <wsdl:input message="tns:GantiPasswordSoapIn" />
+      <wsdl:output message="tns:GantiPasswordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CoarriCodeco_Container">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Fungsi untuk insert data Coarri-Codeco Container(Baru, dengan penambahan kolom pada detil container)</wsdl:documentation>
+      <wsdl:input message="tns:CoarriCodeco_ContainerSoapIn" />
+      <wsdl:output message="tns:CoarriCodeco_ContainerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CoarriCodeco_Kemasan">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Fungsi untuk insert data Coarri Kemasan (Baru, dengan penambahan kolom pada detil kemasan)</wsdl:documentation>
+      <wsdl:input message="tns:CoarriCodeco_KemasanSoapIn" />
+      <wsdl:output message="tns:CoarriCodeco_KemasanSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CoCoCont_Tes">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Fungsi untuk melakukan uji coba insert data Coarri berdasarkan container, dengan username = 'TES' dan password = '1234'</wsdl:documentation>
+      <wsdl:input message="tns:CoCoCont_TesSoapIn" />
+      <wsdl:output message="tns:CoCoCont_TesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CoCoKms_Tes">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Fungsi untuk melakukan uji coba insert data Coarri berdasarkan kemasan, dengan username = 'TES' dan password = '1234' </wsdl:documentation>
+      <wsdl:input message="tns:CoCoKms_TesSoapIn" />
+      <wsdl:output message="tns:CoCoKms_TesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CoCoTangki">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Fungsi untuk melakukan uji coba insert data Coarri Tangki-tangki penimbunan </wsdl:documentation>
+      <wsdl:input message="tns:CoCoTangkiSoapIn" />
+      <wsdl:output message="tns:CoCoTangkiSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CoCoCarTer">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Fungsi untuk melakukan insert data Coarri Car Terminal</wsdl:documentation>
+      <wsdl:input message="tns:CoCoCarTerSoapIn" />
+      <wsdl:output message="tns:CoCoCarTerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPendukungPLP_BL">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Fungsi untuk mendownload data Pendukung PLP dengan data BL, filter yang digunakan adalah nomor BC11, tanggal BC11 dengan format tanggal #ddmmyyyy#, dan nomor Kontainer</wsdl:documentation>
+      <wsdl:input message="tns:GetPendukungPLP_BLSoapIn" />
+      <wsdl:output message="tns:GetPendukungPLP_BLSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPendukungPLP">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Fungsi untuk mendownload data Pendukung PLP, filter yang digunakan adalah nomor BC11, tanggal BC11 dengan format tanggal #ddmmyyyy#, dan nomor Kontainer</wsdl:documentation>
+      <wsdl:input message="tns:GetPendukungPLPSoapIn" />
+      <wsdl:output message="tns:GetPendukungPLPSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetImpor_Sppb">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Fungsi untuk mendownload data SPPB, filter yang digunakan adalah tanggal SPPB, nomor SPPB dan NPWP, format tanggal #ddmmyyyy#</wsdl:documentation>
+      <wsdl:input message="tns:GetImpor_SppbSoapIn" />
+      <wsdl:output message="tns:GetImpor_SppbSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetImporPermit">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Fungsi untuk mendownload data SPPB, filter yang digunakan adalah kode Gudang</wsdl:documentation>
+      <wsdl:input message="tns:GetImporPermitSoapIn" />
+      <wsdl:output message="tns:GetImporPermitSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetImporPermit200">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Fungsi untuk mendownload data SPPB, filter yang digunakan adalah kode Gudang (hasil 200 rows)</wsdl:documentation>
+      <wsdl:input message="tns:GetImporPermit200SoapIn" />
+      <wsdl:output message="tns:GetImporPermit200SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetImporPermit_FASP">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Fungsi untuk mendownload data SPPB, filter yang digunakan adalah kode ASP</wsdl:documentation>
+      <wsdl:input message="tns:GetImporPermit_FASPSoapIn" />
+      <wsdl:output message="tns:GetImporPermit_FASPSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataOB">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Fungsi untuk mendownload data OB/Pindah TPS, filter yang digunakan adalah kode ASP</wsdl:documentation>
+      <wsdl:input message="tns:GetDataOBSoapIn" />
+      <wsdl:output message="tns:GetDataOBSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNPE">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Fungsi untuk mendapatkan nomor dan tanggal NPE, filter yang digunakan adalah NPWP Eksportir, nomor NPE (6 digit)dan Kode Kantor Penerbit NPE</wsdl:documentation>
+      <wsdl:input message="tns:GetNPESoapIn" />
+      <wsdl:output message="tns:GetNPESoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRejectData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Fungsi untuk mendownload data REJECT hasil validasi konten</wsdl:documentation>
+      <wsdl:input message="tns:GetRejectDataSoapIn" />
+      <wsdl:output message="tns:GetRejectDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CekDataTerkirim">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Fungsi untuk cek jumlah data yang terkirim (Format tanggal : dd-mm-yyyy)</wsdl:documentation>
+      <wsdl:input message="tns:CekDataTerkirimSoapIn" />
+      <wsdl:output message="tns:CekDataTerkirimSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CekDataSPPB">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Fungsi untuk cek jumlah data SPPB berdasarkan tanggal sppb tertentu (Format tanggal : dd-mm-yyyy)</wsdl:documentation>
+      <wsdl:input message="tns:CekDataSPPBSoapIn" />
+      <wsdl:output message="tns:CekDataSPPBSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CekDataGagalKirim">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Fungsi untuk cek jumlah data yang gagal terkirim (Format tanggal : dd-mm-yyyy)</wsdl:documentation>
+      <wsdl:input message="tns:CekDataGagalKirimSoapIn" />
+      <wsdl:output message="tns:CekDataGagalKirimSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CekNPE">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Fungsi untuk cek data NPE, filter yang digunakan adalah NPWP Eksportir, nomor NPE dan tanggal NPE, format tanggal #ddmmyyyy#</wsdl:documentation>
+      <wsdl:input message="tns:CekNPESoapIn" />
+      <wsdl:output message="tns:CekNPESoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSppb_Bc23">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Fungsi untuk mendownload data SPPB BC23, filter yang digunakan adalah tanggal SPPB, nomor SPPB dan NPWP, format tanggal #ddmmyyyy#</wsdl:documentation>
+      <wsdl:input message="tns:GetSppb_Bc23SoapIn" />
+      <wsdl:output message="tns:GetSppb_Bc23SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBC23Permit">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Fungsi untuk mendownload data SPPB, filter yang digunakan adalah kode Gudang</wsdl:documentation>
+      <wsdl:input message="tns:GetBC23PermitSoapIn" />
+      <wsdl:output message="tns:GetBC23PermitSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBC23Permit_FASP">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Fungsi untuk mendownload data SPPB, filter yang digunakan adalah kode ASP</wsdl:documentation>
+      <wsdl:input message="tns:GetBC23Permit_FASPSoapIn" />
+      <wsdl:output message="tns:GetBC23Permit_FASPSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSPPB12_TPSAsal">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Fungsi untuk mendownload data SPPB BC12, filter yang digunakan adalah kode TPS ASAL</wsdl:documentation>
+      <wsdl:input message="tns:GetSPPB12_TPSAsalSoapIn" />
+      <wsdl:output message="tns:GetSPPB12_TPSAsalSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSPPB12_TPSTujuan">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Fungsi untuk mendownload data SPPB BC12, filter yang digunakan adalah kode TPS Tujuan</wsdl:documentation>
+      <wsdl:input message="tns:GetSPPB12_TPSTujuanSoapIn" />
+      <wsdl:output message="tns:GetSPPB12_TPSTujuanSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PermohonanBC12">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Fungsi untuk Upload data permohonan BC12</wsdl:documentation>
+      <wsdl:input message="tns:PermohonanBC12SoapIn" />
+      <wsdl:output message="tns:PermohonanBC12SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetResponPenolakanBC12">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Fungsi untuk mendownload data Respon NP4 Bc12 yang sudah diproses, filter yang digunakan adalah kode TPS</wsdl:documentation>
+      <wsdl:input message="tns:GetResponPenolakanBC12SoapIn" />
+      <wsdl:output message="tns:GetResponPenolakanBC12SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PermohonanPLP">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Fungsi untuk Upload data permohonan PLP</wsdl:documentation>
+      <wsdl:input message="tns:PermohonanPLPSoapIn" />
+      <wsdl:output message="tns:PermohonanPLPSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetResponPLP">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Fungsi untuk mendownload data Respon PLP yang sudah diproses, filter yang digunakan adalah kode TPS</wsdl:documentation>
+      <wsdl:input message="tns:GetResponPLPSoapIn" />
+      <wsdl:output message="tns:GetResponPLPSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEksporPermit_FNPE">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Fungsi untuk mendownload data NPE berdasarkan No.NPE, NPWP Eksportir dan Kode Kantor</wsdl:documentation>
+      <wsdl:input message="tns:GetEksporPermit_FNPESoapIn" />
+      <wsdl:output message="tns:GetEksporPermit_FNPESoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TPSServicesSoap" type="tns:TPSServicesSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GantiPassword">
+      <soap:operation soapAction="http://services.beacukai.go.id/GantiPassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CoarriCodeco_Container">
+      <soap:operation soapAction="http://services.beacukai.go.id/CoarriCodeco_Container" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CoarriCodeco_Kemasan">
+      <soap:operation soapAction="http://services.beacukai.go.id/CoarriCodeco_Kemasan" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CoCoCont_Tes">
+      <soap:operation soapAction="http://services.beacukai.go.id/CoCoCont_Tes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CoCoKms_Tes">
+      <soap:operation soapAction="http://services.beacukai.go.id/CoCoKms_Tes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CoCoTangki">
+      <soap:operation soapAction="http://services.beacukai.go.id/CoCoTangki" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CoCoCarTer">
+      <soap:operation soapAction="http://services.beacukai.go.id/CoCoCarTer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPendukungPLP_BL">
+      <soap:operation soapAction="http://services.beacukai.go.id/GetPendukungPLP_BL" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPendukungPLP">
+      <soap:operation soapAction="http://services.beacukai.go.id/GetPendukungPLP" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetImpor_Sppb">
+      <soap:operation soapAction="http://services.beacukai.go.id/GetImpor_Sppb" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetImporPermit">
+      <soap:operation soapAction="http://services.beacukai.go.id/GetImporPermit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetImporPermit200">
+      <soap:operation soapAction="http://services.beacukai.go.id/GetImporPermit200" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetImporPermit_FASP">
+      <soap:operation soapAction="http://services.beacukai.go.id/GetImporPermit_FASP" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataOB">
+      <soap:operation soapAction="http://services.beacukai.go.id/GetDataOB" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNPE">
+      <soap:operation soapAction="http://services.beacukai.go.id/GetNPE" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRejectData">
+      <soap:operation soapAction="http://services.beacukai.go.id/GetRejectData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CekDataTerkirim">
+      <soap:operation soapAction="http://services.beacukai.go.id/CekDataTerkirim" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CekDataSPPB">
+      <soap:operation soapAction="http://services.beacukai.go.id/CekDataSPPB" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CekDataGagalKirim">
+      <soap:operation soapAction="http://services.beacukai.go.id/CekDataGagalKirim" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CekNPE">
+      <soap:operation soapAction="http://services.beacukai.go.id/CekNPE" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSppb_Bc23">
+      <soap:operation soapAction="http://services.beacukai.go.id/GetSppb_Bc23" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBC23Permit">
+      <soap:operation soapAction="http://services.beacukai.go.id/GetBC23Permit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBC23Permit_FASP">
+      <soap:operation soapAction="http://services.beacukai.go.id/GetBC23Permit_FASP" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSPPB12_TPSAsal">
+      <soap:operation soapAction="http://services.beacukai.go.id/GetSPPB12_TPSAsal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSPPB12_TPSTujuan">
+      <soap:operation soapAction="http://services.beacukai.go.id/GetSPPB12_TPSTujuan" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PermohonanBC12">
+      <soap:operation soapAction="http://services.beacukai.go.id/PermohonanBC12" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetResponPenolakanBC12">
+      <soap:operation soapAction="http://services.beacukai.go.id/GetResponPenolakanBC12" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PermohonanPLP">
+      <soap:operation soapAction="http://services.beacukai.go.id/PermohonanPLP" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetResponPLP">
+      <soap:operation soapAction="http://services.beacukai.go.id/GetResponPLP" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEksporPermit_FNPE">
+      <soap:operation soapAction="http://services.beacukai.go.id/GetEksporPermit_FNPE" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TPSServicesSoap12" type="tns:TPSServicesSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GantiPassword">
+      <soap12:operation soapAction="http://services.beacukai.go.id/GantiPassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CoarriCodeco_Container">
+      <soap12:operation soapAction="http://services.beacukai.go.id/CoarriCodeco_Container" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CoarriCodeco_Kemasan">
+      <soap12:operation soapAction="http://services.beacukai.go.id/CoarriCodeco_Kemasan" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CoCoCont_Tes">
+      <soap12:operation soapAction="http://services.beacukai.go.id/CoCoCont_Tes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CoCoKms_Tes">
+      <soap12:operation soapAction="http://services.beacukai.go.id/CoCoKms_Tes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CoCoTangki">
+      <soap12:operation soapAction="http://services.beacukai.go.id/CoCoTangki" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CoCoCarTer">
+      <soap12:operation soapAction="http://services.beacukai.go.id/CoCoCarTer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPendukungPLP_BL">
+      <soap12:operation soapAction="http://services.beacukai.go.id/GetPendukungPLP_BL" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPendukungPLP">
+      <soap12:operation soapAction="http://services.beacukai.go.id/GetPendukungPLP" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetImpor_Sppb">
+      <soap12:operation soapAction="http://services.beacukai.go.id/GetImpor_Sppb" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetImporPermit">
+      <soap12:operation soapAction="http://services.beacukai.go.id/GetImporPermit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetImporPermit200">
+      <soap12:operation soapAction="http://services.beacukai.go.id/GetImporPermit200" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetImporPermit_FASP">
+      <soap12:operation soapAction="http://services.beacukai.go.id/GetImporPermit_FASP" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataOB">
+      <soap12:operation soapAction="http://services.beacukai.go.id/GetDataOB" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNPE">
+      <soap12:operation soapAction="http://services.beacukai.go.id/GetNPE" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRejectData">
+      <soap12:operation soapAction="http://services.beacukai.go.id/GetRejectData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CekDataTerkirim">
+      <soap12:operation soapAction="http://services.beacukai.go.id/CekDataTerkirim" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CekDataSPPB">
+      <soap12:operation soapAction="http://services.beacukai.go.id/CekDataSPPB" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CekDataGagalKirim">
+      <soap12:operation soapAction="http://services.beacukai.go.id/CekDataGagalKirim" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CekNPE">
+      <soap12:operation soapAction="http://services.beacukai.go.id/CekNPE" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSppb_Bc23">
+      <soap12:operation soapAction="http://services.beacukai.go.id/GetSppb_Bc23" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBC23Permit">
+      <soap12:operation soapAction="http://services.beacukai.go.id/GetBC23Permit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBC23Permit_FASP">
+      <soap12:operation soapAction="http://services.beacukai.go.id/GetBC23Permit_FASP" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSPPB12_TPSAsal">
+      <soap12:operation soapAction="http://services.beacukai.go.id/GetSPPB12_TPSAsal" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSPPB12_TPSTujuan">
+      <soap12:operation soapAction="http://services.beacukai.go.id/GetSPPB12_TPSTujuan" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PermohonanBC12">
+      <soap12:operation soapAction="http://services.beacukai.go.id/PermohonanBC12" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetResponPenolakanBC12">
+      <soap12:operation soapAction="http://services.beacukai.go.id/GetResponPenolakanBC12" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PermohonanPLP">
+      <soap12:operation soapAction="http://services.beacukai.go.id/PermohonanPLP" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetResponPLP">
+      <soap12:operation soapAction="http://services.beacukai.go.id/GetResponPLP" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEksporPermit_FNPE">
+      <soap12:operation soapAction="http://services.beacukai.go.id/GetEksporPermit_FNPE" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TPSServices">
+    <wsdl:port name="TPSServicesSoap" binding="tns:TPSServicesSoap">
+      <soap:address location="https://tpsonline.beacukai.go.id/tps/service.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TPSServicesSoap12" binding="tns:TPSServicesSoap12">
+      <soap12:address location="https://tpsonline.beacukai.go.id/tps/service.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

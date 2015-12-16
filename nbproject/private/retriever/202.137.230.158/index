@@ -1,0 +1,132 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head><title>
+	Untitled Page
+</title><style>
+    .Ver10 {font:10px verdana;}
+        </style>
+<script language="javascript" type="text/javascript">
+<!--
+
+function IMG1_onclick() {
+
+}
+
+function TABLE1_onclick() {
+
+}
+
+// -->
+</script>
+</head>
+<body>
+    <form name="aspnetForm" method="post" action="Default.aspx" id="aspnetForm">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUJOTk5MDEyMjk5ZGQvN38fZf/mtJBH9Bm4cLROdnP+Yg==" />
+
+<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="CA0B0334" />
+<input type="hidden" name="__PREVIOUSPAGE" id="__PREVIOUSPAGE" value="5ROzgTjJlnGKX5nZQXm0f-KF2t-54_-f6PG5TNv8pab9VRY47BtoVPJCTgQ7nUzYWbt1joGAKCd_tcEDdy67YmWYn9k1" />
+<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWCALg5/mKAgKOkrn2CAKLkrn2CAKMkrn2CAKRkrn2CAKSkrn2CAKPkrn2CAKP6PmbAbo4aIlOmhrnt65+NcnuC807HmvT" />
+    <div>
+        <table width="100%" id="TABLE1" language="javascript" onclick="return TABLE1_onclick()" border="1">
+            <tr>
+                <td style="text-align: left; height: 99px;" rowspan="" colspan="2">
+                    <img id="ctl00_Image1" src="Picture/Logo%20atas.jpg" height="96" width="100%" border="0" /></td>
+            </tr>
+            <tr>
+                <td valign="top" style="width: 250px" bgcolor="#ffffff">
+                    &nbsp;<br />
+                    <img src="Picture/BeaCukaiWebServiceSimbol.jpg" style="width: 240px; height: 64px" /><br />
+                    <br />
+                    &nbsp;&nbsp;
+                    <table bgcolor="#ffffff" border="1" bordercolor="#33cccc" cellpadding="0" cellspacing="0"
+                        style="width: 83%; height: 100%">
+                        <tr>
+                            <td bgcolor="#efefef" style="width: 212px; height: 45px">
+                                <span id="ctl00_Label1" style="display:inline-block;">Learn About Bea Cukai Web Services</span></td>
+                        </tr>
+                        <tr>
+                            <td style="width: 212px; height: 122px">
+                                <a id="ctl00_LinkButton1" href="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$LinkButton1&quot;, &quot;&quot;, false, &quot;&quot;, &quot;Default.aspx&quot;, false, true))">BCWS Home</a>
+                                <br />
+                                <a id="ctl00_LinkButton2" href="javascript:__doPostBack('ctl00$LinkButton2','')">Create an account</a><br />
+                                <a id="ctl00_LinkButton3" href="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$LinkButton3&quot;, &quot;&quot;, false, &quot;&quot;, &quot;ExploreWS.aspx&quot;, false, true))">Explore our Web Services</a>
+                                <a id="ctl00_LinkButton4" href="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$LinkButton4&quot;, &quot;&quot;, false, &quot;&quot;, &quot;UpcomeWs.aspx&quot;, false, true))">Upcoming Web Services</a>
+                                <a id="ctl00_LinkButton5" href="javascript:__doPostBack('ctl00$LinkButton5','')">Contact Us</a>
+                                <br />
+                                <a id="ctl00_LinkButton6" href="javascript:__doPostBack('ctl00$LinkButton6','')">FAQs</a></td>
+                        </tr>
+                    </table>
+                    <br />
+                    <table bgcolor="#ffffff" border="1" bordercolor="#33cccc" cellpadding="0" cellspacing="0"
+                        style="width: 83%; height: 100%">
+                        <tr>
+                            <td bgcolor="#efefef" colspan="2" style="height: 45px">
+                                <span id="ctl00_Label2" style="display:inline-block;"><b><font size="4">Start using Bea Cukai Web Services</font></b></span></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="height: 83px">
+                                <span id="ctl00_Label3" style="display:inline-block;"><font color="Blue">1. Create your free Bea Cukai</font></span><br />
+                                &nbsp; &nbsp;
+                                <span id="ctl00_Label6"><font color="Blue">Web Services account</font></span><br />
+                                <span id="ctl00_Label4" style="display:inline-block;"><font color="Blue">2. Explore our Web Services</font></span>
+                                <br />
+                                <span id="ctl00_Label5"><font color="Blue">3. Build your application</font></span></td>
+                        </tr>
+                    </table>
+                </td>
+                <td width="750" valign="top">
+        
+    <br />
+    <strong><span style="text-decoration: underline">Kami mempersembahkan</span></strong><br />
+    <img src="Picture/BeaCukaiWebServiceSimbol.jpg" style="width: 112px; height: 32px" />merupakan
+    salah satu pelayanan Direktorat Bea dan Cukai dalam memberikan informasi yang cepat,
+    murah, transparan dan self service.
+    <br />
+    <br />
+    Media ini juga digunakan sebagai tempat pertukaran data antara Direktorat Bea dan
+    Cukai dengan para stakeholder-nya.<br />
+    <br />
+    (c) Direktorat Informasi Kepabeanan dan Cukai<br />
+    <a id="ctl00_ContentPlaceHolder1_LinkButton1" href="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$ContentPlaceHolder1$LinkButton1&quot;, &quot;&quot;, false, &quot;&quot;, &quot;ExploreWS.aspx&quot;, false, true))">Explorer our Web Service</a><br />
+    <br />
+    <strong><span style="text-decoration: underline">Definisi Web Service<br />
+    </span></strong>
+    <p class="MsoNormal" style="margin: 0cm 0cm 0pt; text-indent: 18pt; text-align: justify">
+        <span lang="ES-TRAD" style="font-size: 10pt; font-family: Arial; mso-ansi-language: ES-TRAD">
+            Web Services adalah sebuah komponen layanan aplikasi yang dapat diakses melalui
+            protokol terbuka yang memanfaatkan Web melalui Simple Object Access Protocol (SOAP)
+            dengan bahasa Web Services Description Language (WSDL) dan teregistrasi dalam Universal
+            Discovery Description and Integration (UDDI). Web services mendukung komunikasi
+            antar aplikasi dan integrasi aplikasi dengan menggunakan XML dan Web. XML (eXtensible
+            Markup Language) adalah sebuah standar untuk mendefinisikan data dalam format yang
+            sederhana dan fleksibel.<?xml namespace="" ns="urn:schemas-microsoft-com:office:office"
+                prefix="o" ?><?xml namespace="" prefix="o" ?><o:p></o:p></span></p>
+    <p class="MsoNormal" style="margin: 0cm 0cm 0pt; text-indent: 18pt; text-align: justify">
+        <span lang="ES-TRAD" style="font-size: 10pt; font-family: Arial; mso-ansi-language: ES-TRAD">
+            Web services adalah komponen yang independen terhadap platform ataupun bahasa. Web
+            services menggunakan web protokol (HTTP) yang sangat mendukung heterogenoitas dan
+            interoperabilitas serta memudahkan integrasi. Selain itu web services mendukung
+            koneksi <i style="mso-bidi-font-style: normal">loosely coupled</i>, sehingga sebuah
+            perubahan pada satu aplikasi tidak akan memaksa perubahan pada aplikasi yang lain.
+            Sebuah web services memiliki interface berupa web API (Application Programming Interface)
+            yang dapat dipanggil oleh suatu aplikasi untuk mengakses aplikasi yang mengimplementasikan
+            layanan web services.<o:p></o:p></span></p>
+    <br />
+    &nbsp;<br />
+
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 146px" colspan="">
+                </td>
+                <td colspan="">
+                </td>
+            </tr>
+        </table>
+    </div>
+    </form>
+</body>
+</html>

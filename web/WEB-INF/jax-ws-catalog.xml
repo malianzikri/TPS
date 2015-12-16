@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="https://tpsonline.beacukai.go.id/tps/service.asmx?wsdl" uri="wsdl/tpsonline.beacukai.go.id/tps/service.asmx.wsdl"/>
+    <system systemId="file:/D:/Workspace/tps/src/java/META-INF/wsdl/service.asmx.xml.wsdl" uri="wsdl/service.asmx.xml.wsdl"/>
+    <system systemId="file:/D:/Workspace/tps/src/service.asmx.xml.wsdl" uri="wsdl/service.asmx.xml.wsdl"/>
+    <system systemId="file:/E:/Project/Pelindo%20II/2014/TPS%20Online%20(Aju%20PLP)/tps/wsdl/service.asmx.xml" uri="wsdl/service.asmx.xml.wsdl"/>
+    <system systemId="file:/E:/services/service.asmx.wsdl" uri="wsdl/service.asmx.wsdl"/>
+</catalog>
+
+
+
+
+
+

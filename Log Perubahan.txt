@@ -1,0 +1,14 @@
+17 november 2015 
+	- perubahan pada package com.edii.tools
+		- pada class generateResponPLP_tujuan_tes mengalami perubahaan dalam memasukan data di database 
+		  pada awalnya tidak menggunakan preaparare stament dan resulset sekarang diubah menggunaka ini.
+		  library yang digunakan untuk membuat file xml berubah menjadi jdom2 yang awalnya dom4j.
+		- pada class GenerateXMLDW mengalami perubahaan dalam memasukan data di database 
+		  pada awalnya tidak menggunakan preaparare stament dan resulset sekarang diubah menggunaka ini
+		  library yang digunakan untuk membuat file xml berubah menjadi jdom2 yang awalnya dom4j.	
+		- pada class GenerateXMLCFS mengalami perubahaan dalam memasukan data di database 
+		  pada awalnya tidak menggunakan preaparare stament dan resulset sekarang diubah menggunaka ini
+		  library yang digunakan untuk membuat file xml berubah menjadi jdom2 yang awalnya dom4j.
+		- pada class LicenseHeader mengalami perubahaan dalam memasukan data di database 
+		  pada awalnya tidak menggunakan preaparare stament dan resulset sekarang diubah menggunaka ini
+		

@@ -1,0 +1,17 @@
+<bindings
+    xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://java.sun.com/xml/ns/jaxws" wsdlLocation="../wsdl/service.asmx.wsdl">
+    <bindings node="//xsd:schema[@targetNamespace='http://services.beacukai.go.id/']">
+        <jaxb:globalBindings underscoreBinding="asCharInWord"/>
+        <jaxb:schemaBindings>
+            <jaxb:nameXmlTransform>
+                <jaxb:typeName suffix="className" />
+            </jaxb:nameXmlTransform>
+        </jaxb:schemaBindings>
+    </bindings>
+    <bindings node="wsdl:definitions/wsdl:portType[@name='TPSServicesSoap']/wsdl:operation[@name='GetResponPLP_Tujuan']">
+        <method name="getResponPLP_Tujuan"/>
+    </bindings>
+</bindings>
