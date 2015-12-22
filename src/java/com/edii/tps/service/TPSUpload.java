@@ -181,11 +181,11 @@ public class TPSUpload {
                     exc.ExcuteLog(usernamews, passwordws, document, result, DirDaily + File.separator + Nmfile, fStream);
                 }
             } else if (document.equalsIgnoreCase("REQPLP_AJU")) {
-                result = client.UploadMohonPLP(fStream, usernamews, passwordws);
+                result = client.uploadMohonPLP(fStream, usernamews, passwordws);
             } else if (document.equalsIgnoreCase("REQPLP_BATAL")) {
-                result = client.UploadBatalPLP(fStream, usernamews, passwordws);
+                result = client.uploadBatalPLP(fStream, usernamews, passwordws);
             } else if (document.equalsIgnoreCase("COCOCAR")) {
-                result = client.CoCoCarTer(fStream, usernamews, passwordws);
+                result = client.cocoCarTer(fStream, usernamews, passwordws);
             }
 
             //Create File
