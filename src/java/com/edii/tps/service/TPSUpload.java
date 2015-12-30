@@ -139,6 +139,15 @@ public class TPSUpload {
                     result = DocumentNotInvokeBC(result);
                     message += log.LogSuccess(result.toString()) + "\r\n";
                 }
+<<<<<<< HEAD
+=======
+            } else if (document.equalsIgnoreCase("REQPLP_AJU")) {
+                result = client.uploadMohonPLP(fStream, usernamews, passwordws);
+            } else if (document.equalsIgnoreCase("REQPLP_BATAL")) {
+                result = client.uploadBatalPLP(fStream, usernamews, passwordws);
+            } else if (document.equalsIgnoreCase("COCOCAR")) {
+                result = client.cocoCarTer(fStream, usernamews, passwordws);
+>>>>>>> origin/master
             }
 
             try {
