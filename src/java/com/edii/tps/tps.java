@@ -14,11 +14,11 @@ import com.edii.tools.ExcuteProses;
 import com.edii.tools.GenerateResponPLP_Tujuan_Tes;
 import com.edii.tools.GenerateXMLCFS;
 import com.edii.tools.GenerateXMLDW;
-import com.edii.tools.ParsingXMLPLP;
-import com.edii.tools.ParsingXMLPLP_BATAL;
+import com.edii.parsingFile.ParsingUploadMohonPLP;
+import com.edii.parsingFile.ParsingUploadBatalPLP;
 import com.edii.tools.ParsingXMLCFS;
 import com.edii.tools.ParsingXMLResponPLPBatal_Asal;
-import com.edii.tools.ParsingXMLResponPLP_Asal;
+import com.edii.parsingFile.ParsingGetResponPLP;
 import com.edii.tools.ResCFS;
 import com.edii.tools.Tanggalan;
 import com.edii.tps.service.TPSUpload;
@@ -347,7 +347,7 @@ public class tps {
             @WebParam(name = "Password") String Password) {
 
         TPSUpload tpsUpload = null;
-        ParsingXMLPLP pars = null;
+        ParsingUploadMohonPLP pars = null;
         Db mydb = null;
         Encrypt encrypt = null;
         String result = null;
@@ -365,7 +365,7 @@ public class tps {
             tgl = new Tanggalan();
             encrypt = new Encrypt();
             tpsUpload = new TPSUpload();
-            pars = new ParsingXMLPLP();
+            pars = new ParsingUploadMohonPLP();
 
             setLocalFolder(PROPERTIES.getProperty("tps" + Username.toUpperCase() + ".outboxfolder"));
             file = getLocalFolder() + File.separator + Username + ".UploadMohonPLP." + tgl.UNIXNUMBER() + ".XML";
@@ -579,7 +579,7 @@ public class tps {
     public String UploadBatalPLP(@WebParam(name = "fStream") String fStream, @WebParam(name = "Username") String Username, @WebParam(name = "Password") String Password) {
 
         TPSUpload tpsUpload = null;
-        ParsingXMLPLP_BATAL parsBatal = null;
+        ParsingUploadBatalPLP parsBatal = null;
         Db mydb = null;
         Encrypt encrypt = null;
         String result = null;
@@ -596,7 +596,7 @@ public class tps {
             tgl = new Tanggalan();
             encrypt = new Encrypt();
             tpsUpload = new TPSUpload();
-            parsBatal = new ParsingXMLPLP_BATAL();
+            parsBatal = new ParsingUploadBatalPLP();
             setLocalFolder(PROPERTIES.getProperty("tps" + Username.toUpperCase() + ".outboxfolder"));
             file = getLocalFolder() + File.separator + Username + ".UploadBatalPLP." + tgl.UNIXNUMBER() + ".XML";
             if (cf.execute(file)) {
@@ -763,7 +763,7 @@ public class tps {
             @WebParam(name = "Username") String Username,
             @WebParam(name = "Password") String Password) {
 
-        ParsingXMLPLP pars = null;
+        ParsingUploadMohonPLP pars = null;
         Db mydb = null;
         Encrypt encrypt = null;
         String result = null;
@@ -780,7 +780,7 @@ public class tps {
             cf = new CreateFile();
             tgl = new Tanggalan();
             encrypt = new Encrypt();
-            pars = new ParsingXMLPLP();
+            pars = new ParsingUploadMohonPLP();
             setLocalFolder(PROPERTIES.getProperty("tps" + Username.toUpperCase() + ".outboxfolder"));
             file = getLocalFolder() + File.separator + Username + ".UploadMohonPLPIPC." + tgl.UNIXNUMBER() + ".XML";
 
@@ -834,7 +834,7 @@ public class tps {
             @WebParam(name = "Username") String Username,
             @WebParam(name = "Password") String Password) {
 
-        ParsingXMLPLP_BATAL pars = null;
+        ParsingUploadBatalPLP pars = null;
         Db mydb = null;
         Encrypt encrypt = null;
         String result = null;
@@ -851,7 +851,7 @@ public class tps {
             cf = new CreateFile();
             tgl = new Tanggalan();
             encrypt = new Encrypt();
-            pars = new ParsingXMLPLP_BATAL();
+            pars = new ParsingUploadBatalPLP();
             setLocalFolder(PROPERTIES.getProperty("tps" + Username.toUpperCase() + ".outboxfolder"));
             file = getLocalFolder() + File.separator + Username + ".UploadBatalPLPIPC." + tgl.UNIXNUMBER() + ".XML";
 
@@ -903,7 +903,7 @@ public class tps {
     public String GetResponPLP_IPC(@WebParam(name = "fStream") String fStream,
             @WebParam(name = "Username") String Username,
             @WebParam(name = "Password") String Password) {
-        ParsingXMLResponPLP_Asal pars = null;
+        ParsingGetResponPLP pars = null;
         Db mydb = null;
         Encrypt encrypt = null;
         String result = null;
@@ -921,7 +921,7 @@ public class tps {
             cf = new CreateFile();
             tgl = new Tanggalan();
             encrypt = new Encrypt();
-            pars = new ParsingXMLResponPLP_Asal();
+            pars = new ParsingGetResponPLP();
             setLocalFolder(PROPERTIES.getProperty("tps" + Username.toUpperCase() + ".outboxfolder"));
             file = getLocalFolder() + File.separator + Username + ".ResponPLPIPC." + tgl.UNIXNUMBER() + ".XML";
 

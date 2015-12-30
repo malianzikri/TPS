@@ -3,11 +3,11 @@ package com.edii.tps.service;
 import com.edii.db.Db;
 import com.edii.tools.Encrypt;
 import com.edii.tools.ParsingXMLGetSPJM;
-import com.edii.tools.ParsingXMLPLP_BATAL;
+import com.edii.parsingFile.ParsingUploadBatalPLP;
 import com.edii.tools.ParsingXMLResponPLPBatal_Asal;
 import com.edii.tools.ParsingXMLResponPLPBatal_Tujuan;
-import com.edii.tools.ParsingXMLResponPLP_Asal;
-import com.edii.tools.ParsingXMLResponPLP_Tujuan;
+import com.edii.parsingFile.ParsingGetResponPLP;
+import com.edii.parsingFile.ParsingGetResponPLPTujuan;
 import com.edii.tools.SPPB;
 import com.edii.tools.Utils;
 import static com.edii.tps.service.WSClient.WSDL_URL;
@@ -734,14 +734,14 @@ public class WSClient {
         String result = "";
         String resultdb = "";
         String query = null;
-        ParsingXMLResponPLP_Asal ResPLP_Asal = null;
+        ParsingGetResponPLP ResPLP_Asal = null;
         //Encrypt encrypt = null;
         //Db mydb = null;
         String refNumber = null;
         try {
             mydb = new Db();
             encrypt = new Encrypt();
-            ResPLP_Asal = new ParsingXMLResponPLP_Asal();
+            ResPLP_Asal = new ParsingGetResponPLP();
             Services.httpsConnect(WSDL_URL, javapath);
             result = Services.getResponPLP(username, password, kdASP);
             try {
@@ -804,13 +804,13 @@ public class WSClient {
         String resultdb = "";
         String query = null;
         //Encrypt encrypt = null;
-        ParsingXMLResponPLP_Tujuan ResPLP_Tujuan = null;
+        ParsingGetResponPLPTujuan ResPLP_Tujuan = null;
         //Db mydb = null;
         String refNumber = null;
         try {
             mydb = new Db();
             encrypt = new Encrypt();
-            ResPLP_Tujuan = new ParsingXMLResponPLP_Tujuan();
+            ResPLP_Tujuan = new ParsingGetResponPLPTujuan();
             Services.httpsConnect(WSDL_URL, javapath);
             result = Services.getResponPLPTujuan(username, password, kdASP);
             try {
@@ -877,13 +877,13 @@ public class WSClient {
         String resultdb = "";
         String query = null;
         //Encrypt encrypt = null;
-        ParsingXMLResponPLP_Tujuan ResPLP_Tujuan = null;
+        ParsingGetResponPLPTujuan ResPLP_Tujuan = null;
         //Db mydb = null;
         String refNumber = null;
         try {
             mydb = new Db();
             encrypt = new Encrypt();
-            ResPLP_Tujuan = new ParsingXMLResponPLP_Tujuan();
+            ResPLP_Tujuan = new ParsingGetResponPLPTujuan();
             Services.httpsConnect(WSDL_URL, javapath);
             result = Services.GetResponPLP_Tujuan(username, password, kdASP);
             
