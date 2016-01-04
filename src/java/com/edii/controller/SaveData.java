@@ -4,6 +4,10 @@
  */
 package com.edii.controller;
 
+import com.edii.model.ModelCoarriCodecoContainer;
+import com.edii.model.ModelCoarriCodecoKemasan;
+import com.edii.model.ModelGetResponBatalPLP;
+import com.edii.model.ModelGetResponBatalPLPTujuan;
 import com.edii.model.ModelGetResponPLP;
 import com.edii.model.ModelGetResponPLPTujuan;
 import com.edii.model.ModelUploadBatalPLP;
@@ -19,15 +23,46 @@ public interface SaveData {
 
     String savedata_uploadbatalplp(ModelUploadBatalPLP plp, String type);
 
+    //GetresponPLP
     String savedata_getresponplp_header(ModelGetResponPLP plp);
 
     String savedata_getresponplp_kms(ModelGetResponPLP plp, String respon_id);
 
     String savedata_getresponplp_cont(ModelGetResponPLP plp, String respon_id);
 
+    //GetresponPLPTujuan
     String savedata_getresponplptujuan_header(ModelGetResponPLPTujuan plp);
 
     String savedata_getresponplptujuan_kms(ModelGetResponPLPTujuan plp, String respon_id);
 
     String savedata_getresponplptujuan_cont(ModelGetResponPLPTujuan plp, String respon_id);
+
+    //GetresponBatalPLP
+    String savedata_getresponbatalplp_header(ModelGetResponBatalPLP plp);
+
+    String savedata_getresponbatalplp_kms(ModelGetResponBatalPLP plp, String respon_id);
+
+    String savedata_getresponbatalplp_cont(ModelGetResponBatalPLP plp, String respon_id);
+
+    //GetresponBatalPLPTujuan
+    String savedata_getresponbatalplptujuan_header(ModelGetResponBatalPLPTujuan plp);
+
+    String savedata_getresponbatalplptujuan_kms(ModelGetResponBatalPLPTujuan plp, String respon_id);
+
+    String savedata_getresponbatalplptujuan_cont(ModelGetResponBatalPLPTujuan plp, String respon_id);
+
+    //CoarriCodeco_Contianer
+    String savedata_coarricodecocontianer_header(ModelCoarriCodecoContainer coco);
+
+    String savedata_coarricodecocontianer_cont(ModelCoarriCodecoContainer coco, String id);
+
+    //CoarriCodeco_Kemasan
+    String savedata_coarricodecokemasan_header(ModelCoarriCodecoKemasan coco);
+
+    String savedata_coarricodecokemasan_kms(ModelCoarriCodecoKemasan coco, String id);
+
+    //CoarriCodeco_Kemasan
+    String savedata_coarricodecshl_header(ModelCoarriCodecoKemasan coco);
+
+    String savedata_coarricodecshl_con(ModelCoarriCodecoKemasan coco, String id);
 }

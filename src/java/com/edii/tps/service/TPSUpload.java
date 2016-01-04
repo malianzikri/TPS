@@ -87,7 +87,7 @@ public class TPSUpload {
         return result;
     }
 
-    public String upload_TPS(String document, String fStream, String usernamews, String passwordws) {
+    public String upload_TPS(String document, String fStream, String usernamews, String passwordws) throws ClassNotFoundException {
 
         ExcuteProses exc = new ExcuteProses();
         WSClient client = new WSClient();
@@ -119,13 +119,13 @@ public class TPSUpload {
             message += log.LogSuccess(String.valueOf(createFile)) + "\r\n";
             //fileter file to send ws Server
             if (document.equalsIgnoreCase("UploadMohonPLP")) {
-                result = client.UploadMohonPLP(fStream, usernamews, passwordws);
+                result = client.uploadMohonPLP(fStream, usernamews, passwordws);
                 message += log.LogSuccess(result.toString()) + "\r\n";
             } else if (document.equalsIgnoreCase("UploadBatalPLP")) {
-                result = client.UploadBatalPLP(fStream, usernamews, passwordws);
+                result = client.uploadBatalPLP(fStream, usernamews, passwordws);
                 message += log.LogSuccess(result.toString()) + "\r\n";
             } else if (document.equalsIgnoreCase("CoCoCarTer")) {
-                result = client.CoCoCarTer(fStream, usernamews, passwordws);
+                result = client.cocoCarTer(fStream, usernamews, passwordws);
                 message += log.LogSuccess(result.toString()) + "\r\n";
             } else if (document.equalsIgnoreCase("COCOKMS") || document.equalsIgnoreCase("COCOCONT") || document.equalsIgnoreCase("COCOCONT-Test") || document.equalsIgnoreCase("COCOKMS-Test")) {
                 if (fStream.contains("<KD_TPS>PLDC</KD_TPS>") || usernamews.equalsIgnoreCase("KOJA") || usernamews.equalsIgnoreCase("CART")) {
@@ -139,17 +139,13 @@ public class TPSUpload {
                     result = DocumentNotInvokeBC(result);
                     message += log.LogSuccess(result.toString()) + "\r\n";
                 }
-<<<<<<< HEAD
-=======
             } else if (document.equalsIgnoreCase("REQPLP_AJU")) {
                 result = client.uploadMohonPLP(fStream, usernamews, passwordws);
             } else if (document.equalsIgnoreCase("REQPLP_BATAL")) {
                 result = client.uploadBatalPLP(fStream, usernamews, passwordws);
             } else if (document.equalsIgnoreCase("COCOCAR")) {
                 result = client.cocoCarTer(fStream, usernamews, passwordws);
->>>>>>> origin/master
             }
-
             try {
                 if (result.contains("Proses Berhasil") || result.contains("PROSES SUCCESS")) {
                     //Checking Or Create Directory History

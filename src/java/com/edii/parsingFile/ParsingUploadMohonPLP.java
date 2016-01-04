@@ -7,7 +7,7 @@ package com.edii.parsingFile;
 import XMLGenerator.ParsingXML;
 import com.edii.controller.SaveData;
 import com.edii.model.ModelUploadMohonPLP;
-import com.edii.operation.operation;
+import com.edii.operation.db.operation;
 
 /**
  *

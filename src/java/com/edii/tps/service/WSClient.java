@@ -1,5 +1,6 @@
 package com.edii.tps.service;
 
+import com.edii.db.Db;
 import com.edii.tools.Encrypt;
 import com.edii.tools.ParsingXMLGetSPJM;
 <<<<<<< HEAD
@@ -861,7 +862,6 @@ public class WSClient {
     public String getResponPLP_Asal(String filepath, String username, String password, String kdASP, String history) throws Exception {
 
         String result = "";
-<<<<<<< HEAD
         String resultdb = "";
         String query = null;
         ParsingGetResponPLP ResPLP_Asal = null;
@@ -872,7 +872,7 @@ public class WSClient {
             mydb = new Db();
             encrypt = new Encrypt();
             ResPLP_Asal = new ParsingGetResponPLP();
-=======
+
         String message_loggers = "";
         boolean status;
         String resultdb;
@@ -882,7 +882,6 @@ public class WSClient {
 
             ResPLP_Asal = new ParsingXMLResponPLP_Asal();
             message_loggers += loggers.LogSuccess(String.valueOf(ResPLP_Asal)) + "\r\n";
->>>>>>> origin/master
             Services.httpsConnect(WSDL_URL, javapath);
             result = Services.getResponPLP(username, password, kdASP);
             message_loggers += loggers.LogSuccess(String.valueOf(result)) + "\r\n";
@@ -942,7 +941,7 @@ public class WSClient {
     public String getResponPLPTujuan(String filepath, String username, String password, String kdASP, String history) throws Exception {
 
         String result = "";
-<<<<<<< HEAD
+
         String resultdb = "";
         String query = null;
         //Encrypt encrypt = null;
@@ -953,7 +952,7 @@ public class WSClient {
             mydb = new Db();
             encrypt = new Encrypt();
             ResPLP_Tujuan = new ParsingGetResponPLPTujuan();
-=======
+
         String resultdb;
         String message_loggers = "";
         boolean status;
@@ -962,7 +961,7 @@ public class WSClient {
         try {
             ResPLP_Tujuan = new ParsingXMLResponPLP_Tujuan();
             message_loggers += loggers.LogSuccess(String.valueOf(ResPLP_Tujuan)) + "\r\n";
->>>>>>> origin/master
+
             Services.httpsConnect(WSDL_URL, javapath);
             result = Services.getResponPLPTujuan(username, password, kdASP);
             message_loggers += loggers.LogSuccess(String.valueOf(result)) + "\r\n";
@@ -1022,7 +1021,6 @@ public class WSClient {
     public String getResponPLP_Tujuan(String filepath, String username, String password, String kdASP, String history) throws Exception {
 
         String result = "";
-<<<<<<< HEAD
         String resultdb = "";
         String query = null;
         //Encrypt encrypt = null;
@@ -1033,7 +1031,7 @@ public class WSClient {
             mydb = new Db();
             encrypt = new Encrypt();
             ResPLP_Tujuan = new ParsingGetResponPLPTujuan();
-=======
+
         String resultdb;
         String message_loggers = "";
         boolean status;
@@ -1043,7 +1041,6 @@ public class WSClient {
 
             ResPLP_Tujuan = new ParsingXMLResponPLP_Tujuan();
             message_loggers += loggers.LogSuccess(String.valueOf(ResPLP_Tujuan)) + "\r\n";
->>>>>>> origin/master
             Services.httpsConnect(WSDL_URL, javapath);
             result = Services.GetResponPLP_Tujuan(username, password, kdASP);
             message_loggers += loggers.LogSuccess(String.valueOf(result)) + "\r\n";
