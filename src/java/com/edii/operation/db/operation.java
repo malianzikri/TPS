@@ -15,6 +15,9 @@ import com.edii.model.ModelUploadMohonPLP;
 import com.edii.controller.SaveData;
 import com.edii.model.ModelCoarriCodecoContainer;
 import com.edii.model.ModelCoarriCodecoKemasan;
+import com.edii.model.ModelCoarriCodecoSHL;
+import com.edii.model.ModelGetSPJM;
+import com.edii.model.ModelSPPB;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -37,6 +40,8 @@ public class operation implements SaveData {
     String value = "";
     String column = "";
     String tabel = "";
+    String colomn_where = "";
+    String value_where = "";
 
     static {
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
@@ -59,7 +64,6 @@ public class operation implements SaveData {
 
     @Override
     public String savedata_uploadmohonplp(ModelUploadMohonPLP plp, String type) {
-
         try {
             OpenConnection();
         } catch (ClassNotFoundException ex) {
@@ -75,7 +79,7 @@ public class operation implements SaveData {
                     + "'" + plp.getGudang_asal() + "," + plp.getKd_tps_tujuan() + "," + plp.getGudang_tujuan() + "," + plp.getNm_angkut()
                     + "," + plp.getNo_voy_flight() + "," + plp.getTgl_tiba() + "," + plp.getCall_sign() + "," + plp.getKd_kantor()
                     + "," + plp.getKd_alasan_plp() + "," + plp.getNo_bc11() + "," + plp.getTgl_bc11() + "," + plp.getTipe_data()
-                    + "," + plp.getYor_asal() + "," + plp.getYor_tujuan() + "," + plp.getNm_pemohon() + ",500,SYSDATE";
+                    + "," + plp.getYor_asal() + "," + plp.getYor_tujuan() + "," + plp.getNm_pemohon() + ",500,"+getCurrentTimeStamp();
             dbO.query_insert(tabel, column, value);
             dbO.close_connection();
         } else if (type.equalsIgnoreCase("kms")) {
@@ -109,7 +113,7 @@ public class operation implements SaveData {
             value = plp.getRef_number() + "," + plp.getNo_surat() + "," + plp.getTgl_surat() + "," + plp.getKd_tps_asal()
                     + "," + plp.getKd_kantor() + "," + plp.getNo_bc11() + "," + plp.getTgl_bc11() + "," + plp.getTipe_data()
                     + "," + plp.getNm_pemohon() + "," + plp.getNo_batal_plp() + "," + plp.getTgl_batal_plp()
-                    + "," + plp.getAlasan() + ",500,SYSDATE";
+                    + "," + plp.getAlasan() + ",500,"+getCurrentTimeStamp();
             dbO.query_insert(tabel, column, value);
             dbO.close_connection();
         } else if (type.equalsIgnoreCase("kms")) {
@@ -146,7 +150,7 @@ public class operation implements SaveData {
         tabel = "T_RESPON_PLP";
         column = "RESPONID,KD_KANTOR,KD_TPS,REF_NUMBER,NO_PLP,TGL_PLP,ALASAN_REJECT,RECEIVED_DATE";
         value = respon_id + "," + plp.getKd_kantor() + "," + plp.getRef_number() + "," + plp.getNo_plp()
-                + "," + plp.getTgl_plp() + "," + plp.getAlasan_reject() + ",SYSDATE";
+                + "," + plp.getTgl_plp() + "," + plp.getAlasan_reject() + ","+getCurrentTimeStamp();
         dbO.query_insert(tabel, column, value);
         dbO.close_connection();
 
@@ -206,7 +210,7 @@ public class operation implements SaveData {
         value = respon_id + "," + plp.getKd_kantor() + "," + plp.getKd_tps_asal() + "," + plp.getGudang_tujuan()
                 + "," + plp.getNo_plp() + "," + plp.getTgl_plp() + "," + plp.getNm_angkut() + "," + plp.getNo_voy_flight()
                 + "," + plp.getCall_sign() + "," + plp.getTgl_tiba() + "," + plp.getNo_bc11() + "','" + plp.getTgl_bc11()
-                + "," + plp.getNo_surat() + "," + plp.getTgl_surat() + ",SYSDATE";
+                + "," + plp.getNo_surat() + "," + plp.getTgl_surat() + ","+getCurrentTimeStamp();
         dbO.query_insert(tabel, column, value);
         dbO.close_connection();
 
@@ -263,7 +267,7 @@ public class operation implements SaveData {
         tabel = "T_RESPON_BATAL_PLP";
         column = "RESPONID,KD_KANTOR,KD_TPS,REF_NUMBER,NO_BATAL_PLP,TGL_BATAL_PLP,RECEIVED_DATE";
         value = respon_id + "," + plp.getKd_kantor() + "," + plp.getRef_number() + "," + plp.getNo_batal_plp()
-                + "," + plp.getTgl_batal_plp() + ",SYSDATE";
+                + "," + plp.getTgl_batal_plp() + "," + getCurrentTimeStamp();
         dbO.query_insert(tabel, column, value);
         dbO.close_connection();
 
@@ -318,7 +322,7 @@ public class operation implements SaveData {
         tabel = "T_BATAL_PLP";
         column = "RESPONID,KD_KANTOR,KD_TPS,KD_TPS_ASAL,NO_BATAL_PLP,TGL_BATAL_PLP,NO_PLP,TGL_PLP,RECEIVED_DATE";
         value = respon_id + "," + plp.getKd_kantor() + "," + plp.getKd_tps() + "," + plp.getNo_batal_plp()
-                + "," + plp.getTgl_batal_plp() + "," + plp.getNo_plp() + "," + plp.getTgl_plp() + ",SYSDATE";
+                + "," + plp.getTgl_batal_plp() + "," + plp.getNo_plp() + "," + plp.getTgl_plp() + "," + getCurrentTimeStamp();
         dbO.query_insert(tabel, column, value);
         dbO.close_connection();
 
@@ -459,12 +463,192 @@ public class operation implements SaveData {
     }
 
     @Override
+<<<<<<< HEAD
     public String savedata_coarricodecshl_header(ModelCoarriCodecoKemasan coco) {
+=======
+    public boolean cekdata_coarricodecshl_header(ModelCoarriCodecoSHL shl) {
+        try {
+            OpenConnection();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(operation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        boolean result ;
+        data = new ArrayList<>();
+        tabel = "COCOHDR";
+        column = "ID";
+        colomn_where = "VESSEL_CODE,VESSEL_NAME,VOYAGE_NO,ETA,ETD";
+        value_where = shl.getVessel_code() + "," + shl.getVessel_name() + "," + shl.getNo_voy_flight() + "," + shl.getEta() + "," + shl.getEtd();
+        data = dbO.query_select_with_where(tabel, column, colomn_where, value_where, "AND,AND,AND,AND");
+        dbO.close_connection();
+        result = !data.get(0).equalsIgnoreCase("datakosong");
+        return result;
+    }
+
+    @Override
+    public String savedata_coarricodecshl_header(ModelCoarriCodecoSHL shl) {
+        try {
+            OpenConnection();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(operation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        data = new ArrayList<>();
+        tabel = "DUAL";
+        column = "COARRI_CODECO_SEQ.NEXTVAL as ID";
+        data = dbO.query_select_raw(tabel, column);
+        String id = data.get(0);
+
+        tabel = "COCOHDR";
+        column = "ID,KD_TPS,KD_GUDANG,VESSEL_CODE,VESSEL_NAME,VOYAGE_NO,CALL_SIGN,ETA,ETD,WK_REKAM";
+        value = id + "," + shl.getKd_tps() + "," + shl.getKd_gudang() + "," + shl.getVessel_code() + "," + shl.getVessel_name()
+                + "," + shl.getNo_voy_flight() + "," + shl.getCall_sign() + "," + shl.getEta() + "," + shl.getEtd() + "," + getCurrentTimeStamp();
+        dbO.query_insert(tabel, column, value);
+        dbO.close_connection();
+
+        return id;
+    }
+
+    @Override
+    public String savedata_coarricodecshl_con(ModelCoarriCodecoSHL shl, String id) {
+        try {
+            OpenConnection();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(operation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        tabel = "COCOCONT";
+        column = "ID,KD_DOK,NO_CONT,UK_CONT,"
+                + "OWNER,ISO_CODE,NO_SEGEL,BRUTO,LOC_IN_VESSEL,"
+                + "LOC_IN_YARD,WK_INOUT,TRUCKER_NAME,NO_POL,"
+                + "POL,POT,POD,REF_NUMBER,NO_BL_AWB,TGL_BL_AWB,"
+                + "NO_BOOKING,NO_MASTER_BL_AWB,TGL_MASTER_BL_AWB,"
+                + "ID_CONSIGNEE,CONSIGNEE,NO_BC11,TGL_BC11,NO_POS_BC11,"
+                + "KD_DOK_INOUT,NO_DOK_INOUT,TGL_DOK_INOUT,"
+                + "FL_CONT_KOSONG,TEMPERATURE,SHIPPER,STAT_CONT,REMARKS,"
+                + "WK_REKAM,PORT_ORIGIN,PORT_FINAL_DESTINATION";
+        value = id + "," + shl.getKd_dok() + "," + shl.getNo_cont() + "," + shl.getUk_cont()
+                + "," + shl.getOwner() + "," + shl.getIso_code() + "," + shl.getNo_segel() + "," + shl.getBruto() + "," + shl.getLoc_in_vessel()
+                + "," + shl.getLoc_in_yard() + "," + shl.getWk_inout() + "," + shl.getTrucker_name() + "," + shl.getNo_pol()
+                + "," + shl.getPel_muat() + "," + shl.getPel_transit() + "," + shl.getPel_bongkar() + "," + shl.getRef_number() + "," + shl.getNo_bl_awb() + "," + shl.getTgl_bl_awb()
+                + "," + shl.getBooking_no() + "," + shl.getNo_master_bl_awb() + "," + shl.getTgl_master_bl_awb()
+                + "," + shl.getId_consignee() + "," + shl.getConsignee() + "," + shl.getNo_bc11() + "," + shl.getTgl_bc11() + "," + shl.getNo_pos_bc_11()
+                + "," + shl.getKd_dok_inout() + "," + shl.getNo_dok_inout() + "," + shl.getTgl_dok_inout()
+                + "," + shl.getFl_cont_kosong() + "," + shl.getTemperature() + "," + shl.getShipper() + "," + shl.getStat_cont() + "," + shl.getRemarks()
+                + "," + getCurrentTimeStamp() + "," + shl.getPort_origin() + "," + shl.getPort_final_destination();
+
+        dbO.query_insert(tabel, column, value);
+        dbO.close_connection();
+        return "";
+    }
+
+    @Override
+    public String savedata_spjm_header(ModelGetSPJM spjm) {
+        try {
+            OpenConnection();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(operation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        data = new ArrayList<>();
+
+        tabel = "SPJMHDR";
+        column = "CAR,KD_KANTOR,NO_PIB,TGL_PIB,NPWP_IMP,"
+                + "NAMA_IMP,NPWP_PPJK,NAMA_PPJK,KD_GUDANG,JML_CONT,NO_BC11,TGL_BC11,"
+                + "NO_POS_BC11,FL_KARANTINA,NM_ANGKUT,NO_VOY_FLIGHT,RECEIVED_DATE";
+        value = spjm.getCAR() + "," + spjm.getKD_KANTOR() + "," + spjm.getNO_PIB() + "," + spjm.getTGL_PIB() + "," + spjm.getNPWP_IMP()
+                + spjm.getNAMA_IMP() + "," + spjm.getNPWP_PPJK() + "," + spjm.getNAMA_PPJK() + "," + spjm.getGUDANG() + "," + spjm.getJML_CONT() + "," + spjm.getNO_BC11() + "," + spjm.getTGL_BC11()
+                + spjm.getNO_POS_BC11() + "," + spjm.getFL_KARANTINA() + "," + spjm.getNM_ANGKUT() + "," + spjm.getNO_VOY_FLIGHT() + "," + getCurrentTimeStamp();
+
+        dbO.query_insert(tabel, column, value);
+        dbO.close_connection();
+        return "";
+    }
+
+    @Override
+    public boolean cekdata_spjm_header(ModelGetSPJM spjm) {
+        try {
+            OpenConnection();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(operation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        boolean result ;
+        data = new ArrayList<>();
+        tabel = "SPJMHDR";
+        column = "*";
+        colomn_where = "CAR";
+        value_where = spjm.getCAR();
+        data = dbO.query_select_with_where(tabel, column, colomn_where, value_where, "");
+        dbO.close_connection();
+        result = !data.get(0).equalsIgnoreCase("datakosong");
+        return result;
+    }
+
+    @Override
+    public String savedata_spjm_kms(ModelGetSPJM spjm) {
+        try {
+            OpenConnection();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(operation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        data = new ArrayList<>();
+
+        tabel = "SPJMKMS";
+        column = "CAR,JNS_KMS,MERK_KMS,JML_KMS";
+        value = spjm.getCAR() + "," + spjm.getJNS_KMS() + "," + spjm.getMERK_KMS() + "," + spjm.getJML_KMS();
+        dbO.query_insert(tabel, column, value);
+        dbO.close_connection();
+        return "";
+    }
+
+    @Override
+    public String savedata_spjm_cont(ModelGetSPJM spjm) {
+        try {
+            OpenConnection();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(operation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        data = new ArrayList<>();
+
+        tabel = "SPJMCONT";
+        column = "CAR,NO_CONT,SIZE_CONT";
+        value = spjm.getCAR() + "," + spjm.getNO_CONT() + "," + spjm.getSIZE().substring(0, 11) + "," + spjm.getJML_KMS().substring(0, 2);
+        dbO.query_insert(tabel, column, value);
+        dbO.close_connection();
+        return "";
+    }
+    
+    @Override
+    public String savedata_spjm_dok(ModelGetSPJM spjm) {
+        /*struktur tunggu dari mbak aslich*/
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    private static String getCurrentTimeStamp() {
+        java.text.DateFormat dateFormat = new java.text.SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        java.util.Date date = new java.util.Date();
+        return dateFormat.format(date);
+    }
+
+    @Override
+    public boolean cekdata_sppb_header(ModelSPPB sppb) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
+    public String savedata_sppb_header(ModelSPPB sppb) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String savedata_sppb_kms(ModelSPPB sppb) {
+>>>>>>> ee87ab58883bfef82b1a020b3a351e4b7da5d1bf
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+<<<<<<< HEAD
     public String savedata_coarricodecshl_con(ModelCoarriCodecoKemasan coco, String id) {
+=======
+    public String savedata_sppb_cont(ModelSPPB sppb) {
+>>>>>>> ee87ab58883bfef82b1a020b3a351e4b7da5d1bf
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

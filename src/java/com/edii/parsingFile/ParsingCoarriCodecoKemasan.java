@@ -8,6 +8,7 @@ import XMLGenerator.ParsingXML;
 import com.edii.controller.SaveData;
 import com.edii.model.ModelCoarriCodecoKemasan;
 import com.edii.operation.db.operation;
+import java.util.ArrayList;
 
 /**
  *
@@ -26,9 +27,10 @@ public class ParsingCoarriCodecoKemasan {
         sv = new operation();
         try {
             if (fStream != null) {
-                String header = px.getStringParsingXml(fStream, "COCOCONT>HEADER", "KD_DOK,KD_TPS,"
+                ArrayList<String> header = new ArrayList();
+                header = px.xmlParsing(fStream, "COCOKMS>HEADER", "KD_DOK,KD_TPS,"
                         + "NM_ANGKUT,NO_VOY_FLIGHT,CALL_SIGN,TGL_TIBA,KD_GUDANG,REF_NUMBER");
-                String[] split_header = header.replace(";", "").split(",");
+                String[] split_header = header.get(0).split(",");
                 model.setKd_dok(split_header[0]);
                 model.setKd_tps(split_header[1]);
                 model.setNm_angkut(split_header[3]);
@@ -39,17 +41,16 @@ public class ParsingCoarriCodecoKemasan {
                 model.setRef_number(split_header[8]);
                 String id = sv.savedata_coarricodecokemasan_header(model);
 
-
-                String detil_kms = px.getStringParsingXml(fStream, "COCOKMS>KMS>KMS",
+                ArrayList<String> detil_kms = new ArrayList();
+                detil_kms = px.xmlParsing(fStream, "COCOKMS>KMS>KMS",
                         "NO_BL_AWB,TGL_BL_AWB,NO_MASTER_BL_AWB,TGL_MASTER_BL_AWB,ID_CONSIGNEE,"
                         + "CONSIGNEE,BRUTO,NO_BC11,TGL_BC11,NO_POS_BC11,CONT_ASAL,SERI_KEMAS,"
                         + "KD_KEMAS,JML_KEMAS,KD_TIMBUN,KD_DOK_INOUT,NO_DOK_INOUT,TGL_DOK_INOUT,"
                         + "WK_INOUT,KD_SAR_ANGKUT_INOUT,NO_POL,PEL_MUAT,PEL_TRANSIT,PEL_BONGKAR,"
                         + "GUDANG_TUJUAN,KODE_KANTOR,NO_DAFTAR_PABEAN,TGL_DAFTAR_PABEAN,NO_SEGEL_BC,"
                         + "TGL_SEGEL_BC,NO_IJIN_TPS,TGL_IJIN_TPS");
-                String[] split_detil_kms = detil_kms.split(";");
-                for (String detil : split_detil_kms) {
-                    String[] split_kms = detil.split(",");
+                for (String d_kms : detil_kms) {
+                    String[] split_kms = d_kms.split(",");
                     model.setNo_bl_awb(split_kms[0]);
                     model.setTgl_bl_awb(split_kms[1]);
                     model.setNo_master_bl_awb(split_kms[2]);
@@ -84,6 +85,7 @@ public class ParsingCoarriCodecoKemasan {
                     model.setTgl_ijin_tps(split_kms[31]);
                     sv.savedata_coarricodecokemasan_kms(model, id);
                 }
+
             }
         } catch (Exception e) {
             e.printStackTrace();

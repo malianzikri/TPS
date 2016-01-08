@@ -8,6 +8,7 @@ import XMLGenerator.ParsingXML;
 import com.edii.controller.SaveData;
 import com.edii.model.ModelGetResponPLPTujuan;
 import com.edii.operation.db.operation;
+import java.util.ArrayList;
 
 /**
  *
@@ -29,10 +30,11 @@ public class ParsingGetResponPLPTujuan {
         try {
 
             if (fStream != null) {
-                String header = px.getStringParsingXml(fStream, "RESPONPLP>HEADER", "KD_KANTOR,"
+                ArrayList<String> header = new ArrayList<>();
+                header = px.xmlParsing(fStream, "RESPONPLP>HEADER", "KD_KANTOR,"
                         + "KD_TPS,KD_TPS_ASAL,GUDANG_TUJUAN,NO_PLP,TGL_PLP,CALL_SIGN,NM_ANGKUT,"
                         + "NO_VOY_FLIGHT,TGL_TIBA,NO_BC11,TGL_BC11,NO_SURAT,TGL_SURAT");
-                String[] split_header = header.replace(";", "").split(",");
+                String[] split_header = header.get(0).split(",");
                 model.setKd_kantor(split_header[0]);
                 model.setKd_tps(split_header[1]);
                 model.setKd_tps_asal(split_header[2]);
@@ -48,10 +50,11 @@ public class ParsingGetResponPLPTujuan {
                 model.setTgl_surat(split_header[12]);
 
                 String respon_id = sv.savedata_getresponplptujuan_header(model);
-                String detil_kms = px.getStringParsingXml(fStream, "RESPONPLP>DETIL>KMS", "JNS_KMS,JML_KMS,NO_BL_AWB,TGL_BL_AWB");
-                String[] split_detil_kms = detil_kms.split(";");
-
-                for (String detil : split_detil_kms) {
+                
+                ArrayList<String> detil_kms = new ArrayList<>();
+                detil_kms = px.xmlParsing(fStream, "RESPONPLP>DETIL>KMS", "JNS_KMS,JML_KMS,NO_BL_AWB,TGL_BL_AWB");
+                
+                for (String detil : detil_kms) {
                     String[] split_kms = detil.split(",");
                     model.setJns_kms(split_kms[0]);
                     model.setJml_kms(split_kms[1]);
@@ -60,11 +63,11 @@ public class ParsingGetResponPLPTujuan {
                     sv.savedata_getresponplptujuan_kms(model, respon_id);
                 }
 
-                String detil_cont = px.getStringParsingXml(fStream, "RESPONPLP>DETIL>CONT", "NO_CONT,UK_CONT,"
+                ArrayList<String> detil_cont = new ArrayList<>();
+                detil_cont = px.xmlParsing(fStream, "RESPONPLP>DETIL>CONT", "NO_CONT,UK_CONT,"
                         + "JNS_CONT,NO_POS_BC11,CONSIGNEE,NO_BL_AWB,TGL_BL_AWB");
-                String[] split_detil_cont = detil_cont.split(";");
-
-                for (String detil : split_detil_cont) {
+                
+                for (String detil : detil_cont) {
                     String[] split_cont = detil.split(",");
                     model.setNo_cont(split_cont[0]);
                     model.setUk_cont(split_cont[1]);
