@@ -457,4 +457,14 @@ public class operation implements SaveData {
         dbO.close_connection();
         return "";
     }
+
+    @Override
+    public String savedata_coarricodecshl_header(ModelCoarriCodecoKemasan coco) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String savedata_coarricodecshl_con(ModelCoarriCodecoKemasan coco, String id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
