@@ -469,7 +469,7 @@ public class operation implements SaveData {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(operation.class.getName()).log(Level.SEVERE, null, ex);
         }
-        boolean result = false;
+        boolean result ;
         data = new ArrayList<>();
         tabel = "COCOHDR";
         column = "ID";
@@ -477,11 +477,7 @@ public class operation implements SaveData {
         value_where = shl.getVessel_code() + "," + shl.getVessel_name() + "," + shl.getNo_voy_flight() + "," + shl.getEta() + "," + shl.getEtd();
         data = dbO.query_select_with_where(tabel, column, colomn_where, value_where, "AND,AND,AND,AND");
         dbO.close_connection();
-        if (data.get(0).equalsIgnoreCase("datakosong")) {
-            result = false;
-        } else {
-            result = true;
-        }
+        result = !data.get(0).equalsIgnoreCase("datakosong");
         return result;
     }
 
@@ -570,7 +566,7 @@ public class operation implements SaveData {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(operation.class.getName()).log(Level.SEVERE, null, ex);
         }
-        boolean result = false;
+        boolean result ;
         data = new ArrayList<>();
         tabel = "SPJMHDR";
         column = "*";
@@ -578,11 +574,7 @@ public class operation implements SaveData {
         value_where = spjm.getCAR();
         data = dbO.query_select_with_where(tabel, column, colomn_where, value_where, "");
         dbO.close_connection();
-        if (data.get(0).equalsIgnoreCase("datakosong")) {
-            result = false;
-        } else {
-            result = true;
-        }
+        result = !data.get(0).equalsIgnoreCase("datakosong");
         return result;
     }
 
@@ -633,7 +625,22 @@ public class operation implements SaveData {
     }
 
     @Override
-    public String savedata_sppb(ModelSPPB sppb) {
+    public boolean cekdata_sppb_header(ModelSPPB sppb) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String savedata_sppb_header(ModelSPPB sppb) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String savedata_sppb_kms(ModelSPPB sppb) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String savedata_sppb_cont(ModelSPPB sppb) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

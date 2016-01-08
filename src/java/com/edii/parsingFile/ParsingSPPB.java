@@ -6,20 +6,9 @@ package com.edii.parsingFile;
 
 import XMLGenerator.ParsingXML;
 import com.edii.controller.SaveData;
-import com.edii.db.Db;
-import com.edii.model.ModelGetSPJM;
 import com.edii.model.ModelSPPB;
 import com.edii.operation.db.operation;
-import com.edii.tools.ExcuteProses;
-import java.io.StringReader;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import org.jdom2.Document;
-import org.jdom2.Element;
-import org.jdom2.input.SAXBuilder;
 
 /**
  *
@@ -81,10 +70,36 @@ public class ParsingSPPB {
 
                 }
                 duplicateFile = false;
-                if (sv.cekdata_spjm_header(model)) {
+                if (sv.cekdata_sppb_header(model)) {
                     duplicateFile = true;
                 } else {
-                    id = sv.savedata_spjm_header(model);
+                    id = sv.savedata_sppb_header(model);
+                }
+
+                ArrayList<String> detil_kms = new ArrayList<>();
+                detil_kms = px.xmlParsing(fStream, "SPPB>DETIL>KMS", "CAR,JNS_KMS,MERK_KMS,JML_KMS");
+                for (String detil : detil_kms) {
+                    String[] split_kms = detil.split(",");
+                    model.setCAR(split_kms[0]);
+                    model.setJNS_KMS(split_kms[1]);
+                    model.setMERK_KMS(split_kms[2]);
+                    model.setJML_KMS(split_kms[3]);
+                    if (!duplicateFile) {
+                        sv.savedata_sppb_kms(model);
+                    }
+                }
+
+                ArrayList<String> detil_cont = new ArrayList<>();
+                detil_cont = px.xmlParsing(fStream, "SPJM>DETIL>CONT", "CAR,NO_CONT,SIZE,JNS_MUAT");
+                for (String detil : detil_cont) {
+                    String[] split_cont = detil.split(",");
+                    model.setCAR(split_cont[0]);
+                    model.setNO_CONT(split_cont[1]);
+                    model.setSIZE(split_cont[2]);
+                    model.setJNS_MUAT(split_cont[3]);
+                    if (!duplicateFile) {
+                        sv.savedata_sppb_cont(model);
+                    }
                 }
 //                try {
 //                    doc = builder.build(new StringReader(fStream));
@@ -541,10 +556,6 @@ public class ParsingSPPB {
 //                }
 //            }
         } catch (Exception ex) {
-//            result = CAR + "_" + ex.getMessage();
-//            exc.ExcuteError(ex.getMessage(), "execute_class_SPBB", result);
-//
-//            ex.printStackTrace();
         } finally {
 //            try {
 //                if (preparedStatement != null) {
@@ -576,6 +587,7 @@ public class ParsingSPPB {
 //            iterDtlKMS = null;
 //            iterDtlCONT = null;
 //            return result;
+            return result;
         }
     }
 

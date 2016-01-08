@@ -82,5 +82,12 @@ public interface SaveData {
     
     String savedata_spjm_dok(ModelGetSPJM spjm);
     
-    String savedata_sppb(ModelSPPB sppb);
+    //SPPB
+    boolean cekdata_sppb_header(ModelSPPB sppb);
+    
+    String savedata_sppb_header(ModelSPPB sppb);
+    
+    String savedata_sppb_kms(ModelSPPB sppb);
+    
+    String savedata_sppb_cont(ModelSPPB sppb);
 }
