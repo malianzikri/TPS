@@ -6,10 +6,13 @@ package com.edii.controller;
 
 import com.edii.model.ModelCoarriCodecoContainer;
 import com.edii.model.ModelCoarriCodecoKemasan;
+import com.edii.model.ModelCoarriCodecoSHL;
 import com.edii.model.ModelGetResponBatalPLP;
 import com.edii.model.ModelGetResponBatalPLPTujuan;
 import com.edii.model.ModelGetResponPLP;
 import com.edii.model.ModelGetResponPLPTujuan;
+import com.edii.model.ModelGetSPJM;
+import com.edii.model.ModelSPPB;
 import com.edii.model.ModelUploadBatalPLP;
 import com.edii.model.ModelUploadMohonPLP;
 
@@ -61,8 +64,23 @@ public interface SaveData {
 
     String savedata_coarricodecokemasan_kms(ModelCoarriCodecoKemasan coco, String id);
 
-    //CoarriCodeco_Kemasan
-    String savedata_coarricodecshl_header(ModelCoarriCodecoKemasan coco);
+    //CoarriCodeco_shl
+    boolean cekdata_coarricodecshl_header(ModelCoarriCodecoSHL shl);
+    
+    String savedata_coarricodecshl_header(ModelCoarriCodecoSHL shl);
 
-    String savedata_coarricodecshl_con(ModelCoarriCodecoKemasan coco, String id);
+    String savedata_coarricodecshl_con(ModelCoarriCodecoSHL shl, String id);
+    
+    //SPJM
+    boolean cekdata_spjm_header(ModelGetSPJM spjm);
+    
+    String savedata_spjm_header(ModelGetSPJM spjm);
+    
+    String savedata_spjm_kms(ModelGetSPJM spjm);
+    
+    String savedata_spjm_cont(ModelGetSPJM spjm);
+    
+    String savedata_spjm_dok(ModelGetSPJM spjm);
+    
+    String savedata_sppb(ModelSPPB sppb);
 }

@@ -65,7 +65,6 @@ public class validasi_tanggal {
         validasi_tanggal v = new validasi_tanggal();
         //boolean r = v.validasiTgl("20141229");
         boolean r = v.validasiTglJam("20140714095900");
-        
         System.out.println(r);
     }
 }

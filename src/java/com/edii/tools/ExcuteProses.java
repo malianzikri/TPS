@@ -5,6 +5,9 @@
 package com.edii.tools;
 
 import com.edii.db.Db;
+import com.edii.parsingFile.ParsingCoarriCodecoContainer;
+import com.edii.parsingFile.ParsingCoarriCodecoKemasan;
+import com.edii.parsingFile.ParsingCoarriCodecoSHL;
 import com.edii.tps.tps;
 import java.io.File;
 import java.io.IOException;
@@ -64,23 +67,20 @@ public class ExcuteProses extends tps {
             result = car.parseDocument(fstream);
         }
         if (jnsDok.equalsIgnoreCase("COCOCONT") && !fstream.contains("</ETA>")) {
-            ParsingXmlCoarriCodeco_Con cont = new ParsingXmlCoarriCodeco_Con();
+            ParsingCoarriCodecoContainer cont = new ParsingCoarriCodecoContainer();
             result = cont.parseDocument(fstream, "");
         }
         if (jnsDok.equalsIgnoreCase("COCOCONT") && !fstream.contains("</ETA>") && sementara.equalsIgnoreCase("ter3")) {
-            ParsingXmlCoarriCodeco_Con cont = new ParsingXmlCoarriCodeco_Con();
+            ParsingCoarriCodecoContainer cont = new ParsingCoarriCodecoContainer();
             result = cont.parseDocument(fstream, "ter3");
         }
         if (jnsDok.equalsIgnoreCase("COCOKMS")) {
-            ParsingXMLCoarriCodeco_Kms kms = new ParsingXMLCoarriCodeco_Kms();
+            ParsingCoarriCodecoKemasan kms = new ParsingCoarriCodecoKemasan();
             result = kms.parseDocument(fstream);
         }
         if (fstream.contains("</ETA>")) {
-            ParsingXMLCoarriCodecoSHL contSHL = new ParsingXMLCoarriCodecoSHL();
-            boolean hasil = contSHL.parseDocument(fstream);
-            if (hasil) {
-                result = "PROSES SUCCESS";
-            }
+            ParsingCoarriCodecoSHL contSHL = new ParsingCoarriCodecoSHL();
+            result = contSHL.parseDocument(fstream);
         }
         return result;
     }

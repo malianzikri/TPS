@@ -17,7 +17,6 @@ import com.edii.tools.GenerateXMLDW;
 import com.edii.parsingFile.ParsingUploadMohonPLP;
 import com.edii.parsingFile.ParsingUploadBatalPLP;
 import com.edii.tools.ParsingXMLCFS;
-import com.edii.tools.ParsingXMLResponPLPBatal_Asal;
 import com.edii.parsingFile.ParsingGetResponPLP;
 import com.edii.tools.ResCFS;
 import com.edii.tools.Tanggalan;
@@ -26,6 +25,7 @@ import com.edii.tps.service.TPSDownload;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import Loggers.Loggers;
+import com.edii.parsingFile.ParsingGetResponBatalPLP;
 import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -515,12 +515,8 @@ public class tps {
             @WebParam(name = "Password") String Password) throws NoSuchAlgorithmException {
 
         TPSUpload tpsUpload = null;
-<<<<<<< HEAD
         ParsingUploadMohonPLP pars = null;
         Db mydb = null;
-=======
-        ParsingXMLPLP pars = null;
->>>>>>> origin/master
         Encrypt encrypt = null;
         Tanggalan tgl = null;
         String result = "";
@@ -538,13 +534,9 @@ public class tps {
             encrypt = new Encrypt();
             message += log.LogSuccess(encrypt.toString()) + "\r\n";
             tpsUpload = new TPSUpload();
-<<<<<<< HEAD
             pars = new ParsingUploadMohonPLP();
-=======
             message += log.LogSuccess(tpsUpload.toString()) + "\r\n";
-            pars = new ParsingXMLPLP();
             message += log.LogSuccess(pars.toString()) + "\r\n";
->>>>>>> origin/master
 
             setLocalFolder(PROPERTIES.getProperty("tps" + Username.toUpperCase() + ".outboxfolder"));
             file = getLocalFolder() + File.separator + Username + ".UploadMohonPLP." + tgl.UNIXNUMBER() + ".XML";
@@ -840,12 +832,8 @@ public class tps {
             @WebParam(name = "Password") String Password) throws NoSuchAlgorithmException {
 
         TPSUpload tpsUpload = null;
-<<<<<<< HEAD
         ParsingUploadBatalPLP parsBatal = null;
         Db mydb = null;
-=======
-        ParsingXMLPLP_BATAL parsBatal = null;
->>>>>>> origin/master
         Encrypt encrypt = null;
         Tanggalan tgl = null;
         String refNumber = "";
@@ -863,13 +851,9 @@ public class tps {
             encrypt = new Encrypt();
             message += log.LogSuccess(encrypt.toString()) + "\r\n";
             tpsUpload = new TPSUpload();
-<<<<<<< HEAD
             parsBatal = new ParsingUploadBatalPLP();
-=======
             message += log.LogSuccess(tpsUpload.toString()) + "\r\n";
-            parsBatal = new ParsingXMLPLP_BATAL();
             message += log.LogSuccess(parsBatal.toString()) + "\r\n";
->>>>>>> origin/master
             setLocalFolder(PROPERTIES.getProperty("tps" + Username.toUpperCase() + ".outboxfolder"));
             file = getLocalFolder() + File.separator + Username + ".UploadBatalPLP." + tgl.UNIXNUMBER() + ".XML";
             if (cf.execute(file)) {
@@ -1154,12 +1138,8 @@ public class tps {
             @WebParam(name = "Username") String Username,
             @WebParam(name = "Password") String Password) throws NoSuchAlgorithmException {
 
-<<<<<<< HEAD
         ParsingUploadMohonPLP pars = null;
         Db mydb = null;
-=======
-        ParsingXMLPLP pars = null;
->>>>>>> origin/master
         Encrypt encrypt = null;
         Tanggalan tgl = null;
         String refNumber = "";
@@ -1175,13 +1155,9 @@ public class tps {
         log = new Loggers();
         try {
             encrypt = new Encrypt();
-<<<<<<< HEAD
             pars = new ParsingUploadMohonPLP();
-=======
             message += log.LogSuccess(encrypt.toString()) + "\r\n";
-            pars = new ParsingXMLPLP();
             message += log.LogSuccess(pars.toString()) + "\r\n";
->>>>>>> origin/master
             setLocalFolder(PROPERTIES.getProperty("tps" + Username.toUpperCase() + ".outboxfolder"));
             file = getLocalFolder() + File.separator + Username + ".UploadMohonPLPIPC." + tgl.UNIXNUMBER() + ".XML";
             if (cf.execute(file)) {
@@ -1244,12 +1220,8 @@ public class tps {
             @WebParam(name = "Username") String Username,
             @WebParam(name = "Password") String Password) throws NoSuchAlgorithmException {
 
-<<<<<<< HEAD
         ParsingUploadBatalPLP pars = null;
         Db mydb = null;
-=======
-        ParsingXMLPLP_BATAL pars = null;
->>>>>>> origin/master
         Encrypt encrypt = null;
         Tanggalan tgl = null;
         String refNumber = "";
@@ -1265,13 +1237,10 @@ public class tps {
         tgl = new Tanggalan();
         try {
             encrypt = new Encrypt();
-<<<<<<< HEAD
             pars = new ParsingUploadBatalPLP();
-=======
             message += log.LogSuccess(encrypt.toString()) + "\r\n";
-            pars = new ParsingXMLPLP_BATAL();
+       
             message += log.LogSuccess(pars.toString()) + "\r\n";
->>>>>>> origin/master
             setLocalFolder(PROPERTIES.getProperty("tps" + Username.toUpperCase() + ".outboxfolder"));
             file = getLocalFolder() + File.separator + Username + ".UploadBatalPLPIPC." + tgl.UNIXNUMBER() + ".XML";
             if (cf.execute(file)) {
@@ -1333,15 +1302,9 @@ public class tps {
     @WebMethod(operationName = "GetResponPLP_IPC")
     public String GetResponPLP_IPC(@WebParam(name = "fStream") String fStream,
             @WebParam(name = "Username") String Username,
-<<<<<<< HEAD
-            @WebParam(name = "Password") String Password) {
+            @WebParam(name = "Password") String Password) throws NoSuchAlgorithmException {
         ParsingGetResponPLP pars = null;
         Db mydb = null;
-=======
-            @WebParam(name = "Password") String Password) throws NoSuchAlgorithmException {
-
-        ParsingXMLResponPLP_Asal pars = null;
->>>>>>> origin/master
         Encrypt encrypt = null;
         Tanggalan tgl = null;
         String refNumber = "";
@@ -1357,13 +1320,9 @@ public class tps {
         log = new Loggers();
         try {
             encrypt = new Encrypt();
-<<<<<<< HEAD
             pars = new ParsingGetResponPLP();
-=======
             message += log.LogSuccess(encrypt.toString()) + "\r\n";
-            pars = new ParsingXMLResponPLP_Asal();
             message += log.LogSuccess(pars.toString()) + "\r\n";
->>>>>>> origin/master
             setLocalFolder(PROPERTIES.getProperty("tps" + Username.toUpperCase() + ".outboxfolder"));
             file = getLocalFolder() + File.separator + Username + ".ResponPLPIPC." + tgl.UNIXNUMBER() + ".XML";
             if (cf.execute(file)) {
@@ -1426,7 +1385,7 @@ public class tps {
             @WebParam(name = "Username") String Username,
             @WebParam(name = "Password") String Password) throws NoSuchAlgorithmException {
 
-        ParsingXMLResponPLPBatal_Asal pars = null;
+        ParsingGetResponBatalPLP pars = null;
         Encrypt encrypt = null;
         Tanggalan tgl = null;
         String refNumber = "";
@@ -1442,7 +1401,7 @@ public class tps {
         try {
             encrypt = new Encrypt();
             message += log.LogSuccess(encrypt.toString()) + "\r\n";
-            pars = new ParsingXMLResponPLPBatal_Asal();
+            pars = new ParsingGetResponBatalPLP();
             message += log.LogSuccess(pars.toString()) + "\r\n";
             setLocalFolder(PROPERTIES.getProperty("tps" + Username.toUpperCase() + ".outboxfolder"));
             file = getLocalFolder() + File.separator + Username + ".ResponBatalPLPIPC." + tgl.UNIXNUMBER() + ".XML";

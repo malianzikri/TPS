@@ -43,7 +43,7 @@ public class ModelCoarriCodecoSHL {
     String no_master_bl_awb = null;
     String tgl_master_bl_awb = null;
     String id_consignee = null;
-    String conaignee = null;
+    String consignee = null;
     String no_bc11 = null;
     String tgl_bc11 = null;
     String no_pos_bc_11 = null;
@@ -298,12 +298,12 @@ public class ModelCoarriCodecoSHL {
         this.id_consignee = id_consignee;
     }
 
-    public String getConaignee() {
-        return conaignee;
+    public String getConsignee() {
+        return consignee;
     }
 
-    public void setConaignee(String conaignee) {
-        this.conaignee = conaignee;
+    public void setConsignee(String consignee) {
+        this.consignee = consignee;
     }
 
     public String getNo_bc11() {
