@@ -4,6 +4,7 @@
  */
 package com.edii.tools;
 
+import com.edii.parsingfile.ParsingCoCoCarTer;
 import com.edii.db.Db;
 import java.io.BufferedReader;
 import java.io.File;
@@ -575,7 +576,7 @@ public class loadcart {
                         fReader = null;
                     }
 
-                    ParsingXMLCocoCarTer l = new ParsingXMLCocoCarTer();
+                    ParsingCoCoCarTer l = new ParsingCoCoCarTer();
                     String r = l.parseDocument(content_final);
                     System.out.println("hasilllllllllllll:::::::::" + r);
                     if (r.contains("Success")) {

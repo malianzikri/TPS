@@ -1,3 +1,9 @@
+
+import com.edii.parsingfile.ParsingCoCoCarTer;
+import com.edii.parsingfile.ParsingCoarriCodecoSHL;
+import com.edii.parsingfile.ParsingCoarriCodecoKemasan;
+import com.edii.parsingfile.ParsingCoarriCodecoContainer;
+
 <<<<<<< HEAD
 ///*
 // * To change this template, choose Tools | Templates
@@ -161,9 +167,9 @@
 package com.edii.tools;
 
 import com.edii.db.Db;
-import com.edii.parsingFile.ParsingCoarriCodecoContainer;
-import com.edii.parsingFile.ParsingCoarriCodecoKemasan;
-import com.edii.parsingFile.ParsingCoarriCodecoSHL;
+import com.edii.parsingfile.ParsingCoarriCodecoContainer;
+import com.edii.parsingfile.ParsingCoarriCodecoKemasan;
+import com.edii.parsingfile.ParsingCoarriCodecoSHL;
 import com.edii.tps.tps;
 import java.io.File;
 import java.io.IOException;
@@ -219,7 +225,7 @@ public class ExcuteProses extends tps {
     public String ExcuteParsingDok(String jnsDok, String fstream, String sementara) throws Exception {
         String result = null;
         if (jnsDok.equalsIgnoreCase("COCOCAR")) {
-            ParsingXMLCocoCarTer car = new ParsingXMLCocoCarTer();
+            ParsingCoCoCarTer car = new ParsingCoCoCarTer();
             result = car.parseDocument(fstream);
         }
         if (jnsDok.equalsIgnoreCase("COCOCONT") && !fstream.contains("</ETA>")) {

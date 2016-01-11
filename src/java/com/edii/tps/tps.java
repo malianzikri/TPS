@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 //package com.edii.tps;
 //
 //import File.TXT.CreateFile;
@@ -114,7 +113,6 @@
 //                preparedStatement.setString(5, KETERANGAN);
 //                preparedStatement.setString(6, XML_REQUEST_NEW);
 //                preparedStatement.executeUpdate();
-=======
 package com.edii.tps;
 
 import File.TXT.CreateFile;
@@ -130,11 +128,11 @@ import com.edii.tools.Encrypt;
 import com.edii.tools.ExcuteProses;
 import com.edii.tools.GenerateResponPLP_Tujuan_Tes;
 import com.edii.tools.GenerateXMLCFS;
-import com.edii.tools.GenerateXMLDW;
-import com.edii.parsingFile.ParsingUploadMohonPLP;
-import com.edii.parsingFile.ParsingUploadBatalPLP;
+import com.edii.tools.GenerateDW;
+import com.edii.parsingfile.ParsingUploadMohonPLP;
+import com.edii.parsingfile.ParsingUploadBatalPLP;
 import com.edii.tools.ParsingXMLCFS;
-import com.edii.parsingFile.ParsingGetResponPLP;
+import com.edii.parsingfile.ParsingGetResponPLP;
 import com.edii.tools.ResCFS;
 import com.edii.tools.Tanggalan;
 import com.edii.tps.service.TPSUpload;
@@ -142,7 +140,7 @@ import com.edii.tps.service.TPSDownload;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import Loggers.Loggers;
-import com.edii.parsingFile.ParsingGetResponBatalPLP;
+import com.edii.parsingfile.ParsingGetResponBatalPLP;
 import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -1568,43 +1566,43 @@ public class tps {
         }
         return result;
     }
+}
 
-    /**
-     * Web service operation
-     *
-     * @param Username
-     * @param Password
-     * @return
-     */
-    @WebMethod(operationName = "GetResponPLP_DWPORTAL")
-    public String GetResponPLP_DWPORTAL(@WebParam(name = "Username") String Username,
-            @WebParam(name = "Password") String Password) throws Exception {
-
-        Db mydb = null;
-        GenerateXMLDW dw = null;
-        PreparedStatement preparedStatement = null;
-        ResultSet rs = null;
-        String result = "";
-        String query = "";
-        String RESPONID = "";
-        String REF_NUMBER = "";
-        String message = "";
-        String messageErr = "";
-
-        log = new Loggers();
-        cf = new CreateFile();
-        Tanggalan tgl = new Tanggalan();
-        try {
-            dw = new GenerateXMLDW();
-            mydb = new Db();
-            message += log.LogSuccess(mydb.toString()) + "\r\n";
+//    /**
+//     * Web service operation
+//     *
+//     * @param Username
+//     * @param Password
+//     * @return
+//     */
+//    @WebMethod(operationName = "GetResponPLP_DWPORTAL")
+//    public String GetResponPLP_DWPORTAL(@WebParam(name = "Username") String Username,
+//            @WebParam(name = "Password") String Password) throws Exception {
+//
+//        Db mydb = null;
+//        GenerateXMLDW dw = null;
+//        PreparedStatement preparedStatement = null;
+//        ResultSet rs = null;
+//        String result = "";
+//        String query = "";
+//        String RESPONID = "";
+//        String REF_NUMBER = "";
+//        String message = "";
+//        String messageErr = "";
+//
+//        log = new Loggers();
+//        cf = new CreateFile();
+//        Tanggalan tgl = new Tanggalan();
+//        try {
+//            dw = new GenerateXMLDW();
+//            mydb = new Db();
+//            message += log.LogSuccess(mydb.toString()) + "\r\n";
 //            if (Username.equalsIgnoreCase("PENDAFTARAN")) {
 //                query = "INSERT INTO TEMP_T_PLP(ID,USERNAME,PASSWORD,XML_RESPONSE,STATUS,WK_IN) "
 //                        + "VALUES (T_PLP_SEQ.NEXTVAL,'" + Username + "','" + Username + "','" + Password + "','Q',SYSDATE)";
 //
 //                System.out.println("" + query);
 //                mydb.execute(query);
->>>>>>> ee87ab58883bfef82b1a020b3a351e4b7da5d1bf
 //                mydb.execute("commit");
 //            }
 //        } catch (Exception e) {

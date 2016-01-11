@@ -4,6 +4,7 @@
  */
 package com.edii.controller;
 
+import com.edii.model.ModelCoCoCarTer;
 import com.edii.model.ModelCoarriCodecoContainer;
 import com.edii.model.ModelCoarriCodecoKemasan;
 import com.edii.model.ModelCoarriCodecoSHL;
@@ -66,28 +67,33 @@ public interface SaveData {
 
     //CoarriCodeco_shl
     boolean cekdata_coarricodecshl_header(ModelCoarriCodecoSHL shl);
-    
+
     String savedata_coarricodecshl_header(ModelCoarriCodecoSHL shl);
 
     String savedata_coarricodecshl_con(ModelCoarriCodecoSHL shl, String id);
-    
+
     //SPJM
     boolean cekdata_spjm_header(ModelGetSPJM spjm);
-    
+
     String savedata_spjm_header(ModelGetSPJM spjm);
-    
+
     String savedata_spjm_kms(ModelGetSPJM spjm);
-    
+
     String savedata_spjm_cont(ModelGetSPJM spjm);
-    
+
     String savedata_spjm_dok(ModelGetSPJM spjm);
-    
+
     //SPPB
     boolean cekdata_sppb_header(ModelSPPB sppb);
-    
+
     String savedata_sppb_header(ModelSPPB sppb);
-    
+
     String savedata_sppb_kms(ModelSPPB sppb);
-    
+
     String savedata_sppb_cont(ModelSPPB sppb);
+    
+    //Cococarter
+    String savedata_cococarter_header(ModelCoCoCarTer carter);
+
+    String savedata_cococarter_cont(ModelCoCoCarTer carter, String id);
 }
