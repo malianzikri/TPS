@@ -43,6 +43,15 @@ public class ModelSPPB {
         String MERK_KMS = null;
         String JML_KMS = null;
 
+        //SPPB Container Element
+        String NO_CONT = null;
+        String SIZE = null;
+        String JNS_MUAT = null;
+
+        //SPPB BC23 Element
+        String KD_KANTOR_PENGAWAS = null;
+        String KD_KANTOR_BONGKAR = null;
+        
     public String getCAR() {
         return CAR;
     }
@@ -315,12 +324,5 @@ public class ModelSPPB {
         this.KD_KANTOR_BONGKAR = KD_KANTOR_BONGKAR;
     }
 
-        //SPPB Container Element
-        String NO_CONT = null;
-        String SIZE = null;
-        String JNS_MUAT = null;
-
-        //SPPB BC23 Element
-        String KD_KANTOR_PENGAWAS = null;
-        String KD_KANTOR_BONGKAR = null;
+        
 }

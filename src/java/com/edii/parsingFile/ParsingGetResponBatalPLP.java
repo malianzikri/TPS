@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.edii.parsingFile;
+package com.edii.parsingfile;
 
 import XMLGenerator.ParsingXML;
 import com.edii.controller.SaveData;

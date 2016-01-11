@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 import com.edii.parsingfile.ParsingCoCoCarTer;
 import com.edii.parsingfile.ParsingCoarriCodecoSHL;
@@ -160,6 +161,8 @@ import com.edii.parsingfile.ParsingCoarriCodecoContainer;
 //    }
 //}
 =======
+=======
+>>>>>>> f556399390cb60845d1e7ec2170602c4c94f938a
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -314,4 +317,3 @@ public class ExcuteProses extends tps {
         }
     }
 }
->>>>>>> ee87ab58883bfef82b1a020b3a351e4b7da5d1bf
