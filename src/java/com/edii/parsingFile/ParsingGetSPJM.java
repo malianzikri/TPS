@@ -99,6 +99,7 @@ public class ParsingGetSPJM {
             }
         } catch (Exception ex) {
         } finally {
+
         }
         return result;
     }
