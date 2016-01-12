@@ -8,7 +8,6 @@ import XMLGenerator.ParsingXML;
 import com.edii.controller.SaveData;
 import com.edii.model.ModelGetSPJM;
 import com.edii.operation.db.operation;
-import com.edii.tools.ExcuteProses;
 import java.util.ArrayList;
 
 /**

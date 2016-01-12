@@ -2,9 +2,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.edii.tools;
+package com.edii.parsingfile;
 
 import com.edii.db.Db;
+import com.edii.tools.ExcuteProses;
+import com.edii.tools.ResCFS;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -21,7 +23,7 @@ import org.jdom2.input.SAXBuilder;
  *
  * @author Aslichatun Nisa
  */
-public class ParsingXMLCFS {
+public class ParsingCFS {
 
     private ExcuteProses exc = new ExcuteProses();
 
@@ -523,7 +525,7 @@ public class ParsingXMLCFS {
 //            System.out.println(content_final);
 //            //tps t = new tps();
 //            //String r = t.UploadUbahStatus(content_final, "cds", "cdspassword");
-//            ParsingXMLCFS cfs = new ParsingXMLCFS();
+//            ParsingCFS cfs = new ParsingCFS();
 //            String r = cfs.parseDocument(content_final);
 //            System.out.println(r);
 //        } catch (Exception e) {

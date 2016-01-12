@@ -16,7 +16,7 @@
 //import com.edii.tools.GenerateXMLDW;
 //import com.edii.parsingFile.ParsingUploadMohonPLP;
 //import com.edii.parsingFile.ParsingUploadBatalPLP;
-//import com.edii.tools.ParsingXMLCFS;
+//import com.edii.tools.ParsingCFS;
 //import com.edii.tools.ParsingXMLResponPLPBatal_Asal;
 //import com.edii.parsingFile.ParsingGetResponPLP;
 //import com.edii.tools.ResCFS;
@@ -131,7 +131,7 @@ import com.edii.tools.GenerateXMLCFS;
 import com.edii.tools.GenerateDW;
 import com.edii.parsingfile.ParsingUploadMohonPLP;
 import com.edii.parsingfile.ParsingUploadBatalPLP;
-import com.edii.tools.ParsingXMLCFS;
+import com.edii.parsingfile.ParsingCFS;
 import com.edii.parsingfile.ParsingGetResponPLP;
 import com.edii.tools.ResCFS;
 import com.edii.tools.Tanggalan;
@@ -716,7 +716,7 @@ public class tps {
             @WebParam(name = "Username") String Username,
             @WebParam(name = "Password") String Password) throws NoSuchAlgorithmException {
 
-        ParsingXMLCFS pars = null;
+        ParsingCFS pars = null;
         Encrypt encrypt = null;
         Tanggalan tgl = null;
         ResCFS res = null;
@@ -733,7 +733,7 @@ public class tps {
         try {
             encrypt = new Encrypt();
             message += log.LogSuccess(encrypt.toString()) + "\r\n";
-            pars = new ParsingXMLCFS();
+            pars = new ParsingCFS();
             message += log.LogSuccess(pars.toString()) + "\r\n";
             res = new ResCFS();
             message += log.LogSuccess(res.toString()) + "\r\n";
@@ -2093,7 +2093,7 @@ public class tps {
 //            @WebParam(name = "Username") String Username,
 //            @WebParam(name = "Password") String Password) throws NoSuchAlgorithmException {
 //
-//        ParsingXMLCFS pars = null;
+//        ParsingCFS pars = null;
 //        Encrypt encrypt = null;
 //        Tanggalan tgl = null;
 //        ResCFS res = null;
@@ -2110,7 +2110,7 @@ public class tps {
 //        try {
 //            encrypt = new Encrypt();
 //            message += log.LogSuccess(encrypt.toString()) + "\r\n";
-//            pars = new ParsingXMLCFS();
+//            pars = new ParsingCFS();
 //            message += log.LogSuccess(pars.toString()) + "\r\n";
 //            res = new ResCFS();
 //            message += log.LogSuccess(res.toString()) + "\r\n";

@@ -8,6 +8,7 @@ import com.edii.model.ModelCoCoCarTer;
 import com.edii.model.ModelCoarriCodecoContainer;
 import com.edii.model.ModelCoarriCodecoKemasan;
 import com.edii.model.ModelCoarriCodecoSHL;
+import com.edii.model.ModelDW;
 import com.edii.model.ModelGetResponBatalPLP;
 import com.edii.model.ModelGetResponBatalPLPTujuan;
 import com.edii.model.ModelGetResponPLP;
@@ -16,6 +17,7 @@ import com.edii.model.ModelGetSPJM;
 import com.edii.model.ModelSPPB;
 import com.edii.model.ModelUploadBatalPLP;
 import com.edii.model.ModelUploadMohonPLP;
+import java.util.List;
 
 /**
  *
@@ -91,9 +93,14 @@ public interface SaveData {
     String savedata_sppb_kms(ModelSPPB sppb);
 
     String savedata_sppb_cont(ModelSPPB sppb);
-    
+
     //Cococarter
     String savedata_cococarter_header(ModelCoCoCarTer carter);
 
     String savedata_cococarter_cont(ModelCoCoCarTer carter, String id);
+
+    //Cococarter
+    String savedata_DW_header(List<ModelDW> dw, String RefNumber, String responId);
+
+    String savedata_DW_cont(List<ModelDW> dw, String id);
 }

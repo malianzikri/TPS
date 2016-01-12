@@ -6,11 +6,9 @@ package com.edii.parsingfile;
 
 import XMLGenerator.ParsingXML;
 import com.edii.controller.SaveData;
-import com.edii.db.Db;
 import com.edii.model.ModelCoCoCarTer;
 import com.edii.operation.db.operation;
 import java.util.ArrayList;
-import org.jdom2.input.SAXBuilder;
 
 /**
  *

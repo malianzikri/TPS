@@ -17,11 +17,13 @@ import com.edii.model.ModelCoCoCarTer;
 import com.edii.model.ModelCoarriCodecoContainer;
 import com.edii.model.ModelCoarriCodecoKemasan;
 import com.edii.model.ModelCoarriCodecoSHL;
+import com.edii.model.ModelDW;
 import com.edii.model.ModelGetSPJM;
 import com.edii.model.ModelSPPB;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -463,10 +465,7 @@ public class operation implements SaveData {
         return "";
     }
 
-<<<<<<< HEAD
-=======
     @Override
->>>>>>> f556399390cb60845d1e7ec2170602c4c94f938a
     public boolean cekdata_coarricodecshl_header(ModelCoarriCodecoSHL shl) {
         try {
             OpenConnection();
@@ -554,8 +553,8 @@ public class operation implements SaveData {
         column = "CAR,KD_KANTOR,NO_PIB,TGL_PIB,NPWP_IMP,"
                 + "NAMA_IMP,NPWP_PPJK,NAMA_PPJK,KD_GUDANG,JML_CONT,NO_BC11,TGL_BC11,"
                 + "NO_POS_BC11,FL_KARANTINA,NM_ANGKUT,NO_VOY_FLIGHT,RECEIVED_DATE";
-        value = spjm.getCAR() + "," + spjm.getKD_KANTOR() + "," + spjm.getNO_PIB() + "," + spjm.getTGL_PIB() + "," + spjm.getNPWP_IMP() +","
-                + spjm.getNAMA_IMP() + "," + spjm.getNPWP_PPJK() + "," + spjm.getNAMA_PPJK() + "," + spjm.getGUDANG() + "," + spjm.getJML_CONT() + "," + spjm.getNO_BC11() + "," + spjm.getTGL_BC11()+","
+        value = spjm.getCAR() + "," + spjm.getKD_KANTOR() + "," + spjm.getNO_PIB() + "," + spjm.getTGL_PIB() + "," + spjm.getNPWP_IMP() + ","
+                + spjm.getNAMA_IMP() + "," + spjm.getNPWP_PPJK() + "," + spjm.getNAMA_PPJK() + "," + spjm.getGUDANG() + "," + spjm.getJML_CONT() + "," + spjm.getNO_BC11() + "," + spjm.getTGL_BC11() + ","
                 + spjm.getNO_POS_BC11() + "," + spjm.getFL_KARANTINA() + "," + spjm.getNM_ANGKUT() + "," + spjm.getNO_VOY_FLIGHT() + "," + getCurrentTimeStamp();
 
         dbO.query_insert(tabel, column, value);
@@ -664,25 +663,14 @@ public class operation implements SaveData {
                 + "TG_BL_AWB,NO_MASTER_BL_AWB,TG_MASTER_BL_AWB,WK_INSERT";
         value = sppb.getCAR() + "," + sppb.getNO_SPPB() + "," + sppb.getTGL_SPPB() + "," + sppb.getKD_KPBC() + "," + sppb.getNO_PIB() + ","
                 + sppb.getTGL_PIB() + "," + sppb.getNPWP_IMP() + "," + sppb.getNAMA_IMP() + "," + sppb.getALAMAT_IMP() + "," + sppb.getNPWP_PPJK() + "," + sppb.getNAMA_PPJK() + ","
-                + sppb.getALAMAT_PPJK() + "," + sppb.getNM_ANGKUT() + "," + sppb.getNO_VOY_FLIGHT() + "," + sppb.getBRUTTO() + "," +sppb.getNETTO() +","+ sppb.getGUDANG() + ","
-                + sppb.getSTATUS_JALUR() +","+ sppb.getJML_CONT() + "," + sppb.getNO_BC11() + "," + sppb.getTGL_BC11() + "," + sppb.getNO_POS_BC11() + "," + sppb.getNO_BL_AWB() + ","
+                + sppb.getALAMAT_PPJK() + "," + sppb.getNM_ANGKUT() + "," + sppb.getNO_VOY_FLIGHT() + "," + sppb.getBRUTTO() + "," + sppb.getNETTO() + "," + sppb.getGUDANG() + ","
+                + sppb.getSTATUS_JALUR() + "," + sppb.getJML_CONT() + "," + sppb.getNO_BC11() + "," + sppb.getTGL_BC11() + "," + sppb.getNO_POS_BC11() + "," + sppb.getNO_BL_AWB() + ","
                 + sppb.getTG_BL_AWB() + "," + sppb.getNO_MASTER_BL_AWB() + "," + sppb.getTG_MASTER_BL_AWB() + ","
                 + getCurrentTimeStamp();
 
         dbO.query_insert(tabel, column, value);
         dbO.close_connection();
         return "";
-    }
-
-    @Override
-    public String savedata_sppb_kms(ModelSPPB sppb) {
-<<<<<<< HEAD
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public String savedata_sppb_cont(ModelSPPB sppb) {
-
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -730,7 +718,9 @@ public class operation implements SaveData {
         dbO.close_connection();
         return "";
     }
-=======
+
+    @Override
+    public String savedata_sppb_kms(ModelSPPB sppb) {
         try {
             OpenConnection();
         } catch (ClassNotFoundException ex) {
@@ -739,7 +729,7 @@ public class operation implements SaveData {
         data = new ArrayList<>();
         tabel = "CUSPERMITKMS";
         column = "CAR,JNS_KMS,MERK_KMS,JML_KMS,FLAG_TRANSFER_IPC,WK_INSERT";
-        value = sppb.getCAR() + "," + sppb.getJNS_KMS() + "," + sppb.getMERK_KMS() + "," + sppb.getJML_KMS()+","+"0"+","+ getCurrentTimeStamp();
+        value = sppb.getCAR() + "," + sppb.getJNS_KMS() + "," + sppb.getMERK_KMS() + "," + sppb.getJML_KMS() + "," + "0" + "," + getCurrentTimeStamp();
         dbO.query_insert(tabel, column, value);
         dbO.close_connection();
         return "";
@@ -755,11 +745,42 @@ public class operation implements SaveData {
         data = new ArrayList<>();
         tabel = "CUSPERMITCONT";
         column = "CAR,NO_CONT,UK_CONT,JNS_MUAT,FLAG_TRANSFER_IPC,WK_INSERT";
-        value = sppb.getCAR() + "," + sppb.getNO_CONT() + "," + sppb.getSIZE() + "," + sppb.getJNS_MUAT()+","+"0"+","+ getCurrentTimeStamp();
+        value = sppb.getCAR() + "," + sppb.getNO_CONT() + "," + sppb.getSIZE() + "," + sppb.getJNS_MUAT() + "," + "0" + "," + getCurrentTimeStamp();
         dbO.query_insert(tabel, column, value);
         dbO.close_connection();
         return "";
     }
 
->>>>>>> f556399390cb60845d1e7ec2170602c4c94f938a
+    @Override
+    public String savedata_DW_header(List<ModelDW> dw, String RefNumber, String responId) {
+//        try {
+//            OpenConnection();
+//        } catch (ClassNotFoundException ex) {
+//            Logger.getLogger(operation.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        tabel = "COCOHDR";
+//        column = "ID";
+//        colomn_where = "VESSEL_CODE,VESSEL_NAME,VOYAGE_NO,ETA,ETD";
+//        value_where = shl.getVessel_code() + "," + shl.getVessel_name() + "," + shl.getNo_voy_flight() + "," + shl.getEta() + "," + shl.getEtd();
+//        data = dbO.query_select_with_where(tabel, column, colomn_where, value_where, "AND,AND,AND,AND");
+//        dbO.close_connection();
+//        tabel = "SELECT A.KODE_TPS_ASAL , A.KODE_GUDANG_ASAL , A.CALL_SIGN, A.NAMA_KAPAL, "
+//                + "A.NO_VOYAGE, A.KODE_TPS_TUJUAN, A.KODE_GUDANG_TUJUAN, B.REF_NUMBER, B.RESPONID   "
+//                + "FROM T_REQUEST_PLP A "
+//                + "INNER JOIN T_RESPON_PLP B ON A.REF_NUMBER = B.REF_NUMBER";
+//        column = "SELECT A.KODE_TPS_ASAL , A.KODE_GUDANG_ASAL , A.CALL_SIGN, A.NAMA_KAPAL, "
+//                + "A.NO_VOYAGE, A.KODE_TPS_TUJUAN, A.KODE_GUDANG_TUJUAN, B.REF_NUMBER, B.RESPONID   "
+//                + "FROM T_REQUEST_PLP A "
+//                + "INNER JOIN T_RESPON_PLP B ON A.REF_NUMBER = B.REF_NUMBER "
+//                + "WHERE A.KODE_TPS_ASAL <> ? AND B.FL_SEND = ?"
+//                + "AND B.REF_NUMBER = ? AND B.RESPONID =?";
+//        String field = "KD_TPS_ASAL,GUDANG_ASAL,KD_TPS_TUJUAN,GUDANG_TUJUAN,CALL_SIGN,NM_ANGKUT,NO_VOY_FLIGHT";
+//        dw = dbO.query_select_with_where(tabel, field, column, value_where, column);
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String savedata_DW_cont(List<ModelDW> dw, String id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
