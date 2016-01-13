@@ -5,11 +5,7 @@
 package com.edii.parsingfile;
 
 import com.edii.db.Db;
-import com.edii.tools.ExcuteProses;
 import com.edii.tools.ResCFS;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.StringReader;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,7 +21,6 @@ import org.jdom2.input.SAXBuilder;
  */
 public class ParsingCFS {
 
-    private ExcuteProses exc = new ExcuteProses();
 
     public String parseDocument(String fStream) throws Exception {
 

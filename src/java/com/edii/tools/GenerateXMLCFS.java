@@ -21,7 +21,6 @@ import org.jdom2.output.XMLOutputter;
 public class GenerateXMLCFS {
 
     public String execute(String outboxDir, String kdAsp) throws Exception {
-        ExcuteProses exc = new ExcuteProses();
 
         Db mydb = null;
         CreateFile cf = null;
