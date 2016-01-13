@@ -7,7 +7,9 @@ package com.edii.parsingfile;
 import XMLGenerator.ParsingXML;
 import com.edii.controller.SaveData;
 import com.edii.model.ModelUploadMohonPLP;
+import com.edii.operation.db.logDatabase;
 import com.edii.operation.db.operation;
+import com.edii.tools.Tanggalan;
 import java.util.ArrayList;
 
 /**
@@ -19,6 +21,7 @@ public class ParsingUploadMohonPLP {
     private ParsingXML px;
     private ModelUploadMohonPLP model;
     private SaveData sv;
+    logDatabase logDb;
 
     public String parseDocument(String fStream) throws Exception {
 
@@ -26,13 +29,16 @@ public class ParsingUploadMohonPLP {
         px = new ParsingXML();
         model = new ModelUploadMohonPLP();
         sv = new operation();
+        logDb = new logDatabase();
+        boolean condition = false;
+        Tanggalan tgl = new Tanggalan();
         try {
             if (fStream != null) {
                 ArrayList<String> header = new ArrayList<>();
                 header = px.xmlParsing(fStream, "LOADPLP>HEADER", "KD_KANTOR,TIPE_DATA,KD_TPS_ASAL,REF_NUMBER,NO_SURAT,TGL_SURAT,GUDANG_ASAL,KD_TPS_TUJUAN,GUDANG_TUJUAN,KD_ALASAN_PLP,YOR_ASAL,YOR_TUJUAN,CALL_SIGN,NM_ANGKUT,NO_VOY_FLIGHT,TGL_TIBA,NO_BC11,TGL_BC11,NM_PEMOHON");
 
-                for (String headersss : header) {
-                    String[] split_header = headersss.split(",");
+                for (String headers : header) {
+                    String[] split_header = headers.split(",");
 
                     model.setKd_kantor(split_header[0]);
                     model.setTipe_data(split_header[1]);
@@ -53,37 +59,43 @@ public class ParsingUploadMohonPLP {
                     model.setNo_bc11(split_header[16]);
                     model.setTgl_bc11(split_header[17]);
                     model.setNm_pemohon(split_header[18]);
+
+                    sv.savedata_uploadmohonplp(model, "header");
+                    System.out.println(model.getNm_angkut());
+
+                    ArrayList<String> detil_kms = new ArrayList<>();
+                    detil_kms = px.xmlParsing(fStream, "LOADPLP>DETIL>KMS", "JNS_KMS,JML_KMS,NO_BL_AWB,TGL_BL_AWB");
+
+                    for (String detil : detil_kms) {
+                        String[] split_kms = detil.split(",");
+                        model.setJns_kms(split_kms[0]);
+                        model.setJml_kms(split_kms[1]);
+                        model.setNo_bl_awb(split_kms[2]);
+                        model.setTgl_bl_awb(split_kms[3]);
+                        sv.savedata_uploadmohonplp(model, "kms");
+                    }
+
+                    ArrayList<String> detil_cont = new ArrayList<>();
+                    detil_cont = px.xmlParsing(fStream, "LOADPLP>DETIL>CONT", "NO_CONT,UK_CONT");
+
+                    for (String detil : detil_cont) {
+                        String[] split_cont = detil.split(",");
+                        model.setNo_cont(split_cont[0]);
+                        model.setUk_cont(split_cont[1]);
+                        sv.savedata_uploadmohonplp(model, "cont");
+                    }
+                    condition = true;
                 }
-                sv.savedata_uploadmohonplp(model, "header");
-                System.out.println(model.getNm_angkut());
-
-                ArrayList<String> detil_kms = new ArrayList<>();
-                detil_kms = px.xmlParsing(fStream, "LOADPLP>DETIL>KMS", "JNS_KMS,JML_KMS,NO_BL_AWB,TGL_BL_AWB");
-
-                for (String detil : detil_kms) {
-                    String[] split_kms = detil.split(",");
-                    model.setJns_kms(split_kms[0]);
-                    model.setJml_kms(split_kms[1]);
-                    model.setNo_bl_awb(split_kms[2]);
-                    model.setTgl_bl_awb(split_kms[3]);
-                    sv.savedata_uploadmohonplp(model, "kms");
+                if (condition) {
+                    logDb.insert_mblling("DOKPLP", tgl.UNIXNUMBER(), model.getRef_number(), fStream);
                 }
-
-                ArrayList<String> detil_cont = new ArrayList<>();
-                detil_cont = px.xmlParsing(fStream, "LOADPLP>DETIL>CONT", "NO_CONT,UK_CONT");
-
-                for (String detil : detil_cont) {
-                    String[] split_cont = detil.split(",");
-                    model.setNo_cont(split_cont[0]);
-                    model.setUk_cont(split_cont[1]);
-                    sv.savedata_uploadmohonplp(model, "cont");
-                }
-
+                result = "SUCCESS";
             }
         } catch (Exception ex) {
-            ex.printStackTrace();
+            boolean hasil = logDb.excuteLogError(ex.getMessage(), "execute_class_parsinguploadmohonplp", "CoarriCodeco_Kemasan");
+            result = "NOT SUCCESS";
         }
-        return null;
+        return result;
     }
 
     public static void main(String[] args) throws Exception {

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ////package com.edii.tps;
 ////
 ////import File.TXT.CreateFile;
@@ -252,10 +253,11 @@
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> bfa8815... mengefesiensikan kodingan dan merapihkan kodingan tps online
 package com.edii.tps;
 
 import File.TXT.CreateFile;
-import com.edii.db.Db;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
@@ -264,114 +266,34 @@ import java.io.InputStream;
 import java.io.File;
 import java.util.Properties;
 import com.edii.tools.Encrypt;
-import com.edii.tools.ExcuteProses;
-import com.edii.tools.GenerateResponPLP_Tujuan_Tes;
 import com.edii.tools.GenerateXMLCFS;
 import com.edii.tools.GenerateDW;
 import com.edii.parsingfile.ParsingUploadMohonPLP;
 import com.edii.parsingfile.ParsingUploadBatalPLP;
-import com.edii.parsingfile.ParsingCFS;
 import com.edii.parsingfile.ParsingGetResponPLP;
 import com.edii.tools.ResCFS;
 import com.edii.tools.Tanggalan;
-import com.edii.tps.service.TPSUpload;
-import com.edii.tps.service.TPSDownload;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import Loggers.Loggers;
+import com.edii.operation.db.logDatabase;
+import com.edii.parsingfile.ParsingCFS;
 import com.edii.parsingfile.ParsingGetResponBatalPLP;
+import com.edii.tps.service.TPSDownload;
+import com.edii.tps.service.TPSUpload;
 import java.security.NoSuchAlgorithmException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @WebService()
 public class tps {
 
     String localFolder;
-    private ExcuteProses exc = null;
+    private logDatabase logDb = null;
     private Loggers log = null;
     private CreateFile cf = null;
+    Tanggalan tgl;
 
     private String getLocalFolder() {
         return localFolder;
-    }
-
-    //insert tpslog
-    private String InsertTPSLOG(String error_code, String file, String resultdb) {
-        String result = "";
-        String query = "";
-        PreparedStatement preparedStatement = null;
-        Db mydb = null;
-        try {
-            mydb = new Db();
-            query = "INSERT INTO TPSLOG (ERROR_CODE,PROCESS_NAME,SUB_PROCESS_NAME,ERROR_DESC,LOG_DATE) VALUES (?,'Parsing Dok PLP','Insert DB',?,SYSDATE)";
-            preparedStatement = mydb.preparedstmt(query);
-            preparedStatement.setString(1, error_code);
-            preparedStatement.setString(2, "Nama File " + file + "; Error " + resultdb);
-            preparedStatement.executeUpdate();
-            mydb.execute("commit");
-            result = "Gagal Insert ke Database IPC ";
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return result;
-    }
-
-    //update mibiling
-    private void UpdateMIBILLING(String Username, String file, String fStream, String refNumber) {
-        String query = "";
-        PreparedStatement preparedStatement = null;
-        Db mydb = null;
-        try {
-            mydb = new Db();
-            query = "UPDATE MIBILLING SET EDINUMKIRIM = ?,EDINUMTERIMA = 'EDITPS001',FILENAME  = ?, FILESIZE = ? WHERE SNRF = ?";
-            preparedStatement = mydb.preparedstmt(query);
-            preparedStatement.setString(1, Username);
-            preparedStatement.setString(2, file);
-            preparedStatement.setInt(3, fStream.length());
-            preparedStatement.setString(4, refNumber);
-            preparedStatement.executeUpdate();
-            mydb.execute("commit");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void InsertTLog(String LOGID, String NAMA_USER, String PASSWD, String NAMA_SERVICE, String KETERANGAN, String XML_REQUEST_NEW) {
-        String query = "";
-        PreparedStatement preparedStatement = null;
-        Db mydb = null;
-        Encrypt encrypt = new Encrypt();
-        try {
-            mydb = new Db();
-            if (XML_REQUEST_NEW == null) {
-                query = "INSERT INTO T_LOG_SERVICES (LOGID,NAMA_USER,PASSWD,NAMA_SERVICE,TGL_INVOKE,KETERANGAN) VALUES "
-                        + "(?,?,?,?,SYSDATE,?)";
-                preparedStatement = mydb.preparedstmt(query);
-                preparedStatement.setString(1, LOGID);
-                preparedStatement.setString(2, NAMA_USER);
-                preparedStatement.setString(3, encrypt.encrypt(PASSWD));
-                preparedStatement.setString(4, NAMA_SERVICE);
-                preparedStatement.setString(5, KETERANGAN);
-                preparedStatement.executeUpdate();
-                mydb.execute("commit");
-            } else {
-                query = "INSERT INTO T_LOG_SERVICES (LOGID,NAMA_USER,PASSWD,NAMA_SERVICE,TGL_INVOKE,KETERANGAN,XML_REQUEST_NEW) VALUES "
-                        + "(?,?,?,?,SYSDATE,?,?)";
-                preparedStatement = mydb.preparedstmt(query);
-                preparedStatement.setString(1, LOGID);
-                preparedStatement.setString(2, NAMA_USER);
-                preparedStatement.setString(3, encrypt.encrypt(PASSWD));
-                preparedStatement.setString(4, NAMA_SERVICE);
-                preparedStatement.setString(5, KETERANGAN);
-                preparedStatement.setString(6, XML_REQUEST_NEW);
-                preparedStatement.executeUpdate();
-                mydb.execute("commit");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     private void setLocalFolder(String localFolder) {
@@ -407,8 +329,8 @@ public class tps {
         String result = "";
         String message = "";
         String messageErr = "";
-        Tanggalan tgl = new Tanggalan();
-        exc = new ExcuteProses();
+        tgl = new Tanggalan();
+        logDb = new logDatabase();
         log = new Loggers();
         cf = new CreateFile();
         try {
@@ -420,7 +342,7 @@ public class tps {
         } catch (Exception e) {
             result = "Pengiriman Data Container gagal.";
             messageErr += log.LogError(result) + "\r\n";
-            boolean hasil = exc.ExcuteError(e.getMessage(), "COCOCONT", Username);
+            boolean hasil = logDb.excuteLogError(e.getMessage(), "execute_class_tps", "CoarriCodeco_Container");
             messageErr += log.LogError("ExcuteError: " + hasil) + "\r\n";
             e.printStackTrace();
         } finally {
@@ -452,8 +374,7 @@ public class tps {
         String result = "";
         String message = "";
         String messageErr = "";
-        Tanggalan tgl = new Tanggalan();
-        exc = new ExcuteProses();
+        tgl = new Tanggalan();
         log = new Loggers();
         cf = new CreateFile();
         try {
@@ -464,7 +385,7 @@ public class tps {
         } catch (Exception e) {
             result = "Pengiriman Data Kemasan gagal";
             messageErr += log.LogError(result) + "\r\n";
-            boolean hasil = exc.ExcuteError(e.getMessage(), "COCOKMS", Username);
+            boolean hasil = logDb.excuteLogError(e.getMessage(), "execute_class_tps", "CoarriCodeco_Kemasan");
             messageErr += log.LogError("ExcuteError:" + hasil) + "\r\n";
             e.printStackTrace();
         } finally {
@@ -496,10 +417,10 @@ public class tps {
         String result = "";
         String message = "";
         String messageErr = "";
-        Tanggalan tgl = new Tanggalan();
-        exc = new ExcuteProses();
+        tgl = new Tanggalan();
         log = new Loggers();
         cf = new CreateFile();
+        logDb = new logDatabase();
         try {
             tpsDownload = new TPSDownload();
             message += log.LogSuccess(tpsDownload.toString()) + "\r\n";
@@ -508,7 +429,7 @@ public class tps {
             message += log.LogSuccess(result) + "\r\n";
         } catch (Exception e) {
             e.printStackTrace();
-            boolean hasil = exc.ExcuteError(e.getMessage(), "execute_class_tps", "GetImporPermit");
+            boolean hasil = logDb.excuteLogError(e.getMessage(), "execute_class_tps", "GetImporPermit");
             messageErr += log.LogError("ExcuterError:" + hasil) + "\r\n";
             result = "Download Data Impor Permit gagal.";
             messageErr += log.LogError(result) + "\r\n";
@@ -545,8 +466,8 @@ public class tps {
         String message = "";
         String messageErr = "";
         TPSDownload tpsDownload = null;
-        Tanggalan tgl = new Tanggalan();
-        exc = new ExcuteProses();
+        tgl = new Tanggalan();
+        logDb = new logDatabase();
         log = new Loggers();
         cf = new CreateFile();
         try {
@@ -557,7 +478,7 @@ public class tps {
             message += log.LogSuccess(result);
         } catch (Exception e) {
             e.printStackTrace();
-            boolean hasil = exc.ExcuteError(e.getMessage(), "execute_class_tps", "GetImpor_Sppb");
+            boolean hasil = logDb.excuteLogError(e.getMessage(), "execute_class_tps", "GetImpor_Sppb");
             messageErr += log.LogError("ExcuteError:" + hasil) + "\r\n";
             result = "Download Data Impor Permit gagal.";
             messageErr += log.LogError(result) + "\r\n";
@@ -590,11 +511,10 @@ public class tps {
         String message = "";
         String messageErr = "";
         TPSDownload tpsDownload = null;
-        Tanggalan tgl = new Tanggalan();
-
+        tgl = new Tanggalan();
         log = new Loggers();
         cf = new CreateFile();
-        exc = new ExcuteProses();
+        logDb = new logDatabase();
         try {
             tpsDownload = new TPSDownload();
             message += log.LogSuccess(tpsDownload.toString()) + "\r\n";
@@ -602,7 +522,7 @@ public class tps {
             result = tpsDownload.download_TPS("BC23Permit", Kd_Gudang, UserName, Password);
             message += log.LogSuccess(result) + "\r\n";
         } catch (Exception e) {
-            boolean hasil = exc.ExcuteError(e.getMessage(), "execute_class_tps", "GetBC23Permit");
+            boolean hasil = logDb.excuteLogError(e.getMessage(), "execute_class_tps", "GetBC23Permit");
             messageErr += log.LogError("ExcuteError:" + hasil) + "\r\n";
             e.printStackTrace();
             result = "Download Data BC 2.3 Permit gagal.";
@@ -636,9 +556,8 @@ public class tps {
         String message = "";
         String messageErr = "";
         TPSDownload tpsDownload = null;
-        Tanggalan tgl = new Tanggalan();
-
-        exc = new ExcuteProses();
+        tgl = new Tanggalan();
+        logDb = new logDatabase();
         log = new Loggers();
         cf = new CreateFile();
         try {
@@ -648,7 +567,7 @@ public class tps {
             result = tpsDownload.download_TPS("ResponPLP", Kd_asp, UserName, Password);
             message += log.LogSuccess(result) + "\r\n";
         } catch (Exception e) {
-            boolean hasil = exc.ExcuteError(e.getMessage(), "execute_class_tps", "GetResponPLP");
+            boolean hasil = logDb.excuteLogError(e.getMessage(), "execute_class_tps", "GetResponPLP");
             messageErr += log.LogError("ExcuteError:" + hasil) + "\r\n";
             e.printStackTrace();
             result = "Download Data Respon PLP gagal.";
@@ -682,8 +601,8 @@ public class tps {
         String message = "";
         String messageErr = "";
         TPSDownload tpsDownload = null;
-        Tanggalan tgl = new Tanggalan();
-        exc = new ExcuteProses();
+        tgl = new Tanggalan();
+        logDb = new logDatabase();
         log = new Loggers();
         cf = new CreateFile();
         try {
@@ -693,7 +612,7 @@ public class tps {
             result = tpsDownload.download_TPS("ImporPermitFASP", Kd_ASP, UserName, Password);
             message += log.LogSuccess(result) + "\r\n";
         } catch (Exception e) {
-            boolean hasil = exc.ExcuteError(e.getMessage(), "execute_class_tps", "GetImporPermit_FASP");
+            boolean hasil = logDb.excuteLogError(e.getMessage(), "execute_class_tps", "GetImporPermit_FASP");
             messageErr += log.LogError("ExcuteError" + hasil) + "\r\n";
             e.printStackTrace();
             result = "Download Data Impor Permit gagal.";
@@ -727,8 +646,8 @@ public class tps {
         String message = "";
         String messageErr = "";
         TPSDownload tpsDownload = null;
-        Tanggalan tgl = new Tanggalan();
-        exc = new ExcuteProses();
+        tgl = new Tanggalan();
+        logDb = new logDatabase();
         log = new Loggers();
         cf = new CreateFile();
         try {
@@ -739,7 +658,7 @@ public class tps {
             message += log.LogSuccess(result) + "\r\n";
         } catch (Exception e) {
             e.printStackTrace();
-            boolean hasil = exc.ExcuteError(e.getMessage(), "execute_class_tps", "GetBC23Permit_FASP");
+            boolean hasil = logDb.excuteLogError(e.getMessage(), "execute_class_tps", "GetBC23Permit_FASP");
             messageErr += log.LogError("ExcuteError:" + hasil) + "\r\n";
             result = "Download Data BC 23 Permit gagal.";
             messageErr += log.LogError(result) + "\r\n";
@@ -770,9 +689,7 @@ public class tps {
 
         TPSUpload tpsUpload = null;
         ParsingUploadMohonPLP pars = null;
-        Db mydb = null;
         Encrypt encrypt = null;
-        Tanggalan tgl = null;
         String result = "";
         String resultdb = "";
         String file = "";
@@ -780,9 +697,10 @@ public class tps {
         String message = "";
         String messageErr = "";
 
-        exc = new ExcuteProses();
+
         tgl = new Tanggalan();
         log = new Loggers();
+        logDb = new logDatabase();
         cf = new CreateFile();
         try {
             encrypt = new Encrypt();
@@ -807,24 +725,24 @@ public class tps {
                         message += log.LogSuccess(resultdb) + "\r\n";
                         if (resultdb.contains("Insert Success")) {
                             refNumber = resultdb.substring(0, resultdb.indexOf("_"));
-                            UpdateMIBILLING(Username, file, fStream, refNumber);
+                            logDb.update_mblling(Username, file, fStream, refNumber);
                         } else {
                             String error_code = "UploadMohonPLP";
                             messageErr += log.LogError(error_code) + "\r\n";
-                            InsertTPSLOG(error_code, file, resultdb);
+                            logDb.excuteLogTpsLog(error_code, file, resultdb);
                         }
                     }
                     String keterangan = result + "/" + resultdb;
-                    exc.ExcuteLog(Username, Password, "UploadMohonPLP", keterangan, file, fStream);
+                    logDb.excuteLogSucces(Username, Password, "UploadMohonPLP", keterangan, file, fStream);
                 } catch (Exception e) {
                     messageErr += log.LogError(e.getMessage()) + "\r\n";
-                    exc.ExcuteError(e.getMessage(), "execute_class_tps", "UploadMohonPLP");
+                    logDb.excuteLogError(e.getMessage(), "execute_class_tps", "UploadMohonPLP");
                 }
             }
         } catch (Exception ex) {
             String keterangan = "Error : " + ex.getMessage();
             messageErr += log.LogError(keterangan) + "\r\n";
-            InsertTLog("LOG_SEQ.NEXTVAL", Username, encrypt.encrypt(Password), "UploadMohonPLP", keterangan, null);
+            logDb.excuteLogError(ex.getMessage(), "execute_class_tps", "UploadMohonPLP");
             ex.printStackTrace();
             result = "Upload Data Permohonan PLP gagal.";
             messageErr += log.LogError(result) + "\r\n";
@@ -857,7 +775,6 @@ public class tps {
 
         ParsingCFS pars = null;
         Encrypt encrypt = null;
-        Tanggalan tgl = null;
         ResCFS res = null;
         String result = "";
         String resultdb = "";
@@ -865,7 +782,7 @@ public class tps {
         String message = "";
         String messageErr = "";
 
-        exc = new ExcuteProses();
+        logDb = new logDatabase();
         tgl = new Tanggalan();
         log = new Loggers();
         cf = new CreateFile();
@@ -893,10 +810,10 @@ public class tps {
                             }
                             String keterangan = result + "/" + resultdb;
                             message += log.LogSuccess(keterangan) + "\r\n";
-                            exc.ExcuteLog(Username, Password, "UploadUbahStatus", keterangan, file, fStream);
+                            logDb.excuteLogSucces(Username, Password, "UploadUbahStatus", keterangan, file, fStream);
                         } catch (Exception e) {
                             messageErr += log.LogError(e.getMessage()) + "\r\n";
-                            exc.ExcuteError(e.getMessage(), "execute_class_tps", "UploadUbahStatus");
+                            logDb.excuteLogError(e.getMessage(), "execute_class_tps", "UploadUbahStatus");
                         }
                     } else {
                         //kdRes jika fstream yg dikirm kosong/null/""
@@ -909,7 +826,7 @@ public class tps {
         } catch (Exception ex) {
             String keterangan = "Error : " + ex.getMessage();
             messageErr += log.LogError(keterangan) + "\r\n";
-            InsertTLog("LOG_SEQ.NEXTVAL", Username, encrypt.encrypt(Password), "UploadUbahStatus", keterangan, null);
+            logDb.excuteLogError(ex.getMessage(), "execute_class_tps", "UploadUbahStatus");
             ex.printStackTrace();
             result = "Upload Data Permohonan PLP gagal.";
             messageErr += log.LogError(result) + "\r\n";
@@ -943,22 +860,19 @@ public class tps {
         String query = "";
         String message = "";
         String messageErr = "";
-        Db mydb = null;
         GenerateXMLCFS cfs = null;
         PreparedStatement preparedStatement = null;
         ResultSet rs = null;
 
-        exc = new ExcuteProses();
+        logDb = new logDatabase();
         log = new Loggers();
         cf = new CreateFile();
         Tanggalan tgl = new Tanggalan();
         try {
             cfs = new GenerateXMLCFS();
             message += log.LogSuccess(cfs.toString()) + "\r\n";
-            mydb = new Db();
-            message += log.LogSuccess(mydb.toString()) + "\r\n";
             query = "SELECT REF_NUMBER FROM T_REQ_UBAH_STATUS WHERE FL_SEND = ? AND KODE_TPS_ASAL = ?";
-            preparedStatement = mydb.preparedstmt(query);
+//            preparedStatement = mydb.preparedstmt(query);
             preparedStatement.setString(1, "0");
             preparedStatement.setString(2, Kd_asp);
             rs = preparedStatement.executeQuery();
@@ -970,8 +884,7 @@ public class tps {
             message += log.LogSuccess(result) + "\r\n";
         } catch (Exception e) {
             messageErr += log.LogError(e.getMessage()) + "\r\n";
-            exc.ExcuteError(e.getMessage(), "execute_class_tps", "GetUbahStatus");
-            e.printStackTrace();
+            logDb.excuteLogError(e.getMessage(), "execute_class_tps", "GetUbahStatus");
             result = "Download Data Respon PLP Tujuan gagal.";
             messageErr += log.LogError(result) + "\r\n";
         } finally {
@@ -1004,7 +917,7 @@ public class tps {
         TPSDownload tpsDownload = null;
 
         Tanggalan tgl = new Tanggalan();
-        exc = new ExcuteProses();
+        logDb = new logDatabase();
         log = new Loggers();
         cf = new CreateFile();
         try {
@@ -1014,7 +927,7 @@ public class tps {
             result = tpsDownload.download_TPS("ResponPLPTujuan", Kd_asp, UserName, Password);
             message += log.LogSuccess(result) + "\r\n";
         } catch (Exception e) {
-            boolean hasil = exc.ExcuteError(e.getMessage(), "execute_class_tps", "GetResponPLPTujuan");
+            boolean hasil = logDb.excuteLogError(e.getMessage(), "execute_class_tps", "GetResponPLPTujuan");
             messageErr += log.LogError("ExcuteError:" + hasil) + "\r\n";
             e.printStackTrace();
             result = "Download Data Respon PLP Tujuan gagal.";
@@ -1043,7 +956,7 @@ public class tps {
         TPSDownload tpsDownload = null;
 
         Tanggalan tgl = new Tanggalan();
-        exc = new ExcuteProses();
+        logDb = new logDatabase();
         log = new Loggers();
         cf = new CreateFile();
 
@@ -1055,7 +968,7 @@ public class tps {
             message += log.LogSuccess(result) + "\r\n";
         } catch (Exception e) {
             e.printStackTrace();
-            boolean hasil = exc.ExcuteError(e.getMessage(), "execute_class_tps", "GetResponPLP_Tujuan");
+            boolean hasil = logDb.excuteLogError(e.getMessage(), "execute_class_tps", "GetResponPLP_Tujuan");
             messageErr += log.LogError("ExcuteError:" + hasil) + "\r\n";
             result = "Download Data Respon PLP Tujuan gagal.";
             messageErr += log.LogError(result) + "\r\n";
@@ -1087,7 +1000,6 @@ public class tps {
 
         TPSUpload tpsUpload = null;
         ParsingUploadBatalPLP parsBatal = null;
-        Db mydb = null;
         Encrypt encrypt = null;
         Tanggalan tgl = null;
         String refNumber = "";
@@ -1098,7 +1010,7 @@ public class tps {
         String messageErr = "";
 
         tgl = new Tanggalan();
-        exc = new ExcuteProses();
+        logDb = new logDatabase();
         log = new Loggers();
         cf = new CreateFile();
         try {
@@ -1122,22 +1034,22 @@ public class tps {
                         resultdb = parsBatal.parseDocument(fStream);
                         refNumber = resultdb.substring(0, resultdb.indexOf("_"));
                         //Update To Billing PLP
-                        UpdateMIBILLING(Username, file, fStream, refNumber);
+                        logDb.update_mblling(Username, file, fStream, refNumber);
                     } else {
                         String error_code = "UploadBatalPLP";
                         messageErr += log.LogError(error_code) + "\r\n";
-                        InsertTPSLOG(error_code, file, resultdb);
+                        logDb.excuteLogTpsLog(error_code, file, resultdb);
                     }
                     String keterangan = result + "/" + resultdb;
-                    exc.ExcuteLog(Username, Password, "UploadBatalPLP", keterangan, file, fStream);
+                    logDb.excuteLogSucces(Username, Password, "UploadBatalPLP", keterangan, file, fStream);
                 } catch (Exception e) {
-                    exc.ExcuteError(e.getMessage(), "execute_class_tps", "UploadBatalPLP");
+                    logDb.excuteLogError(e.getMessage(), "execute_class_tps", "UploadBatalPLP");
                 }
             }
         } catch (Exception ex) {
             String keterangan = "Error : " + ex.getMessage();
             messageErr += log.LogError(keterangan) + "\r\n";
-            InsertTLog("LOG_SEQ.NEXTVAL", Username, encrypt.encrypt(Password), "UploadBatalPLP", keterangan, null);
+            logDb.excuteLogError(ex.getMessage(), "execute_class_tps", "UploadBatalPLP");
             ex.printStackTrace();
             result = "Upload Data Pembatalan PLP gagal.";
             messageErr += log.LogError(result) + "\r\n";
@@ -1173,7 +1085,7 @@ public class tps {
         TPSDownload tpsDownload = null;
 
         Tanggalan tgl = new Tanggalan();
-        exc = new ExcuteProses();
+        logDb = new logDatabase();
         log = new Loggers();
         cf = new CreateFile();
 
@@ -1185,7 +1097,7 @@ public class tps {
             message += log.LogSuccess(result) + "\r\n";
         } catch (Exception e) {
             e.printStackTrace();
-            boolean hasil = exc.ExcuteError(e.getMessage(), "execute_class_tps", "GetResponBatalPLP");
+            boolean hasil = logDb.excuteLogError(e.getMessage(), "execute_class_tps", "GetResponBatalPLP");
             messageErr += log.LogError("ExcuteError" + hasil) + "\r\n";
             result = "Download Data Respon PLP Batal gagal.";
             messageErr += log.LogError(result);
@@ -1220,7 +1132,7 @@ public class tps {
         TPSDownload tpsDownload = null;
 
         Tanggalan tgl = new Tanggalan();
-        exc = new ExcuteProses();
+        logDb = new logDatabase();
         log = new Loggers();
         cf = new CreateFile();
         try {
@@ -1231,7 +1143,7 @@ public class tps {
             message += log.LogSuccess(result) + "\r\n";
         } catch (Exception e) {
             e.printStackTrace();
-            boolean hasil = exc.ExcuteError(e.getMessage(), "execute_class_tps", "GetResponBatalPLPTujuan");
+            boolean hasil = logDb.excuteLogError(e.getMessage(), "execute_class_tps", "GetResponBatalPLPTujuan");
             messageErr += log.LogError("ExcuteError:" + hasil) + "\r\n";
             result = "Download Data Respon PLP Batal Tujuan gagal.";
             messageErr += log.LogError(result) + "\r\n";
@@ -1258,7 +1170,7 @@ public class tps {
         TPSUpload tpsUpload = null;
 
         Tanggalan tgl = new Tanggalan();
-        exc = new ExcuteProses();
+        logDb = new logDatabase();
         log = new Loggers();
         cf = new CreateFile();
         try {
@@ -1270,7 +1182,7 @@ public class tps {
             message += log.LogSuccess(result) + "\r\n";
         } catch (Exception ex) {
             ex.printStackTrace();
-            boolean hasil = exc.ExcuteError(ex.getMessage(), "COCOCAR", Username);
+            boolean hasil = logDb.excuteLogError(ex.getMessage(), "COCOCAR", Username);
             messageErr += log.LogError("ExcuteError" + hasil) + "\r\n";
             result = "Pengiriman Data Container gagal.";
             messageErr += log.LogError(result) + "\r\n";
@@ -1303,8 +1215,8 @@ public class tps {
         String messageErr = "";
         TPSDownload tpsDownload = null;
 
-        Tanggalan tgl = new Tanggalan();
-        exc = new ExcuteProses();
+        tgl = new Tanggalan();
+        logDb = new logDatabase();
         log = new Loggers();
         cf = new CreateFile();
         try {
@@ -1314,7 +1226,7 @@ public class tps {
             result = tpsDownload.download_TPS("GetSPJM", Username, Password, Kd_Tps);
             message += log.LogSuccess(result) + "\r\n";
         } catch (Exception e) {
-            boolean hasil = exc.ExcuteError(e.getMessage(), "execute_class_tps", "GetSPJM");
+            boolean hasil = logDb.excuteLogError(e.getMessage(), "execute_class_tps", "GetSPJM");
             messageErr += log.LogError("ExcuteError:" + hasil) + "\r\n";
             e.printStackTrace();
             result = "Download Data GetSPJM gagal.";
@@ -1352,7 +1264,7 @@ public class tps {
         TPSDownload tpsDownload = null;
 
         Tanggalan tgl = new Tanggalan();
-        exc = new ExcuteProses();
+        logDb = new logDatabase();
         log = new Loggers();
         cf = new CreateFile();
         try {
@@ -1363,7 +1275,7 @@ public class tps {
             message += log.LogSuccess(result) + "\r\n";
         } catch (Exception e) {
             e.printStackTrace();
-            boolean hasil = exc.ExcuteError(e.getMessage(), "execute_class_tps", "GetSPJM_onDemand");
+            boolean hasil = logDb.excuteLogError(e.getMessage(), "execute_class_tps", "GetSPJM_onDemand");
             messageErr += log.LogError("ExcuteError:" + hasil) + "\r\n";
             result = "Download Data GetSPJM gagal.";
             messageErr += log.LogError(result) + "\r\n";
@@ -1393,7 +1305,6 @@ public class tps {
             @WebParam(name = "Password") String Password) throws NoSuchAlgorithmException {
 
         ParsingUploadMohonPLP pars = null;
-        Db mydb = null;
         Encrypt encrypt = null;
         Tanggalan tgl = null;
         String refNumber = "";
@@ -1405,7 +1316,7 @@ public class tps {
 
         cf = new CreateFile();
         tgl = new Tanggalan();
-        exc = new ExcuteProses();
+        logDb = new logDatabase();
         log = new Loggers();
         try {
             encrypt = new Encrypt();
@@ -1425,7 +1336,7 @@ public class tps {
                         result = "Proses Berhasil";
                         message += log.LogSuccess(result) + "\r\n";
                         //Update To Billing PLP
-                        UpdateMIBILLING(Username, file, fStream, refNumber);
+                        logDb.update_mblling(Username, file, fStream, refNumber);
                     } else if (resultdb.contains("Ref")) {
                         refNumber = resultdb.substring(resultdb.indexOf("Ref"), resultdb.indexOf("_"));
                         result = refNumber;
@@ -1433,18 +1344,18 @@ public class tps {
                     } else {
                         String error_code = "UploadMohonPLP";
                         messageErr += log.LogError(error_code) + "\r\n";
-                        result = InsertTPSLOG(error_code, file, resultdb);
+                        result = logDb.excuteLogTpsLog(error_code, file, resultdb);
                     }
                     String keterangan = result + "/" + resultdb;
-                    exc.ExcuteLog(Username, Password, "UploadMohonPLP_IPC", keterangan, file, fStream);
+                    logDb.excuteLogSucces(Username, Password, "UploadMohonPLP_IPC", keterangan, file, fStream);
                 } catch (Exception e) {
-                    exc.ExcuteError(e.getMessage(), "execute_class_tps", "UploadMohonPLP_IPC");
+                    logDb.excuteLogError(e.getMessage(), "execute_class_tps", "UploadMohonPLP_IPC");
                 }
             }
         } catch (Exception ex) {
             String keterangan = "Error : " + ex.getMessage();
             messageErr += log.LogError(keterangan) + "\r\n";
-            InsertTLog("LOG_SEQ.NEXTVAL", Username, encrypt.encrypt(Password), "UploadMohonPLP_IPC", keterangan, null);
+            logDb.excuteLogError(ex.getMessage(), "execute_class_tps", "UploadMohonPLP_IPC");
             ex.printStackTrace();
             result = "Upload Data Permohonan PLP gagal.";
             messageErr += log.LogError(result) + "\r\n";
@@ -1475,7 +1386,6 @@ public class tps {
             @WebParam(name = "Password") String Password) throws NoSuchAlgorithmException {
 
         ParsingUploadBatalPLP pars = null;
-        Db mydb = null;
         Encrypt encrypt = null;
         Tanggalan tgl = null;
         String refNumber = "";
@@ -1485,7 +1395,7 @@ public class tps {
         String message = "";
         String messageErr = "";
 
-        exc = new ExcuteProses();
+        logDb = new logDatabase();
         cf = new CreateFile();
         log = new Loggers();
         tgl = new Tanggalan();
@@ -1493,7 +1403,7 @@ public class tps {
             encrypt = new Encrypt();
             pars = new ParsingUploadBatalPLP();
             message += log.LogSuccess(encrypt.toString()) + "\r\n";
-       
+
             message += log.LogSuccess(pars.toString()) + "\r\n";
             setLocalFolder(PROPERTIES.getProperty("tps" + Username.toUpperCase() + ".outboxfolder"));
             file = getLocalFolder() + File.separator + Username + ".UploadBatalPLPIPC." + tgl.UNIXNUMBER() + ".XML";
@@ -1507,7 +1417,7 @@ public class tps {
                         refNumber = resultdb.substring(0, resultdb.indexOf("_"));
                         result = "Proses Berhasil";
                         //Update To Billing PLP
-                        UpdateMIBILLING(Username, file, fStream, refNumber);
+                        logDb.update_mblling(Username, file, fStream, refNumber);
                         message += log.LogSuccess(result) + "\r\n";
 
                     } else if (resultdb.contains("Ref")) {
@@ -1516,19 +1426,19 @@ public class tps {
                         message += log.LogSuccess(result) + "\r\n";
                     } else {
                         String error_code = "UploadBatalPLPIPC";
-                        result = InsertTPSLOG(error_code, file, resultdb);
+                        result = logDb.excuteLogTpsLog(error_code, file, resultdb);
                         messageErr += log.LogError(error_code + result) + "\r\n";
                     }
                     String keterangan = result + "/" + resultdb;
-                    exc.ExcuteLog(Username, Password, "UploadBatalPLP_IPC", keterangan, file, fStream);
+                    logDb.excuteLogSucces(Username, Password, "UploadBatalPLP_IPC", keterangan, file, fStream);
                 } catch (Exception e) {
-                    exc.ExcuteError(e.getMessage(), "execute_class_tps", "UploadMohonPLP_IPC");
+                    logDb.excuteLogError(e.getMessage(), "execute_class_tps", "UploadMohonPLP_IPC");
                 }
             }
         } catch (Exception ex) {
             String keterangan = "Error : " + ex.getMessage();
             messageErr += log.LogError(keterangan) + "\r\n";
-            InsertTLog("LOG_SEQ.NEXTVAL", Username, encrypt.encrypt(Password), "UploadBatalPLP_IPC", keterangan, null);
+            logDb.excuteLogError(ex.getMessage(), "execute_class_tps", "UploadMohonPLP_IPC");
             ex.printStackTrace();
             result = "Upload Data Permohonan Batal PLP gagal.";
             messageErr += log.LogError(result) + "\r\n";
@@ -1558,9 +1468,7 @@ public class tps {
             @WebParam(name = "Username") String Username,
             @WebParam(name = "Password") String Password) throws NoSuchAlgorithmException {
         ParsingGetResponPLP pars = null;
-        Db mydb = null;
         Encrypt encrypt = null;
-        Tanggalan tgl = null;
         String refNumber = "";
         String result = "";
         String resultdb = "";
@@ -1568,7 +1476,7 @@ public class tps {
         String message = "";
         String messageErr = "";
 
-        exc = new ExcuteProses();
+        logDb = new logDatabase();
         cf = new CreateFile();
         tgl = new Tanggalan();
         log = new Loggers();
@@ -1589,7 +1497,7 @@ public class tps {
                         refNumber = resultdb.substring(0, resultdb.indexOf("_"));
                         result = "Proses Berhasil";
                         //Update To Billing PLP
-                        UpdateMIBILLING(Username, file, fStream, refNumber);
+                        logDb.update_mblling(Username, file, fStream, refNumber);
                         message += log.LogSuccess(result) + "\r\n";
                     } else if (resultdb.contains("Ref")) {
                         refNumber = resultdb.substring(resultdb.indexOf("Ref"), resultdb.indexOf("_"));
@@ -1597,19 +1505,19 @@ public class tps {
                         message += log.LogSuccess(result) + "\r\n";
                     } else {
                         String error_code = "GetResponPLP_IPC";
-                        result = InsertTPSLOG(error_code, file, resultdb);
+                        result = logDb.excuteLogTpsLog(error_code, file, resultdb);
                         messageErr += log.LogError(error_code + result) + "\r\n";
                     }
                     String keterangan = result + "/" + resultdb;
-                    exc.ExcuteLog(Username, Password, "GetResponPLP_IPC", keterangan, file, fStream);
+                    logDb.excuteLogSucces(Username, Password, "GetResponPLP_IPC", keterangan, file, fStream);
                 } catch (Exception e) {
-                    exc.ExcuteError(e.getMessage(), "execute_class_tps", "UploadMohonPLP_IPC");
+                    logDb.excuteLogError(e.getMessage(), "execute_class_tps", "UploadMohonPLP_IPC");
                 }
             }
         } catch (Exception ex) {
             String keterangan = "Error : " + ex.getMessage();
             messageErr += log.LogError(keterangan) + "\r\n";
-            InsertTLog("LOG_SEQ.NEXTVAL", Username, encrypt.encrypt(Password), "GetResponPLP_IPC", keterangan, null);
+            logDb.excuteLogError(ex.getMessage(), "execute_class_tps", "UploadMohonPLP_IPC");
             ex.printStackTrace();
             result = "Upload Data Respon PLP gagal.";
             messageErr += log.LogError(result) + "\r\n";
@@ -1649,7 +1557,7 @@ public class tps {
         String message = "";
         String messageErr = "";
 
-        exc = new ExcuteProses();
+        logDb = new logDatabase();
         cf = new CreateFile();
         tgl = new Tanggalan();
         try {
@@ -1669,7 +1577,7 @@ public class tps {
                         refNumber = resultdb.substring(0, resultdb.indexOf("_"));
                         result = "Proses Berhasil";
                         //Update To Billing PLP
-                        UpdateMIBILLING(Username, file, fStream, refNumber);
+                        logDb.update_mblling(Username, file, fStream, refNumber);
                         message += log.LogSuccess(result) + "\r\n";
                     } else if (resultdb.contains("Ref")) {
                         refNumber = resultdb.substring(resultdb.indexOf("Ref"), resultdb.indexOf("_"));
@@ -1677,19 +1585,19 @@ public class tps {
                         message += log.LogSuccess(result) + "\r\n";
                     } else {
                         String error_code = "";
-                        result = InsertTPSLOG(error_code, file, resultdb);
+                        result = logDb.excuteLogTpsLog(error_code, file, resultdb);
                         messageErr += log.LogError(error_code + result) + "\r\n";
                     }
                     String keterangan = result + "/" + resultdb;
-                    exc.ExcuteLog(Username, Password, "GetResponBatalPLP_IPC", keterangan, file, fStream);
+                    logDb.excuteLogSucces(Username, Password, "GetResponBatalPLP_IPC", keterangan, file, fStream);
                 } catch (Exception e) {
-                    exc.ExcuteError(e.getMessage(), "execute_class_tps", "UploadMohonPLP_IPC");
+                    logDb.excuteLogError(e.getMessage(), "execute_class_tps", "UploadMohonPLP_IPC");
                 }
             }
         } catch (Exception ex) {
             String keterangan = "Error : " + ex.getMessage();
             messageErr += log.LogError(keterangan) + "\r\n";
-            InsertTLog("LOG_SEQ.NEXTVAL", Username, encrypt.encrypt(Password), "GetResponBatalPLP_IPC", keterangan, null);
+            logDb.excuteLogError(ex.getMessage(), "execute_class_tps", "UploadMohonPLP_IPC");
             ex.printStackTrace();
             result = "Upload Data Respon Batal PLP gagal.";
             messageErr += log.LogError(result) + "\r\n";
@@ -1705,6 +1613,7 @@ public class tps {
         }
         return result;
     }
+<<<<<<< HEAD
 }
 
 //    /**
@@ -4602,3 +4511,6 @@ public class tps {
 ////        return result;
 ////    }
 ////}
+=======
+}
+>>>>>>> bfa8815... mengefesiensikan kodingan dan merapihkan kodingan tps online
