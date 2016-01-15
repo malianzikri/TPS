@@ -4,9 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group/>
         <group name="BELAJAR">
-            <file>file:/C:/Users/Kamal%20Bakri/Documents/GitHub/TPS/src/java/com/edii/generatefile/GenerateDW.java</file>
-            <file>file:/C:/Users/Kamal%20Bakri/Documents/GitHub/TPS/src/java/com/edii/tps/tps.java</file>
-            <file>file:/C:/Users/Kamal%20Bakri/Documents/GitHub/TPS/src/java/com/edii/generatefile/GenerateResponPLP_Tujuan_Tes.java</file>
+            <file>file:/C:/Users/Kamal%20Bakri/Documents/GitHub/TPS/src/java/com/edii/operation/db/operation.java</file>
+            <file>file:/C:/Users/Kamal%20Bakri/Documents/GitHub/TPS/src/java/com/edii/parsingFile/ParsingCoCoCarTer.java</file>
         </group>
     </open-files>
 </project-private>
