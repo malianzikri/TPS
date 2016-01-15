@@ -5,7 +5,6 @@
 package com.edii.operation.db;
 
 import DatabaseGenerator.DatabaseOracle;
-import com.edii.db.Db;
 import com.edii.model.ModelGetResponBatalPLP;
 import com.edii.model.ModelGetResponBatalPLPTujuan;
 import com.edii.model.ModelGetResponPLP;
@@ -13,6 +12,7 @@ import com.edii.model.ModelGetResponPLPTujuan;
 import com.edii.model.ModelUploadBatalPLP;
 import com.edii.model.ModelUploadMohonPLP;
 import com.edii.controller.SaveData;
+import com.edii.model.ModelCFS;
 import com.edii.model.ModelCoCoCarTer;
 import com.edii.model.ModelCoarriCodecoContainer;
 import com.edii.model.ModelCoarriCodecoKemasan;
@@ -37,7 +37,7 @@ import Loggers.Loggers;
  */
 public class operation implements SaveData {
 
-    static org.apache.commons.logging.Log logger = LogFactory.getLog(Db.class);
+    static org.apache.commons.logging.Log logger = LogFactory.getLog(operation.class);
     private static final String PROPERTIES_FILE = "db.properties";
     private static final Properties PROPERTIES = new Properties();
     DatabaseOracle dbO = new DatabaseOracle();
@@ -923,35 +923,102 @@ public class operation implements SaveData {
     }
 
     @Override
-    public String savedata_DW_header(List<ModelDW> dw, String RefNumber, String responId) {
-//        try {
-//            OpenConnection();
-//        } catch (ClassNotFoundException ex) {
-//            Logger.getLogger(operation.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        tabel = "COCOHDR";
-//        column = "ID";
-//        colomn_where = "VESSEL_CODE,VESSEL_NAME,VOYAGE_NO,ETA,ETD";
-//        value_where = shl.getVessel_code() + "," + shl.getVessel_name() + "," + shl.getNo_voy_flight() + "," + shl.getEta() + "," + shl.getEtd();
-//        data = dbO.query_select_with_where(tabel, column, colomn_where, value_where, "AND,AND,AND,AND");
-//        dbO.close_connection();
-//        tabel = "SELECT A.KODE_TPS_ASAL , A.KODE_GUDANG_ASAL , A.CALL_SIGN, A.NAMA_KAPAL, "
-//                + "A.NO_VOYAGE, A.KODE_TPS_TUJUAN, A.KODE_GUDANG_TUJUAN, B.REF_NUMBER, B.RESPONID   "
-//                + "FROM T_REQUEST_PLP A "
-//                + "INNER JOIN T_RESPON_PLP B ON A.REF_NUMBER = B.REF_NUMBER";
-//        column = "SELECT A.KODE_TPS_ASAL , A.KODE_GUDANG_ASAL , A.CALL_SIGN, A.NAMA_KAPAL, "
-//                + "A.NO_VOYAGE, A.KODE_TPS_TUJUAN, A.KODE_GUDANG_TUJUAN, B.REF_NUMBER, B.RESPONID   "
-//                + "FROM T_REQUEST_PLP A "
-//                + "INNER JOIN T_RESPON_PLP B ON A.REF_NUMBER = B.REF_NUMBER "
-//                + "WHERE A.KODE_TPS_ASAL <> ? AND B.FL_SEND = ?"
-//                + "AND B.REF_NUMBER = ? AND B.RESPONID =?";
-//        String field = "KD_TPS_ASAL,GUDANG_ASAL,KD_TPS_TUJUAN,GUDANG_TUJUAN,CALL_SIGN,NM_ANGKUT,NO_VOY_FLIGHT";
-//        dw = dbO.query_select_with_where(tabel, field, column, value_where, column);
+    public String savedata_dw_header(List<ModelDW> dw, String RefNumber, String responId) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public String savedata_DW_cont(List<ModelDW> dw, String id) {
+    public String savedata_dw_cont(List<ModelDW> dw, String id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean cekdata_cfs_header(ModelCFS cfs) {
+        try {
+            OpenConnection();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(operation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        boolean result;
+        data = new ArrayList<>();
+        tabel = "T_REQ_UBAH_STATUS";
+        column = "*";
+        colomn_where = "REF_NUMBER";
+        value_where = cfs.getRef_number();
+        data = dbO.query_select_with_where(tabel, column, colomn_where, value_where, "");
+        dbO.close_connection();
+        result = !data.get(0).equalsIgnoreCase("datakosong");
+        return result;
+    }
+
+    @Override
+    public String savedata_cfs_header(ModelCFS cfs) {
+        try {
+            OpenConnection();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(operation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        data = new ArrayList<>();
+
+        tabel = "T_REQ_UBAH_STATUS";
+        column = "REF_NUMBER,NO_PLP,TGL_PLP,KODE_TPS_ASAL,KODE_GUDANG_ASAL,KODE_TPS_TUJUAN,KODE_GUDANG_TUJUAN,"
+                + "NAMA_KAPAL,NO_VOYAGE,TGL_TIBA,CALL_SIGN,KODE_KANTOR,NO_BC11,TGL_BC11,NAMA_PEMOHON,STATUS,RECEIVED_DATE";
+        value = cfs.getRef_number() + "," + cfs.getNo_surat() + "," + cfs.getTgl_surat() + "," + cfs.getKd_tps_asal() + "," + cfs.getGudang_asal() + ","
+                + cfs.getKd_tps_tujuan() + "," + cfs.getGudang_tujuan() + "," + cfs.getNm_angkut() + "," + cfs.getNo_voy_flight() + "," + cfs.getTgl_tiba() + "," + cfs.getCall_sign() + ","
+                + cfs.getKd_kantor() + "," + cfs.getNo_bc11() + "," + cfs.getTgl_bc11() + "," + cfs.getNm_pemohon() + ",300," + getCurrentTimeStamp();
+
+        dbO.query_insert(tabel, column, value);
+        dbO.close_connection();
+        return "";
+    }
+
+    @Override
+    public String savedata_cfs_cont(ModelCFS cfs) {
+        try {
+            OpenConnection();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(operation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        data = new ArrayList<>();
+
+        tabel = "T_REQ_UBAH_STATUS_CONT";
+        column = "REF_NUMBER,NO_CONT,UKURAN_CONT";
+        value = cfs.getRef_number() + "," + cfs.getNo_cont() + "," + cfs.getUk_cont();
+        dbO.query_insert(tabel, column, value);
+        dbO.close_connection();
+        return "";
+    }
+
+    @Override
+    public String savedata_cfs_kms(ModelCFS cfs) {
+        try {
+            OpenConnection();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(operation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        data = new ArrayList<>();
+
+        tabel = "T_REQ_UBAH_STATUS_KMS";
+        column = "REF_NUMBER,KODE_KEMASAN,NO_BL,TGL_BL,JUMLAH_KEMASAN";
+        value = cfs.getRef_number() + "," + cfs.getJns_kms() + "," + cfs.getNo_bl_awb() + "," + cfs.getTgl_bl_awb() + "," + cfs.getJml_kms();
+        dbO.query_insert(tabel, column, value);
+        dbO.close_connection();
+        return "";
+    }
+
+    @Override
+    public boolean cek_condition_data(String tabel, String colomn_where, String value_where) {
+        try {
+            OpenConnection();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(operation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        boolean result;
+        data = new ArrayList<>();
+        column = "*";
+        data = dbO.query_select_with_where(tabel, column, colomn_where, value_where, "");
+        dbO.close_connection();
+        result = !data.get(0).equalsIgnoreCase("datakosong");
+        return result;
     }
 }

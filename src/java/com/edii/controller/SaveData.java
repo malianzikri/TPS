@@ -4,6 +4,7 @@
  */
 package com.edii.controller;
 
+import com.edii.model.ModelCFS;
 import com.edii.model.ModelCoCoCarTer;
 import com.edii.model.ModelCoarriCodecoContainer;
 import com.edii.model.ModelCoarriCodecoKemasan;
@@ -99,8 +100,19 @@ public interface SaveData {
 
     String savedata_cococarter_cont(ModelCoCoCarTer carter, String id);
 
-    //Cococarter
-    String savedata_DW_header(List<ModelDW> dw, String RefNumber, String responId);
+    //DW portal
+    String savedata_dw_header(List<ModelDW> dw, String RefNumber, String responId);
 
-    String savedata_DW_cont(List<ModelDW> dw, String id);
+    String savedata_dw_cont(List<ModelDW> dw, String id);
+
+    //CFS
+    boolean cekdata_cfs_header(ModelCFS cfs);
+
+    String savedata_cfs_header(ModelCFS cfs);
+
+    String savedata_cfs_cont(ModelCFS cfs);
+
+    String savedata_cfs_kms(ModelCFS cfs);
+
+    boolean cek_condition_data(String tabel, String colomn_where, String value_where);
 }
