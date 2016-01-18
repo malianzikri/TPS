@@ -181,6 +181,9 @@ public class operation implements SaveData {
         tabel = "DUAL";
         column = "RESPLP_SEQ.NEXTVAL as ID";
         data = dbO.query_select_raw(tabel, column);
+        if(data.get(0) == null){
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+        }
         String respon_id = data.get(0);
 
         tabel = "T_RESPON_PLP";
@@ -249,6 +252,9 @@ public class operation implements SaveData {
         tabel = "DUAL";
         column = "RESPLP_SEQ.NEXTVAL as ID";
         data = dbO.query_select_raw(tabel, column);
+        if(data.get(0) == null){
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+        }
         String respon_id = data.get(0);
 
         tabel = "T_PLP";
@@ -322,6 +328,9 @@ public class operation implements SaveData {
         tabel = "DUAL";
         column = "RESPLP_SEQ.NEXTVAL as ID";
         data = dbO.query_select_raw(tabel, column);
+        if(data.get(0) == null){
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+        }
         String respon_id = data.get(0);
 
         tabel = "T_RESPON_BATAL_PLP";
@@ -389,6 +398,9 @@ public class operation implements SaveData {
         tabel = "DUAL";
         column = "RESPLP_SEQ.NEXTVAL as ID";
         data = dbO.query_select_raw(tabel, column);
+        if(data.get(0) == null){
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+        }
         String respon_id = data.get(0);
 
         tabel = "T_BATAL_PLP";
@@ -456,6 +468,9 @@ public class operation implements SaveData {
         tabel = "DUAL";
         column = "COARRI_CODECO_SEQ.NEXTVAL as ID";
         data = dbO.query_select_raw(tabel, column);
+        if(data.get(0) == null){
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+        }
         String id = data.get(0);
 
         tabel = "COCOHDR";
@@ -515,6 +530,9 @@ public class operation implements SaveData {
         tabel = "DUAL";
         column = "COARRI_CODECO_SEQ.NEXTVAL as ID";
         data = dbO.query_select_raw(tabel, column);
+        if(data.get(0) == null){
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+        }
         String id = data.get(0);
 
         tabel = "COCOHDR";
@@ -576,6 +594,9 @@ public class operation implements SaveData {
         colomn_where = "VESSEL_CODE,VESSEL_NAME,VOYAGE_NO,ETA,ETD";
         value_where = shl.getVessel_code() + "," + shl.getVessel_name() + "," + shl.getNo_voy_flight() + "," + shl.getEta() + "," + shl.getEtd();
         data = dbO.query_select_with_where(tabel, column, colomn_where, value_where, "AND,AND,AND,AND");
+        if(data.get(0) == null){
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+        }
         dbO.close_connection();
         result = !data.get(0).equalsIgnoreCase(null);
         return result;
@@ -593,6 +614,9 @@ public class operation implements SaveData {
         tabel = "DUAL";
         column = "COARRI_CODECO_SEQ.NEXTVAL as ID";
         data = dbO.query_select_raw(tabel, column);
+        if(data.get(0) == null){
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+        }
         String id = data.get(0);
 
         tabel = "COCOHDR";
@@ -685,6 +709,9 @@ public class operation implements SaveData {
         colomn_where = "CAR";
         value_where = spjm.getCAR();
         data = dbO.query_select_with_where(tabel, column, colomn_where, value_where, "");
+        if(data.get(0) == null){
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+        }
         dbO.close_connection();
         result = !data.get(0).equalsIgnoreCase("datakosong");
         return result;
@@ -758,6 +785,9 @@ public class operation implements SaveData {
         colomn_where = "CAR";
         value_where = sppb.getCAR();
         data = dbO.query_select_with_where(tabel, column, colomn_where, value_where, "");
+        if(data.get(0) == null){
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+        }
         dbO.close_connection();
         result = !data.get(0).equalsIgnoreCase(null);
         return result;
@@ -806,6 +836,9 @@ public class operation implements SaveData {
         tabel = "DUAL";
         column = "COARRI_CODECO_SEQ.NEXTVAL as ID";
         data = dbO.query_select_raw(tabel, column);
+        if(data.get(0) == null){
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+        }
         String id = data.get(0);
 
         tabel = "COCOHDR";
