@@ -6,16 +6,9 @@ package com.edii.parsingfile;
 
 import XMLGenerator.ParsingXML;
 import com.edii.controller.SaveData;
-import com.edii.model.ModelCoarriCodecoContainer;
 import com.edii.model.ModelCoarriCodecoSHL;
 import com.edii.operation.db.operation;
-import com.edii.tools.Log;
-import com.nsw.db.Db;
-import java.io.StringReader;
 import java.util.ArrayList;
-import java.util.List;
-import org.jdom2.Element;
-import org.jdom2.input.SAXBuilder;
 
 /**
  *
@@ -34,8 +27,16 @@ public class ParsingCoarriCodecoSHL {
         sv = new operation();
         String id = "";
         try {
+<<<<<<< HEAD
 
 
+=======
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> bfa8815... mengefesiensikan kodingan dan merapihkan kodingan tps online
+>>>>>>> master
             if (fStream != null) {
                 ArrayList<String> header = new ArrayList();
                 header = px.xmlParsing(fStream, "COCOCONT>HEADER,", "KD_DOK,KD_TPS,"
@@ -101,11 +102,25 @@ public class ParsingCoarriCodecoSHL {
                     model.setPort_final_destination(split_cont[34]);
                     sv.savedata_coarricodecshl_con(model, id);
                 }
+<<<<<<< HEAD
 
 
             }
         } catch (Exception e) {
             e.printStackTrace();
+=======
+<<<<<<< HEAD
+            }
+        } catch (Exception ex) {
+        } finally {
+=======
+
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+>>>>>>> bfa8815... mengefesiensikan kodingan dan merapihkan kodingan tps online
+>>>>>>> master
         }
         return result;
     }

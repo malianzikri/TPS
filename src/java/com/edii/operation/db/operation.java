@@ -28,6 +28,8 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.logging.LogFactory;
+import File.TXT.CreateFile;
+import Loggers.Loggers;
 
 /**
  *
@@ -39,12 +41,16 @@ public class operation implements SaveData {
     private static final String PROPERTIES_FILE = "db.properties";
     private static final Properties PROPERTIES = new Properties();
     DatabaseOracle dbO = new DatabaseOracle();
+    CreateFile cf = new CreateFile();
+    Loggers log = new Loggers();
     private ArrayList<String> data;
     String value = "";
     String column = "";
     String tabel = "";
     String colomn_where = "";
     String value_where = "";
+    String messagesc = "";
+    String messageer = "";
 
     static {
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
@@ -83,21 +89,35 @@ public class operation implements SaveData {
                     + "," + plp.getNo_voy_flight() + "," + plp.getTgl_tiba() + "," + plp.getCall_sign() + "," + plp.getKd_kantor()
                     + "," + plp.getKd_alasan_plp() + "," + plp.getNo_bc11() + "," + plp.getTgl_bc11() + "," + plp.getTipe_data()
                     + "," + plp.getYor_asal() + "," + plp.getYor_tujuan() + "," + plp.getNm_pemohon() + ",500," + getCurrentTimeStamp();
-            dbO.query_insert(tabel, column, value);
+
+            if (!dbO.query_insert(tabel, column, value)) {
+                messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+                cf.newFile("", "Error" + getCurrentTimeStamp() + ".txt", messageer);
+                messageer = "";
+            }
             dbO.close_connection();
         } else if (type.equalsIgnoreCase("kms")) {
             tabel = "T_REQUEST_PLP_KMS";
             column = "REF_NUMBER,KODE_KEMASAN,JUMLAH_KEMASAN,NO_BL,TGL_BL";
             value = plp.getRef_number() + "," + plp.getJns_kms() + "," + plp.getJml_kms() + "," + plp.getNo_bl_awb() + "," + plp.getTgl_bl_awb();
-            dbO.query_insert(tabel, column, value);
+            if (!dbO.query_insert(tabel, column, value)) {
+                messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+                cf.newFile("", "Error" + getCurrentTimeStamp() + ".txt", messageer);
+                messageer = "";
+            }
             dbO.close_connection();
         } else if (type.equalsIgnoreCase("cont")) {
             tabel = "T_REQUEST_PLP_CONT";
             column = "REF_NUMBER,NO_CONT,UKURAN_CONT";
             value = plp.getRef_number() + "," + plp.getNo_cont() + "," + plp.getUk_cont();
-            dbO.query_insert(tabel, column, value);
+            if (!dbO.query_insert(tabel, column, value)) {
+                messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+                cf.newFile("", "Error" + getCurrentTimeStamp() + ".txt", messageer);
+                messageer = "";
+            }
             dbO.close_connection();
         }
+
         return "";
     }
 
@@ -117,21 +137,34 @@ public class operation implements SaveData {
                     + "," + plp.getKd_kantor() + "," + plp.getNo_bc11() + "," + plp.getTgl_bc11() + "," + plp.getTipe_data()
                     + "," + plp.getNm_pemohon() + "," + plp.getNo_batal_plp() + "," + plp.getTgl_batal_plp()
                     + "," + plp.getAlasan() + ",500," + getCurrentTimeStamp();
-            dbO.query_insert(tabel, column, value);
+            if (!dbO.query_insert(tabel, column, value)) {
+                messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+                cf.newFile("", "Error" + getCurrentTimeStamp() + ".txt", messageer);
+                messageer = "";
+            }
             dbO.close_connection();
         } else if (type.equalsIgnoreCase("kms")) {
             tabel = "T_REQUEST_PLP_KMS";
             column = "REF_NUMBER,KODE_KEMASAN,JUMLAH_KEMASAN,NO_BL,TGL_BL";
             value = plp.getRef_number() + "," + plp.getJns_kms() + "," + plp.getJml_kms() + "," + plp.getNo_bl_awb() + "," + plp.getTgl_bl_awb();
-            dbO.query_insert(tabel, column, value);
+            if (!dbO.query_insert(tabel, column, value)) {
+                messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+                cf.newFile("", "Error" + getCurrentTimeStamp() + ".txt", messageer);
+                messageer = "";
+            }
             dbO.close_connection();
         } else if (type.equalsIgnoreCase("cont")) {
             tabel = "T_REQUEST_PLP_CONT";
             column = "REF_NUMBER,NO_CONT,UKURAN_CONT";
             value = plp.getRef_number() + "," + plp.getNo_cont() + "," + plp.getUk_cont();
-            dbO.query_insert(tabel, column, value);
+            if (!dbO.query_insert(tabel, column, value)) {
+                messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+                cf.newFile("", "Error" + getCurrentTimeStamp() + ".txt", messageer);
+                messageer = "";
+            }
             dbO.close_connection();
         }
+
         return "";
     }
 
@@ -148,15 +181,22 @@ public class operation implements SaveData {
         tabel = "DUAL";
         column = "RESPLP_SEQ.NEXTVAL as ID";
         data = dbO.query_select_raw(tabel, column);
+        if(data.get(0) == null){
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+        }
         String respon_id = data.get(0);
 
         tabel = "T_RESPON_PLP";
         column = "RESPONID,KD_KANTOR,KD_TPS,REF_NUMBER,NO_PLP,TGL_PLP,ALASAN_REJECT,RECEIVED_DATE";
         value = respon_id + "," + plp.getKd_kantor() + "," + plp.getRef_number() + "," + plp.getNo_plp()
                 + "," + plp.getTgl_plp() + "," + plp.getAlasan_reject() + "," + getCurrentTimeStamp();
-        dbO.query_insert(tabel, column, value);
+        if (!dbO.query_insert(tabel, column, value)) {
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+            cf.newFile("", "Error" + getCurrentTimeStamp() + ".txt", messageer);
+            messageer = "";
+        }
         dbO.close_connection();
-
+        //savelog
         return respon_id;
     }
 
@@ -171,7 +211,11 @@ public class operation implements SaveData {
         column = "RESPONID,JNS_KMS,JML_KMS,NO_BL,TGL_BL,STATUS_PLP";
         value = plp.getRef_number() + "," + plp.getJns_kms() + "," + plp.getJml_kms()
                 + "," + plp.getNo_bl_awb() + "," + plp.getTgl_bl_awb() + "," + plp.getFl_setuju_kms();
-        dbO.query_insert(tabel, column, value);
+        if (!dbO.query_insert(tabel, column, value)) {
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+            cf.newFile("", "Error" + getCurrentTimeStamp() + ".txt", messageer);
+            messageer = "";
+        }
         dbO.close_connection();
         return "";
     }
@@ -187,7 +231,11 @@ public class operation implements SaveData {
         column = "RESPONID,NO_CONT,UK_CONT,JNS_CONT,STATUS_PLP";
         value = respon_id + "," + plp.getNo_cont() + "," + plp.getUk_cont()
                 + "," + plp.getJns_cont() + "," + plp.getFl_setuju_cont();
-        dbO.query_insert(tabel, column, value);
+        if (!dbO.query_insert(tabel, column, value)) {
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+            cf.newFile("", "Error" + getCurrentTimeStamp() + ".txt", messageer);
+            messageer = "";
+        }
         dbO.close_connection();
         return "";
     }
@@ -204,6 +252,9 @@ public class operation implements SaveData {
         tabel = "DUAL";
         column = "RESPLP_SEQ.NEXTVAL as ID";
         data = dbO.query_select_raw(tabel, column);
+        if(data.get(0) == null){
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+        }
         String respon_id = data.get(0);
 
         tabel = "T_PLP";
@@ -214,7 +265,11 @@ public class operation implements SaveData {
                 + "," + plp.getNo_plp() + "," + plp.getTgl_plp() + "," + plp.getNm_angkut() + "," + plp.getNo_voy_flight()
                 + "," + plp.getCall_sign() + "," + plp.getTgl_tiba() + "," + plp.getNo_bc11() + "','" + plp.getTgl_bc11()
                 + "," + plp.getNo_surat() + "," + plp.getTgl_surat() + "," + getCurrentTimeStamp();
-        dbO.query_insert(tabel, column, value);
+        if (!dbO.query_insert(tabel, column, value)) {
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+            cf.newFile("", "Error" + getCurrentTimeStamp() + ".txt", messageer);
+            messageer = "";
+        }
         dbO.close_connection();
 
         return respon_id;
@@ -231,7 +286,11 @@ public class operation implements SaveData {
         column = "RESPONID,JNS_KMS,JML_KMS,NO_BL,TGL_BL";
         value = respon_id + "," + plp.getJns_kms() + "," + plp.getJml_kms()
                 + "," + plp.getNo_bl_awb() + "," + plp.getTgl_bl_awb();
-        dbO.query_insert(tabel, column, value);
+        if (!dbO.query_insert(tabel, column, value)) {
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+            cf.newFile("", "Error" + getCurrentTimeStamp() + ".txt", messageer);
+            messageer = "";
+        }
         dbO.close_connection();
         return "";
     }
@@ -248,7 +307,11 @@ public class operation implements SaveData {
         value = respon_id + "," + plp.getNo_cont() + "," + plp.getUk_cont()
                 + "," + plp.getJns_cont() + "," + plp.getNo_pos_bc11() + "," + plp.getConsignee()
                 + "," + plp.getNo_bl_awb() + "," + plp.getTgl_bl_awb();
-        dbO.query_insert(tabel, column, value);
+        if (!dbO.query_insert(tabel, column, value)) {
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+            cf.newFile("", "Error" + getCurrentTimeStamp() + ".txt", messageer);
+            messageer = "";
+        }
         dbO.close_connection();
         return "";
     }
@@ -265,13 +328,20 @@ public class operation implements SaveData {
         tabel = "DUAL";
         column = "RESPLP_SEQ.NEXTVAL as ID";
         data = dbO.query_select_raw(tabel, column);
+        if(data.get(0) == null){
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+        }
         String respon_id = data.get(0);
 
         tabel = "T_RESPON_BATAL_PLP";
         column = "RESPONID,KD_KANTOR,KD_TPS,REF_NUMBER,NO_BATAL_PLP,TGL_BATAL_PLP,RECEIVED_DATE";
         value = respon_id + "," + plp.getKd_kantor() + "," + plp.getRef_number() + "," + plp.getNo_batal_plp()
                 + "," + plp.getTgl_batal_plp() + "," + getCurrentTimeStamp();
-        dbO.query_insert(tabel, column, value);
+        if (!dbO.query_insert(tabel, column, value)) {
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+            cf.newFile("", "Error" + getCurrentTimeStamp() + ".txt", messageer);
+            messageer = "";
+        }
         dbO.close_connection();
 
         return respon_id;
@@ -288,7 +358,11 @@ public class operation implements SaveData {
         column = "RESPONID,JNS_KMS,JML_KMS,NO_BL,TGL_BL,STATUS_PLP";
         value = respon_id + "," + plp.getJns_kms() + "," + plp.getJml_kms()
                 + "," + plp.getNo_bl_awb() + "," + plp.getTgl_bl_awb() + "," + plp.getFl_setuju_kms();
-        dbO.query_insert(tabel, column, value);
+        if (!dbO.query_insert(tabel, column, value)) {
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+            cf.newFile("", "Error" + getCurrentTimeStamp() + ".txt", messageer);
+            messageer = "";
+        }
         dbO.close_connection();
         return "";
     }
@@ -303,7 +377,11 @@ public class operation implements SaveData {
         tabel = "T_RESPON_BATAL_PLP_CONT";
         column = "RESPONID,NO_CONT,UK_CONT,STATUS_PLP";
         value = respon_id + "," + plp.getNo_cont() + "," + plp.getUk_cont() + "," + plp.getFl_setuju_cont();
-        dbO.query_insert(tabel, column, value);
+        if (!dbO.query_insert(tabel, column, value)) {
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+            cf.newFile("", "Error" + getCurrentTimeStamp() + ".txt", messageer);
+            messageer = "";
+        }
         dbO.close_connection();
         return "";
     }
@@ -320,13 +398,20 @@ public class operation implements SaveData {
         tabel = "DUAL";
         column = "RESPLP_SEQ.NEXTVAL as ID";
         data = dbO.query_select_raw(tabel, column);
+        if(data.get(0) == null){
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+        }
         String respon_id = data.get(0);
 
         tabel = "T_BATAL_PLP";
         column = "RESPONID,KD_KANTOR,KD_TPS,KD_TPS_ASAL,NO_BATAL_PLP,TGL_BATAL_PLP,NO_PLP,TGL_PLP,RECEIVED_DATE";
         value = respon_id + "," + plp.getKd_kantor() + "," + plp.getKd_tps() + "," + plp.getNo_batal_plp()
                 + "," + plp.getTgl_batal_plp() + "," + plp.getNo_plp() + "," + plp.getTgl_plp() + "," + getCurrentTimeStamp();
-        dbO.query_insert(tabel, column, value);
+        if (!dbO.query_insert(tabel, column, value)) {
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+            cf.newFile("", "Error" + getCurrentTimeStamp() + ".txt", messageer);
+            messageer = "";
+        }
         dbO.close_connection();
 
         return respon_id;
@@ -343,7 +428,11 @@ public class operation implements SaveData {
         column = "RESPONID,JNS_KMS,JML_KMS,NO_BL,TGL_BL";
         value = respon_id + "," + plp.getJns_kms() + "," + plp.getJml_kms()
                 + "," + plp.getNo_bl_awb() + "," + plp.getTgl_bl_awb();
-        dbO.query_insert(tabel, column, value);
+        if (!dbO.query_insert(tabel, column, value)) {
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+            cf.newFile("", "Error" + getCurrentTimeStamp() + ".txt", messageer);
+            messageer = "";
+        }
         dbO.close_connection();
         return "";
     }
@@ -358,7 +447,11 @@ public class operation implements SaveData {
         tabel = "T_BATAL_PLP_CONT";
         column = "RESPONID,NO_CONT,UK_CONT";
         value = respon_id + "," + plp.getNo_cont() + "," + plp.getUk_cont();
-        dbO.query_insert(tabel, column, value);
+        if (!dbO.query_insert(tabel, column, value)) {
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+            cf.newFile("", "Error" + getCurrentTimeStamp() + ".txt", messageer);
+            messageer = "";
+        }
         dbO.close_connection();
         return "";
     }
@@ -375,6 +468,9 @@ public class operation implements SaveData {
         tabel = "DUAL";
         column = "COARRI_CODECO_SEQ.NEXTVAL as ID";
         data = dbO.query_select_raw(tabel, column);
+        if(data.get(0) == null){
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+        }
         String id = data.get(0);
 
         tabel = "COCOHDR";
@@ -382,7 +478,11 @@ public class operation implements SaveData {
         value = id + "," + coco.getKd_dok() + "," + coco.getKd_tps() + "," + coco.getNm_angkut()
                 + "," + coco.getNo_voy_flight() + "," + coco.getCall_sign()
                 + "," + coco.getTgl_tiba() + "," + coco.getKd_gudang() + coco.getRef_number();
-        dbO.query_insert(tabel, column, value);
+        if (!dbO.query_insert(tabel, column, value)) {
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+            cf.newFile("", "Error" + getCurrentTimeStamp() + ".txt", messageer);
+            messageer = "";
+        }
         dbO.close_connection();
 
         return id;
@@ -409,7 +509,11 @@ public class operation implements SaveData {
                 + "," + coco.getPel_muat() + "," + coco.getPel_transit() + "," + coco.getPel_bongkar() + ",flag," + coco.getGudang_tujuan() + "," + coco.getKode_kantor()
                 + "," + coco.getNo_daftar_pabean() + "," + coco.getTgl_daftar_pabean() + "," + coco.getNo_segel_bc() + "," + coco.getTgl_segel_bc() + "," + coco.getNo_ijin_tps()
                 + "," + coco.getTgl_ijin_tps() + "," + coco.getRef_number() + "," + coco.getKd_dok() + ",flag";
-        dbO.query_insert(tabel, column, value);
+        if (!dbO.query_insert(tabel, column, value)) {
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+            cf.newFile("", "Error" + getCurrentTimeStamp() + ".txt", messageer);
+            messageer = "";
+        }
         dbO.close_connection();
         return "";
     }
@@ -426,6 +530,9 @@ public class operation implements SaveData {
         tabel = "DUAL";
         column = "COARRI_CODECO_SEQ.NEXTVAL as ID";
         data = dbO.query_select_raw(tabel, column);
+        if(data.get(0) == null){
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+        }
         String id = data.get(0);
 
         tabel = "COCOHDR";
@@ -433,7 +540,11 @@ public class operation implements SaveData {
         value = id + "," + coco.getKd_dok() + "," + coco.getKd_tps() + "," + coco.getNm_angkut()
                 + "," + coco.getNo_voy_flight() + "," + coco.getCall_sign()
                 + "," + coco.getTgl_tiba() + "," + coco.getKd_gudang() + coco.getRef_number();
-        dbO.query_insert(tabel, column, value);
+        if (!dbO.query_insert(tabel, column, value)) {
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+            cf.newFile("", "Error" + getCurrentTimeStamp() + ".txt", messageer);
+            messageer = "";
+        }
         dbO.close_connection();
 
         return id;
@@ -460,7 +571,11 @@ public class operation implements SaveData {
                 + "," + coco.getPel_muat() + "," + coco.getPel_transit() + "," + coco.getPel_bongkar() + ",flag," + coco.getGudang_tujuan() + "," + coco.getKode_kantor()
                 + "," + coco.getNo_daftar_pabean() + "," + coco.getTgl_daftar_pabean() + "," + coco.getNo_segel_bc() + "," + coco.getTgl_segel_bc() + "," + coco.getNo_ijin_tps()
                 + "," + coco.getTgl_ijin_tps() + "," + coco.getRef_number() + "," + coco.getKd_dok();
-        dbO.query_insert(tabel, column, value);
+        if (!dbO.query_insert(tabel, column, value)) {
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+            cf.newFile("", "Error" + getCurrentTimeStamp() + ".txt", messageer);
+            messageer = "";
+        }
         dbO.close_connection();
         return "";
     }
@@ -479,8 +594,11 @@ public class operation implements SaveData {
         colomn_where = "VESSEL_CODE,VESSEL_NAME,VOYAGE_NO,ETA,ETD";
         value_where = shl.getVessel_code() + "," + shl.getVessel_name() + "," + shl.getNo_voy_flight() + "," + shl.getEta() + "," + shl.getEtd();
         data = dbO.query_select_with_where(tabel, column, colomn_where, value_where, "AND,AND,AND,AND");
+        if(data.get(0) == null){
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+        }
         dbO.close_connection();
-        result = !data.get(0).equalsIgnoreCase("datakosong");
+        result = !data.get(0).equalsIgnoreCase(null);
         return result;
     }
 
@@ -496,13 +614,20 @@ public class operation implements SaveData {
         tabel = "DUAL";
         column = "COARRI_CODECO_SEQ.NEXTVAL as ID";
         data = dbO.query_select_raw(tabel, column);
+        if(data.get(0) == null){
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+        }
         String id = data.get(0);
 
         tabel = "COCOHDR";
         column = "ID,KD_TPS,KD_GUDANG,VESSEL_CODE,VESSEL_NAME,VOYAGE_NO,CALL_SIGN,ETA,ETD,WK_REKAM";
         value = id + "," + shl.getKd_tps() + "," + shl.getKd_gudang() + "," + shl.getVessel_code() + "," + shl.getVessel_name()
                 + "," + shl.getNo_voy_flight() + "," + shl.getCall_sign() + "," + shl.getEta() + "," + shl.getEtd() + "," + getCurrentTimeStamp();
-        dbO.query_insert(tabel, column, value);
+        if (!dbO.query_insert(tabel, column, value)) {
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+            cf.newFile("", "Error" + getCurrentTimeStamp() + ".txt", messageer);
+            messageer = "";
+        }
         dbO.close_connection();
 
         return id;
@@ -535,7 +660,11 @@ public class operation implements SaveData {
                 + "," + shl.getFl_cont_kosong() + "," + shl.getTemperature() + "," + shl.getShipper() + "," + shl.getStat_cont() + "," + shl.getRemarks()
                 + "," + getCurrentTimeStamp() + "," + shl.getPort_origin() + "," + shl.getPort_final_destination();
 
-        dbO.query_insert(tabel, column, value);
+        if (!dbO.query_insert(tabel, column, value)) {
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+            cf.newFile("", "Error" + getCurrentTimeStamp() + ".txt", messageer);
+            messageer = "";
+        }
         dbO.close_connection();
         return "";
     }
@@ -557,7 +686,11 @@ public class operation implements SaveData {
                 + spjm.getNAMA_IMP() + "," + spjm.getNPWP_PPJK() + "," + spjm.getNAMA_PPJK() + "," + spjm.getGUDANG() + "," + spjm.getJML_CONT() + "," + spjm.getNO_BC11() + "," + spjm.getTGL_BC11() + ","
                 + spjm.getNO_POS_BC11() + "," + spjm.getFL_KARANTINA() + "," + spjm.getNM_ANGKUT() + "," + spjm.getNO_VOY_FLIGHT() + "," + getCurrentTimeStamp();
 
-        dbO.query_insert(tabel, column, value);
+        if (!dbO.query_insert(tabel, column, value)) {
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+            cf.newFile("", "Error" + getCurrentTimeStamp() + ".txt", messageer);
+            messageer = "";
+        }
         dbO.close_connection();
         return "";
     }
@@ -576,6 +709,9 @@ public class operation implements SaveData {
         colomn_where = "CAR";
         value_where = spjm.getCAR();
         data = dbO.query_select_with_where(tabel, column, colomn_where, value_where, "");
+        if(data.get(0) == null){
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+        }
         dbO.close_connection();
         result = !data.get(0).equalsIgnoreCase("datakosong");
         return result;
@@ -593,7 +729,11 @@ public class operation implements SaveData {
         tabel = "SPJMKMS";
         column = "CAR,JNS_KMS,MERK_KMS,JML_KMS";
         value = spjm.getCAR() + "," + spjm.getJNS_KMS() + "," + spjm.getMERK_KMS() + "," + spjm.getJML_KMS();
-        dbO.query_insert(tabel, column, value);
+        if (!dbO.query_insert(tabel, column, value)) {
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+            cf.newFile("", "Error" + getCurrentTimeStamp() + ".txt", messageer);
+            messageer = "";
+        }
         dbO.close_connection();
         return "";
     }
@@ -610,7 +750,11 @@ public class operation implements SaveData {
         tabel = "SPJMCONT";
         column = "CAR,NO_CONT,SIZE_CONT";
         value = spjm.getCAR() + "," + spjm.getNO_CONT() + "," + spjm.getSIZE().substring(0, 11) + "," + spjm.getJML_KMS().substring(0, 2);
-        dbO.query_insert(tabel, column, value);
+        if (!dbO.query_insert(tabel, column, value)) {
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+            cf.newFile("", "Error" + getCurrentTimeStamp() + ".txt", messageer);
+            messageer = "";
+        }
         dbO.close_connection();
         return "";
     }
@@ -641,8 +785,11 @@ public class operation implements SaveData {
         colomn_where = "CAR";
         value_where = sppb.getCAR();
         data = dbO.query_select_with_where(tabel, column, colomn_where, value_where, "");
+        if(data.get(0) == null){
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+        }
         dbO.close_connection();
-        result = !data.get(0).equalsIgnoreCase("datakosong");
+        result = !data.get(0).equalsIgnoreCase(null);
         return result;
     }
 
@@ -668,7 +815,11 @@ public class operation implements SaveData {
                 + sppb.getTG_BL_AWB() + "," + sppb.getNO_MASTER_BL_AWB() + "," + sppb.getTG_MASTER_BL_AWB() + ","
                 + getCurrentTimeStamp();
 
-        dbO.query_insert(tabel, column, value);
+        if (!dbO.query_insert(tabel, column, value)) {
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+            cf.newFile("", "Error" + getCurrentTimeStamp() + ".txt", messageer);
+            messageer = "";
+        }
         dbO.close_connection();
         return "";
     }
@@ -685,13 +836,20 @@ public class operation implements SaveData {
         tabel = "DUAL";
         column = "COARRI_CODECO_SEQ.NEXTVAL as ID";
         data = dbO.query_select_raw(tabel, column);
+        if(data.get(0) == null){
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+        }
         String id = data.get(0);
 
         tabel = "COCOHDR";
         column = "ID,KD_DOK,KD_TPS,NM_ANGKUT,NO_VOY_FLIGHT,CALL_SIGN,TGL_TIBA,KD_GUDANG,REF_NUMBER,RECEIVED_DATE";
         value = id + "," + carter.getKd_dok() + "," + carter.getNm_angkut() + "," + carter.getNo_voy_flight() + "," + carter.getCall_sign()
                 + "," + carter.getTgl_tiba() + "," + carter.getKd_gudang() + "," + carter.getRef_number() + "," + getCurrentTimeStamp();
-        dbO.query_insert(tabel, column, value);
+        if (!dbO.query_insert(tabel, column, value)) {
+            messageer += dbO.get_message_error() + "\r\n";
+            cf.newFile("", "Error" + getCurrentTimeStamp() + ".txt", messageer);
+            messageer = "";
+        }
         dbO.close_connection();
 
         return id;
@@ -714,7 +872,11 @@ public class operation implements SaveData {
                 + "," + carter.getBruto() + "," + carter.getKd_timbun() + "," + carter.getKd_dok_inout() + "," + carter.getNo_dok_inout() + "," + carter.getTgl_dok_inout()
                 + "," + carter.getWk_inout() + "," + carter.getKd_sar_angkut_inout() + "," + carter.getNo_pol() + "," + carter.getPel_muat()
                 + "," + carter.getPel_transit() + "," + carter.getPel_bongkar() + "," + carter.getGudang_tujuan();
-        dbO.query_insert(tabel, column, value);
+        if (!dbO.query_insert(tabel, column, value)) {
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+            cf.newFile("", "Error" + getCurrentTimeStamp() + ".txt", messageer);
+            messageer = "";
+        }
         dbO.close_connection();
         return "";
     }
@@ -730,7 +892,11 @@ public class operation implements SaveData {
         tabel = "CUSPERMITKMS";
         column = "CAR,JNS_KMS,MERK_KMS,JML_KMS,FLAG_TRANSFER_IPC,WK_INSERT";
         value = sppb.getCAR() + "," + sppb.getJNS_KMS() + "," + sppb.getMERK_KMS() + "," + sppb.getJML_KMS() + "," + "0" + "," + getCurrentTimeStamp();
-        dbO.query_insert(tabel, column, value);
+        if (!dbO.query_insert(tabel, column, value)) {
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+            cf.newFile("", "Error" + getCurrentTimeStamp() + ".txt", messageer);
+            messageer = "";
+        }
         dbO.close_connection();
         return "";
     }
@@ -739,6 +905,7 @@ public class operation implements SaveData {
     public String savedata_sppb_cont(ModelSPPB sppb) {
         try {
             OpenConnection();
+            
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(operation.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -746,7 +913,11 @@ public class operation implements SaveData {
         tabel = "CUSPERMITCONT";
         column = "CAR,NO_CONT,UK_CONT,JNS_MUAT,FLAG_TRANSFER_IPC,WK_INSERT";
         value = sppb.getCAR() + "," + sppb.getNO_CONT() + "," + sppb.getSIZE() + "," + sppb.getJNS_MUAT() + "," + "0" + "," + getCurrentTimeStamp();
-        dbO.query_insert(tabel, column, value);
+        if (!dbO.query_insert(tabel, column, value)) {
+            messageer += log.LogError(dbO.get_message_error()) + "\r\n";
+            cf.newFile("", "Error" + getCurrentTimeStamp() + ".txt", messageer);
+            messageer = "";
+        }
         dbO.close_connection();
         return "";
     }
