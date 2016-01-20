@@ -2,13 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.edii.entity;
+package com.edii.model;
 
 /**
  *
  * @author Aslichatun Nisa
  */
-public class EntityLog {
+public class ModelLog {
    private String user;
    private String nama_class;
    private String refNumber;
